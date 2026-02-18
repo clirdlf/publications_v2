@@ -1,0 +1,15 @@
+---
+layout: layouts/base.njk
+title: Reports
+---
+
+<h1>Reports</h1>
+
+<ul>
+{% for r in collections.reports %}
+  <li>
+    <a href="/items/zenodo-{{ r.zenodo_id }}/">{{ r.title }}</a>
+    {% if r.published %} ({{ r.published | year }}){% endif %}
+  </li>
+{% endfor %}
+</ul>

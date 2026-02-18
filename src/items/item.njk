@@ -1,0 +1,42 @@
+---
+pagination:
+  data: zenodo
+  size: 1
+  alias: item
+permalink: "/items/zenodo-{{ item.zenodo_id }}/index.html"
+layout: layouts/base.njk
+title: "{{ item.title }}"
+---
+
+<h1>{{ item.title }}</h1>
+
+{% if item.published %}
+  <p><strong>Published:</strong> {{ item.published | isoDate }}</p>
+{% endif %}
+
+{% if item.creators and item.creators.length %}
+  <p><strong>Creators:</strong> {{ item.creators | join(", ") }}</p>
+{% endif %}
+
+{% if item.doi %}
+  <p><strong>DOI:</strong> {{ item.doi }}</p>
+{% endif %}
+
+{% if item.description %}
+  <div>{{ item.description | safe }}</div>
+{% endif %}
+
+{% if item.files and item.files.length %}
+  <h2>Files</h2>
+  <ul>
+    {% for f in item.files %}
+      <li><a href="{{ f.url }}">{{ f.key }}</a></li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p><em>No files attached.</em></p>
+{% endif %}
+
+{% if item.zenodo_html %}
+  <p><a href="{{ item.zenodo_html }}">View on Zenodo</a></p>
+{% endif %}
