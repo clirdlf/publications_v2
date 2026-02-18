@@ -4,39 +4,79 @@ pagination:
   size: 1
   alias: item
 permalink: "/items/zenodo-{{ item.zenodo_id }}/index.html"
-layout: layouts/base.njk
-title: "{{ item.title }}"
+layout: layouts/item-page.njk
+title: "{{item.title}} - A CLIR Publication"
 ---
 
-<h1>{{ item.title }}</h1>
+{% set primaryThumbnail = item.links and item.links.thumbnails and (item.links.thumbnails["750"] or item.links.thumbnails["250"] or item.links.thumbnails["100"]) %}
 
-{% if item.published %}
-  <p><strong>Published:</strong> {{ item.published | isoDate }}</p>
-{% endif %}
+<article class="item-view lp-container">
+  <p class="item-breadcrumb"><a href="/reports/">Reports</a> / Item</p>
 
-{% if item.creators and item.creators.length %}
-  <p><strong>Creators:</strong> {{ item.creators | join(", ") }}</p>
-{% endif %}
+  <section class="item-hero">
+    <div class="item-cover">
+      {% if primaryThumbnail %}
+        <img src="{{ primaryThumbnail }}" alt="Cover image for {{ item.title }}" loading="lazy" />
+      {% else %}
+        <div class="item-cover-fallback" aria-hidden="true">CLIR</div>
+      {% endif %}
+    </div>
 
-{% if item.doi %}
-  <p><strong>DOI:</strong> {{ item.doi }}</p>
-{% endif %}
+    <div class="item-summary">
+      <p class="item-kicker">Publication</p>
+      <h1>{{ item.title }}</h1>
 
-{% if item.description %}
-  <div>{{ item.description | safe }}</div>
-{% endif %}
+      <dl class="item-meta">
+        {% if item.published %}
+          <div>
+            <dt>Published</dt>
+            <dd>{{ item.published | isoDate }}</dd>
+          </div>
+        {% endif %}
+        {% if item.creators and item.creators.length %}
+          <div>
+            <dt>Creators</dt>
+            <dd>{{ item.creators | join(", ") }}</dd>
+          </div>
+        {% endif %}
+        {% if item.doi %}
+          <div>
+            <dt>DOI</dt>
+            <dd>{{ item.doi }}</dd>
+          </div>
+        {% endif %}
+      </dl>
 
-{% if item.files and item.files.length %}
-  <h2>Files</h2>
-  <ul>
-    {% for f in item.files %}
-      <li><a href="{{ f.url }}">{{ f.key }}</a></li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p><em>No files attached.</em></p>
-{% endif %}
+      <div class="item-actions">
+        {% if item.files and item.files.length %}
+          <a class="lp-btn" href="{{ item.files[0].url }}">Download Primary File</a>
+        {% endif %}
+        {% if item.zenodo_html %}
+          <a class="lp-btn lp-btn-outline item-btn-alt" href="{{ item.zenodo_html }}">View on Zenodo</a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
 
-{% if item.zenodo_html %}
-  <p><a href="{{ item.zenodo_html }}">View on Zenodo</a></p>
-{% endif %}
+  {% if item.description %}
+    <section class="item-panel">
+      <h2>About This Item</h2>
+      <div class="item-description">{{ item.description | safe }}</div>
+    </section>
+  {% endif %}
+
+  <section class="item-panel">
+    <h2>Files</h2>
+    {% if item.files and item.files.length %}
+      <ul class="item-files">
+        {% for f in item.files %}
+          <li>
+            <a href="{{ f.url }}">{{ f.key }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="item-empty">No files attached.</p>
+    {% endif %}
+  </section>
+</article>

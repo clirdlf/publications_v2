@@ -16,8 +16,8 @@
     "css:watch": "postcss src/assets/styles.css -o dist/assets/styles.css -w",
     "build:11ty": "eleventy",
     "dev:11ty": "eleventy --serve --watch",
-    "build": "pnpm css:build && pnpm build:11ty",
-    "dev": "pnpm css:watch & pnpm dev:11ty",
+    "build": "pnpm css:build && pnpm index && pnpm build:11ty",
+    "dev": "pnpm index && pnpm css:watch & pnpm dev:11ty",
     "fetch:zenodo": "node --env-file=.env scripts/fetch-zenodo.mjs"
   },
   "keywords": [],

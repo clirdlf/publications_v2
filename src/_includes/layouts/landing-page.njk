@@ -33,11 +33,29 @@
           <h1>Explore Our Publications</h1>
           <p>Research, Resources, and Media from the Council on Library and Information Resources.</p>
 
-          <form class="lp-searchbar" role="search" aria-label="Search publications">
+          <form
+            class="lp-searchbar"
+            role="search"
+            aria-label="Search publications"
+            method="get"
+            action="/"
+            data-site-search
+          >
             <label class="sr-only" for="lp-search">Search publications</label>
-            <input id="lp-search" type="search" placeholder="Search publications..." />
+            <input
+              id="lp-search"
+              name="q"
+              type="search"
+              placeholder="Search publications..."
+              data-search-input
+            />
             <button type="submit">Search</button>
           </form>
+
+          <section class="lp-search-results" data-search-results hidden aria-live="polite">
+            <p class="lp-search-status" data-search-status></p>
+            <ul class="lp-search-list" data-search-list></ul>
+          </section>
 
           <ul class="lp-filters" aria-label="Content filters">
             <li><a href="#" class="is-active">All</a></li>
@@ -155,5 +173,6 @@
         <p>&copy; 2024 CLIR</p>
       </div>
     </footer>
+    <script src="/assets/js/site-search.js"></script>
   </body>
 </html>
