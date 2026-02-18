@@ -8,19 +8,17 @@
   },
   "scripts": {
     "clean": "rm -rf dist src/_data/zenodo.json dist/assets/search-index.json dist/assets/redirects.map",
-    "fetch": "node scripts/fetch-zenodo.mjs",
+    "fetch": "pnpm run fetch:zenodo",
     "index": "node scripts/build-search-index.mjs",
     "redirects:map": "node scripts/build-apache-redirect-map.mjs",
     "smoke": "node scripts/smoke.mjs",
-    
     "css:build": "postcss src/assets/styles.css -o dist/assets/styles.css",
     "css:watch": "postcss src/assets/styles.css -o dist/assets/styles.css -w",
-
     "build:11ty": "eleventy",
     "dev:11ty": "eleventy --serve --watch",
-
     "build": "pnpm css:build && pnpm build:11ty",
-    "dev": "pnpm css:watch & pnpm dev:11ty"
+    "dev": "pnpm css:watch & pnpm dev:11ty",
+    "fetch:zenodo": "node --env-file=.env scripts/fetch-zenodo.mjs"
   },
   "keywords": [],
   "author": "",

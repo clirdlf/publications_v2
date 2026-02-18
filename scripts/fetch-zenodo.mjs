@@ -1,32 +1,20 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { z } from "zod";
 
 const OUT_PATH = path.join(process.cwd(), "src", "_data", "zenodo.json");
 const COMMUNITY = process.env.ZENODO_COMMUNITY || "clir";
 const BASE = "https://zenodo.org/api/records";
+const TOKEN = process.env.ZENODO_TOKEN || "";
+const REQUESTED_PAGE_SIZE = Number(process.env.ZENODO_PAGE_SIZE || 25);
 
-// Minimal schema for safety. Zenodo fields vary.
-const ZenodoHitSchema = z.object({
-  id: z.number(),
-  metadata: z.object({
-    title: z.string().optional(),
-    publication_date: z.string().optional(),
-    description: z.string().optional(),
-    creators: z.array(z.object({ name: z.string().optional() })).optional(),
-    doi: z.string().optional(),
-    keywords: z.array(z.string()).optional()
-  }).passthrough(),
-  links: z.object({
-    html: z.string().optional()
-  }).passthrough().optional(),
-  files: z.array(z.object({
-    key: z.string().optional(),
-    links: z.object({
-      self: z.string().optional()
-    }).passthrough().optional()
-  }).passthrough()).optional()
-}).passthrough();
+function isObject(value) {
+  return typeof value === "object" && value !== null;
+}
+
+// Minimal runtime guard for Zenodo hit shape.
+function isValidHit(hit) {
+  return isObject(hit) && typeof hit.id === "number" && isObject(hit.metadata);
+}
 
 function inferTypeFromKeywords(keywords = []) {
   // You can tighten this later with your controlled vocabulary.
@@ -61,39 +49,58 @@ function normalize(hit) {
 }
 
 async function fetchPage(page, size = 100) {
+  if (!TOKEN && size > 25) {
+    throw new Error("Zenodo API: unauthenticated requests must use size <= 25. Set ZENODO_TOKEN for larger page sizes.");
+  }
+
   const url = new URL(BASE);
-  // community filter
-  url.searchParams.set("q", `communities:${COMMUNITY}`);
+  // Use dedicated community filter arg to avoid query-string syntax issues.
+  url.searchParams.set("communities", COMMUNITY);
   url.searchParams.set("page", String(page));
   url.searchParams.set("size", String(size));
   url.searchParams.set("sort", "mostrecent");
 
   const res = await fetch(url.toString(), {
-    headers: { "Accept": "application/json" }
+    headers: {
+      "Accept": "application/json",
+      ...(TOKEN ? { Authorization: `Bearer ${TOKEN}` } : {})
+    }
   });
 
   if (!res.ok) {
-    throw new Error(`Zenodo fetch failed: ${res.status} ${res.statusText}`);
+    const body = await res.text().catch(() => "");
+    throw new Error(
+      `Zenodo fetch failed: ${res.status} ${res.statusText} | URL: ${url.toString()} | Body: ${body}`
+    );
   }
   return res.json();
 }
 
 async function main() {
+  const pageSize = Number.isFinite(REQUESTED_PAGE_SIZE) && REQUESTED_PAGE_SIZE > 0
+    ? Math.floor(REQUESTED_PAGE_SIZE)
+    : 25;
+
   const all = [];
   let page = 1;
 
   while (true) {
-    const data = await fetchPage(page);
+    const data = await fetchPage(page, pageSize);
     const hits = data?.hits?.hits || [];
     if (hits.length === 0) break;
 
     for (const h of hits) {
-      const parsed = ZenodoHitSchema.safeParse(h);
-      if (!parsed.success) continue; // skip malformed items
-      all.push(normalize(parsed.data));
+      if (!isValidHit(h)) continue; // skip malformed items
+      all.push(normalize(h));
     }
 
-    const total = data?.hits?.total ?? all.length;
+    const rawTotal = data?.hits?.total;
+    const total =
+      typeof rawTotal === "number"
+        ? rawTotal
+        : typeof rawTotal?.value === "number"
+          ? rawTotal.value
+          : all.length;
     if (all.length >= total) break;
     page += 1;
   }

@@ -142,6 +142,14 @@ pnpm install
 pnpm run dev
 ```
 
+To refresh Zenodo metadata locally:
+
+```bash
+pnpm run fetch:zenodo
+```
+
+Note: `pnpm fetch` is a pnpm dependency command and does not run project scripts.
+
 This:
 
 * Fetches Zenodo records
