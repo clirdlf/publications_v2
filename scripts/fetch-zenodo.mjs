@@ -24,6 +24,23 @@ function inferTypeFromKeywords(keywords = []) {
   return "report"; // default for now since you’re focused on reports
 }
 
+function extractThumbnailPaths(links) {
+  if (!isObject(links)) return {};
+  const source = isObject(links.thumbnails)
+    ? links.thumbnails
+    : isObject(links.thumbs)
+      ? links.thumbs
+      : null;
+  if (!source) return {};
+
+  const thumbs = {};
+  for (const [size, url] of Object.entries(source)) {
+    if (typeof url !== "string" || url.length === 0) continue;
+    thumbs[size] = url;
+  }
+  return thumbs;
+}
+
 function normalize(hit) {
   const md = hit.metadata || {};
   const keywords = md.keywords || [];
@@ -44,6 +61,9 @@ function normalize(hit) {
     keywords,
     type: inferTypeFromKeywords(keywords),
     zenodo_html: hit.links?.html || "",
+    links: {
+      thumbnails: extractThumbnailPaths(hit.links)
+    },
     files
   };
 }
