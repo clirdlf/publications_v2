@@ -195,7 +195,8 @@
 }
 
 .lp-grid-reports {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: 1fr;
+  gap: 1rem;
 }
 
 .lp-grid-podcasts {
@@ -212,13 +213,20 @@
   box-shadow: 0 2px 4px rgb(14 14 20 / 8%);
 }
 
+.lp-report-card {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  align-items: stretch;
+}
+
 .lp-media {
   height: 146px;
   position: relative;
 }
 
 .lp-report-card .lp-media {
-  height: 320px;
+  height: 100%;
+  min-height: 260px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -262,6 +270,17 @@
   padding: 1rem 1rem 1.1rem;
 }
 
+.lp-report-card .lp-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 1.3rem 1.1rem;
+}
+
+.lp-report-card .lp-btn {
+  align-self: flex-start;
+}
+
 .lp-card-body h3 {
   margin: 0 0 0.65rem;
   font-size: 1.95rem;
@@ -277,6 +296,11 @@
 
 .lp-card-body p span {
   float: right;
+}
+
+.lp-report-card .lp-card-body p:nth-of-type(2) {
+  font-size: 1.1rem;
+  color: #6a6d75;
 }
 
 .lp-btn {
@@ -427,10 +451,6 @@
 }
 
 @media (max-width: 1050px) {
-  .lp-grid-reports {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .lp-grid-podcasts {
     grid-template-columns: 1fr;
   }
@@ -495,8 +515,12 @@
     grid-template-columns: 1fr;
   }
 
+  .lp-report-card {
+    grid-template-columns: 1fr;
+  }
+
   .lp-report-card .lp-media {
-    height: 280px;
+    min-height: 280px;
   }
 
   .lp-featured-inner {
