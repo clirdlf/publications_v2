@@ -12,23 +12,30 @@
     "index": "node scripts/build-search-index.mjs",
     "redirects:map": "node scripts/build-apache-redirect-map.mjs",
     "smoke": "node scripts/smoke.mjs",
+    
+    "css:build": "postcss src/assets/styles.css -o dist/assets/styles.css",
+    "css:watch": "postcss src/assets/styles.css -o dist/assets/styles.css -w",
+
     "build:11ty": "eleventy",
-    "build": "pnpm fetch && pnpm index && pnpm redirects:map && pnpm build:11ty && pnpm smoke",
-    "dev": "pnpm fetch && pnpm index && pnpm redirects:map && eleventy --serve --watch"
+    "dev:11ty": "eleventy --serve --watch",
+
+    "build": "pnpm css:build && pnpm build:11ty",
+    "dev": "pnpm css:watch & pnpm dev:11ty"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.30.0",
   "dependencies": {
-    "@tailwindcss/postcss": "^4.2.0",
     "minisearch": "^7.2.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",
+    "@tailwindcss/postcss": "^4.2.0",
     "autoprefixer": "^10.4.24",
     "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
     "tailwindcss": "^4.2.0"
   }
 }

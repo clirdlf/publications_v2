@@ -1,7 +1,8 @@
 // eleventy.config.js (CommonJS is simplest with 11ty)
 module.exports = function (eleventyConfig) {
   // Copy assets straight through
-  eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/img": "assets/img" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/js": "assets/js" });
 
   // Useful: watch data files so changes trigger rebuild
   eleventyConfig.addWatchTarget("./src/_data/");

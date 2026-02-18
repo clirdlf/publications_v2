@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+/* Optional: explicitly add sources if you keep templates somewhere weird.
+   Usually not needed in v4 because content detection is automatic. */
+/* @source "../src"; */
+
+/* CLIR tokens (Tailwind v4 CSS-first config) */
+@theme {
+  --color-clir-maroon: #9A1C46;
+  --color-clir-ink: #252114;
+  --color-clir-white: #ffffff;
+
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "ABC Otto", ui-serif, Georgia, serif;
+}
