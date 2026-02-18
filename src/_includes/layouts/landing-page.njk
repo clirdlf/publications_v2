@@ -48,42 +48,24 @@
         <div class="lp-container">
           <h2>Latest Reports</h2>
           <div class="lp-grid lp-grid-reports">
-            <article class="lp-card lp-report-card">
-              <div class="lp-media lp-media-report1"><span class="lp-year-badge">2023</span></div>
-              <div class="lp-card-body">
-                <h3>Digital Preservation Strategies</h3>
-                <p>Repine Marhael, Merron</p>
-                <p>May 3, 2023</p>
-                <a class="lp-btn" href="#">Read More</a>
-              </div>
-            </article>
-            <article class="lp-card lp-report-card">
-              <div class="lp-media lp-media-report2"><span class="lp-year-badge">2022</span></div>
-              <div class="lp-card-body">
-                <h3>New Approaches to Data Curation</h3>
-                <p>Ruynel Mablaet, Merron</p>
-                <p>May 11, 2021</p>
-                <a class="lp-btn" href="#">Read More</a>
-              </div>
-            </article>
-            <article class="lp-card lp-report-card">
-              <div class="lp-media lp-media-report3"><span class="lp-year-badge">2002</span></div>
-              <div class="lp-card-body">
-                <h3>The Future of Research Libraries</h3>
-                <p>Reynel Maactael, Merron</p>
-                <p>May 21, 2023</p>
-                <a class="lp-btn" href="#">Read More</a>
-              </div>
-            </article>
-            <article class="lp-card lp-report-card">
-              <div class="lp-media lp-media-report4"><span class="lp-year-badge">2023</span></div>
-              <div class="lp-card-body">
-                <h3>Bridging Knowledge and Practice</h3>
-                <p>Ruaine Mbloaela, Merron</p>
-                <p>May 21, 2023</p>
-                <a class="lp-btn" href="#">Read More</a>
-              </div>
-            </article>
+            {% for report in latestReports %}
+              <article class="lp-card lp-report-card">
+                <div
+                  class="lp-media lp-media-report{{ loop.index }}"
+                  {% if report.thumbnail250 %}
+                    style="background-image: url('{{ report.thumbnail250 }}');"
+                  {% endif %}
+                ><span class="lp-year-badge">{{ report.published | year }}</span></div>
+                <div class="lp-card-body">
+                  <h3>{{ report.title }}</h3>
+                  <p>{{ report.creators | join(", ") }}</p>
+                  {# <p>{{ report.published | isoDate }}</p> #}
+                  <a class="lp-btn" href="/items/zenodo-{{ report.zenodo_id }}/">Read More</a>
+                </div>
+              </article>
+            {% else %}
+              <p>No reports available.</p>
+            {% endfor %}
           </div>
         </div>
       </section>

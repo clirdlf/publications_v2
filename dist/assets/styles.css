@@ -404,6 +404,13 @@
   height: 146px;
   position: relative;
 }
+.lp-report-card .lp-media {
+  height: 320px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: #f3f3f4;
+}
 .lp-media-report1 {
   background: linear-gradient(120deg, #7c3f20 5%, #d8b98e 55%, #d3d3ce);
 }
@@ -425,11 +432,11 @@
   font-size: 1.45rem;
   letter-spacing: 0.05em;
   padding: 0.65rem 1rem;
-  background: #1a3566;
+  background: rgb(26 53 102 / 65%);
 }
 .lp-media-report1 .lp-year-badge,
 .lp-media-report3 .lp-year-badge {
-  background: #a73a4d;
+  background: rgb(167 58 77 / 65%);
 }
 .lp-card-body {
   padding: 1rem 1rem 1.1rem;
@@ -625,6 +632,9 @@
   .lp-grid-reports,
   .lp-grid-videos {
     grid-template-columns: 1fr;
+  }
+  .lp-report-card .lp-media {
+    height: 280px;
   }
   .lp-featured-inner {
     align-items: flex-start;
