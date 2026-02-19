@@ -3,6 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="{{ description or 'Browse CLIR publications and reports.' }}" />
+    {% if canonicalUrl %}
+      <link rel="canonical" href="{{ canonicalUrl }}" />
+    {% endif %}
+    <meta property="og:title" content="{{ ogTitle or title or 'Reports - CLIR Publications' }}" />
+    <meta property="og:description" content="{{ ogDescription or description or 'Browse CLIR publications and reports.' }}" />
+    <meta property="og:type" content="{{ ogType or 'website' }}" />
+    {% if ogUrl %}
+      <meta property="og:url" content="{{ ogUrl }}" />
+    {% endif %}
+    <meta name="twitter:card" content="{{ twitterCard or 'summary' }}" />
+    <meta name="twitter:title" content="{{ twitterTitle or ogTitle or title or 'Reports - CLIR Publications' }}" />
+    <meta name="twitter:description" content="{{ twitterDescription or ogDescription or description or 'Browse CLIR publications and reports.' }}" />
     <title>{{ title or "Reports - CLIR Publications" }}</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
@@ -16,8 +29,9 @@
       <div class="lp-container rp-topbar-inner">
         <a class="rp-brand" href="/" aria-label="CLIR Publications home">CLIR Publications</a>
         <nav class="rp-main-nav" aria-label="Main">
-          <a href="/">Home</a>
-          <a href="/reports/" aria-current="page">Reports</a>
+          <a href="/"{% if navPage == "home" %} aria-current="page"{% endif %}>Home</a>
+          <a href="/reports/"{% if navPage == "reports" %} aria-current="page"{% endif %}>Reports</a>
+          <a href="/about/"{% if navPage == "about" %} aria-current="page"{% endif %}>About</a>
         </nav>
       </div>
     </header>

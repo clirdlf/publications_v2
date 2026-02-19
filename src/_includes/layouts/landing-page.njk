@@ -3,6 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="{{ description or 'Research, resources, and media from CLIR Publications.' }}" />
+    {% if canonicalUrl %}
+      <link rel="canonical" href="{{ canonicalUrl }}" />
+    {% endif %}
+    <meta property="og:title" content="{{ ogTitle or title or 'CLIR Publications' }}" />
+    <meta property="og:description" content="{{ ogDescription or description or 'Research, resources, and media from CLIR Publications.' }}" />
+    <meta property="og:type" content="{{ ogType or 'website' }}" />
+    {% if ogUrl %}
+      <meta property="og:url" content="{{ ogUrl }}" />
+    {% endif %}
+    <meta name="twitter:card" content="{{ twitterCard or 'summary' }}" />
+    <meta name="twitter:title" content="{{ twitterTitle or ogTitle or title or 'CLIR Publications' }}" />
+    <meta name="twitter:description" content="{{ twitterDescription or ogDescription or description or 'Research, resources, and media from CLIR Publications.' }}" />
     <title>{{ title or "CLIR Publications" }}</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
@@ -22,7 +35,7 @@
           <a href="/reports/">Reports</a>
           <a href="#">Podcasts</a>
           <a href="#">Videos</a>
-          <a href="#">About</a>
+          <a href="/about/"{% if navPage == "about" %} aria-current="page"{% endif %}>About</a>
         </nav>
       </div>
     </header>

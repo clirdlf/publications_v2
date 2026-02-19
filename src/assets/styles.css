@@ -119,6 +119,10 @@
   text-decoration: underline;
 }
 
+.lp-main-nav a[aria-current="page"] {
+  text-decoration: underline;
+}
+
 .lp-hero {
   background: #f6f4f4;
   padding: 5.5rem 0 3.2rem;
