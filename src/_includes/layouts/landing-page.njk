@@ -70,13 +70,13 @@
             <ul class="lp-search-list" data-search-list></ul>
           </section>
 
-          <ul class="lp-filters" aria-label="Content filters">
+          {# <ul class="lp-filters" aria-label="Content filters">
             <li><a href="#" class="is-active">All</a></li>
             <li><a href="/reports/">Reports</a></li>
             <li><a href="#">Podcasts</a></li>
             <li><a href="#">Videos</a></li>
             <li><a href="#">By Topic &gt;</a></li>
-          </ul>
+          </ul> #}
           <p class="lp-reports-link"><a class="lp-btn" href="/reports/">Browse All Reports</a></p>
         </div>
       </section>
@@ -100,7 +100,7 @@
                   <h3>{{ report.title }}</h3>
                   <p>{{ report.creators | join(", ") }}</p>
                   <p>{{ report.published | isoDate }}</p>
-                  <a class="lp-btn" href="/items/zenodo-{{ report.zenodo_id }}/">Read More</a>
+                  <a class="lp-btn" href="/reports/zenodo-{{ report.zenodo_id }}/">Read More</a>
                 </div>
               </article>
             {% else %}
@@ -204,7 +204,7 @@
           {% if latestAnnualReports and latestAnnualReports.length %}
             <div class="lp-annual-covers">
               {% for report in latestAnnualReports %}
-                <a class="lp-annual-cover" href="/items/zenodo-{{ report.zenodo_id }}/">
+                <a class="lp-annual-cover" href="/reports/zenodo-{{ report.zenodo_id }}/">
                   <div class="lp-media lp-media-report{{ (loop.index0 % 4) + 1 }}">
                     {% if report.thumbnail250 %}
                       {% image report.thumbnail250, "Cover image for " + report.title, "(max-width: 760px) 250px, 150px", [150, 300, 450], "lp-media-image lp-media-image-contain" %}

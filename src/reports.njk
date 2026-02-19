@@ -79,7 +79,7 @@ navPage: reports
           data-searchable="{{ r.title }} {{ authors }} {{ summaryText }}"
         >
           <h2>
-            <a href="/items/zenodo-{{ r.zenodo_id }}/">{{ r.title }}</a>
+            <a href="/reports/zenodo-{{ r.zenodo_id }}/">{{ r.title }}</a>
           </h2>
           <dl class="rp-meta">
             <div>
@@ -98,7 +98,7 @@ navPage: reports
             </div>
           </dl>
           <p class="rp-summary">{{ summarySnippet or "No summary available." }}</p>
-          <a class="rp-open" href="/items/zenodo-{{ r.zenodo_id }}/">Open report</a>
+          <a class="rp-open" href="/reports/zenodo-{{ r.zenodo_id }}/">Open report</a>
         </li>
       {% endfor %}
     </ul>

@@ -3,9 +3,10 @@ pagination:
   data: zenodo
   size: 1
   alias: item
-permalink: "/items/zenodo-{{ item.zenodo_id }}/index.html"
+permalink: "/reports/zenodo-{{ item.zenodo_id }}/index.html"
 layout: layouts/item-page.njk
-title: "{{item.title}} - A CLIR Publication"
+eleventyComputed:
+  title: "{{ item.title }} - A CLIR Publication"
 ---
 
 {% set primaryThumbnail = item.links and item.links.thumbnails and (item.links.thumbnails["750"] or item.links.thumbnails["250"] or item.links.thumbnails["100"]) %}
