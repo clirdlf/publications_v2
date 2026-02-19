@@ -12,7 +12,7 @@ eleventyComputed:
 {% set primaryThumbnail = item.links and item.links.thumbnails and (item.links.thumbnails["750"] or item.links.thumbnails["250"] or item.links.thumbnails["100"]) %}
 
 <article class="item-view lp-container">
-  <p class="item-breadcrumb"><a href="/reports/">Reports</a> / Item</p>
+  <p class="item-breadcrumb"><a href="/reports/">Reports</a> / {{ item.title }}</p>
 
   <section class="item-hero">
     <div class="item-cover">
@@ -43,14 +43,14 @@ eleventyComputed:
         {% if item.doi %}
           <div>
             <dt>DOI</dt>
-            <dd>{{ item.doi }}</dd>
+            <dd><a class="underline" target="_blank" rel="noopener noreferrer" href="https://doi.org/{{ item.doi }}">{{ item.doi }}</a></dd>
           </div>
         {% endif %}
       </dl>
 
       <div class="item-actions">
         {% if item.files and item.files.length %}
-          <a class="lp-btn" href="{{ item.files[0].url }}">Download Primary File</a>
+          <a class="lp-btn" href="{{ item.files[0].url }}">Download</a>
         {% endif %}
         {% if item.zenodo_html %}
           <a class="lp-btn lp-btn-outline item-btn-alt" href="{{ item.zenodo_html }}">View on Zenodo</a>
@@ -61,7 +61,7 @@ eleventyComputed:
 
   {% if item.description %}
     <section class="item-panel">
-      <h2>About This Item</h2>
+      <h2>About</h2>
       <div class="item-description">{{ item.description | safe }}</div>
     </section>
   {% endif %}
