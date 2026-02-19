@@ -12,7 +12,7 @@ eleventyComputed:
 {% set primaryThumbnail = item.links and item.links.thumbnails and (item.links.thumbnails["750"] or item.links.thumbnails["250"] or item.links.thumbnails["100"]) %}
 
 <article class="item-view lp-container">
-  <p class="item-breadcrumb"><a href="/reports/">Reports</a> / {{ item.title }}</p>
+  <p class="item-breadcrumb"><a href="{{ '/reports/' | url }}">Reports</a> / {{ item.title }}</p>
 
   <section class="item-hero">
     <div class="item-cover">

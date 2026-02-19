@@ -1,6 +1,7 @@
 // eleventy.config.js (CommonJS is simplest with 11ty)
 const path = require("path");
 const Image = require("@11ty/eleventy-img");
+const PATH_PREFIX = "/publications_v2/";
 
 module.exports = function (eleventyConfig) {
   function escapeAttribute(value) {
@@ -38,7 +39,7 @@ module.exports = function (eleventyConfig) {
       const metadata = await Image(src, {
         widths: normalizedWidths.length ? normalizedWidths : [320, 640, 960],
         formats: ["avif", "webp", "jpeg"],
-        urlPath: "/assets/images/generated/",
+        urlPath: `${PATH_PREFIX}assets/images/generated/`,
         outputDir: path.join(__dirname, "dist/assets/images/generated"),
         filenameFormat: (id, source, width, format) => {
           const basename = path.basename(String(source)).replace(/[^\w.-]/g, "-");
@@ -187,5 +188,6 @@ module.exports = function (eleventyConfig) {
     templateFormats: ["njk", "md", "html"],
     htmlTemplateEngine: "njk",
     markdownTemplateEngine: "njk",
+    pathPrefix: PATH_PREFIX,
   };
 };

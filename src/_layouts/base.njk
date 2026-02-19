@@ -3,12 +3,12 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width,initial-scale=1"/>
         <title>{{ title or "CLIR Publications" }}</title>
-        <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png"/>
-        <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png"/>
-        <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png"/>
-        <link rel="icon" href="/assets/favicon/favicon.ico"/>
-        <link rel="manifest" href="/assets/favicon/site.webmanifest"/>
-        <link rel="stylesheet" href="/assets/styles.css"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/favicon/apple-touch-icon.png' | url }}"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon/favicon-32x32.png' | url }}"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon/favicon-16x16.png' | url }}"/>
+        <link rel="icon" href="{{ '/assets/favicon/favicon.ico' | url }}"/>
+        <link rel="manifest" href="{{ '/assets/favicon/site.webmanifest' | url }}"/>
+        <link rel="stylesheet" href="{{ '/assets/styles.css' | url }}"/>
     </head>
     <body class="{{ bodyClass or '' }}">
         {% include "components/header.njk" %}

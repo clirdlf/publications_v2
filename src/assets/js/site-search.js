@@ -2,12 +2,24 @@
   const form = document.querySelector("[data-site-search]");
   const input = document.querySelector("[data-search-input]");
   const root = document.querySelector("[data-search-results]");
+  const rawPathPrefix = document.documentElement.dataset.pathPrefix || "/";
 
   if (!form || !input || !root) return;
 
   const status = root.querySelector("[data-search-status]");
   const list = root.querySelector("[data-search-list]");
   let docsPromise;
+
+  function withPathPrefix(pathname) {
+    if (!pathname || typeof pathname !== "string") return pathname;
+    if (!pathname.startsWith("/")) return pathname;
+
+    const normalizedPrefix = rawPathPrefix.endsWith("/")
+      ? rawPathPrefix.slice(0, -1)
+      : rawPathPrefix;
+    if (!normalizedPrefix || normalizedPrefix === "/") return pathname;
+    return `${normalizedPrefix}${pathname}`;
+  }
 
   function escapeHtml(value) {
     return String(value)
@@ -45,7 +57,7 @@
 
   async function getDocs() {
     if (!docsPromise) {
-      docsPromise = fetch("/assets/search-index.json")
+      docsPromise = fetch(withPathPrefix("/assets/search-index.json"))
         .then((response) => {
           if (!response.ok) {
             throw new Error(`Search index request failed (${response.status})`);
@@ -94,7 +106,7 @@
       .map(({ doc }) => {
         const published = formatDate(doc.published);
         return `<li class="lp-search-item">
-          <a href="${escapeHtml(doc.url)}">${escapeHtml(doc.title || "Untitled publication")}</a>
+          <a href="${escapeHtml(withPathPrefix(doc.url || "/"))}">${escapeHtml(doc.title || "Untitled publication")}</a>
           <p>${escapeHtml(doc.creators || "")}</p>
           <p>${escapeHtml(published)}</p>
         </li>`;

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-path-prefix="{{ '/' | url }}">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -17,21 +17,21 @@
     <meta name="twitter:title" content="{{ twitterTitle or ogTitle or title or 'Reports - CLIR Publications' }}" />
     <meta name="twitter:description" content="{{ twitterDescription or ogDescription or description or 'Browse CLIR publications and reports.' }}" />
     <title>{{ title or "Reports - CLIR Publications" }}</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png" />
-    <link rel="icon" href="/assets/favicon/favicon.ico" />
-    <link rel="manifest" href="/assets/favicon/site.webmanifest" />
-    <link rel="stylesheet" href="/assets/styles.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/favicon/apple-touch-icon.png' | url }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon/favicon-32x32.png' | url }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon/favicon-16x16.png' | url }}" />
+    <link rel="icon" href="{{ '/assets/favicon/favicon.ico' | url }}" />
+    <link rel="manifest" href="{{ '/assets/favicon/site.webmanifest' | url }}" />
+    <link rel="stylesheet" href="{{ '/assets/styles.css' | url }}" />
   </head>
   <body class="reports-page">
     <header class="rp-topbar">
       <div class="lp-container rp-topbar-inner">
-        <a class="rp-brand" href="/" aria-label="CLIR Publications home">CLIR Publications</a>
+        <a class="rp-brand" href="{{ '/' | url }}" aria-label="CLIR Publications home">CLIR Publications</a>
         <nav class="rp-main-nav" aria-label="Main">
-          <a href="/"{% if navPage == "home" %} aria-current="page"{% endif %}>Home</a>
-          <a href="/reports/"{% if navPage == "reports" %} aria-current="page"{% endif %}>Reports</a>
-          <a href="/about/"{% if navPage == "about" %} aria-current="page"{% endif %}>About</a>
+          <a href="{{ '/' | url }}"{% if navPage == "home" %} aria-current="page"{% endif %}>Home</a>
+          <a href="{{ '/reports/' | url }}"{% if navPage == "reports" %} aria-current="page"{% endif %}>Reports</a>
+          <a href="{{ '/about/' | url }}"{% if navPage == "about" %} aria-current="page"{% endif %}>About</a>
         </nav>
       </div>
     </header>
@@ -39,6 +39,6 @@
     <main class="rp-main">
       {{ content | safe }}
     </main>
-    <script src="/assets/js/reports-browser.js"></script>
+    <script src="{{ '/assets/js/reports-browser.js' | url }}"></script>
   </body>
 </html>

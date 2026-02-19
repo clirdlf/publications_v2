@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-path-prefix="{{ '/' | url }}">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -17,25 +17,25 @@
     <meta name="twitter:title" content="{{ twitterTitle or ogTitle or title or 'CLIR Publications' }}" />
     <meta name="twitter:description" content="{{ twitterDescription or ogDescription or description or 'Research, resources, and media from CLIR Publications.' }}" />
     <title>{{ title or "CLIR Publications" }}</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png" />
-    <link rel="icon" href="/assets/favicon/favicon.ico" />
-    <link rel="manifest" href="/assets/favicon/site.webmanifest" />
-    <link rel="stylesheet" href="/assets/styles.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/favicon/apple-touch-icon.png' | url }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon/favicon-32x32.png' | url }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon/favicon-16x16.png' | url }}" />
+    <link rel="icon" href="{{ '/assets/favicon/favicon.ico' | url }}" />
+    <link rel="manifest" href="{{ '/assets/favicon/site.webmanifest' | url }}" />
+    <link rel="stylesheet" href="{{ '/assets/styles.css' | url }}" />
   </head>
   <body class="landing-page">
     <header class="lp-topbar">
       <div class="lp-container lp-topbar-inner">
-        <a class="lp-brand" href="/" aria-label="CLIR Publications home">
+        <a class="lp-brand" href="{{ '/' | url }}" aria-label="CLIR Publications home">
           <span class="lp-brand-line1">CLIR</span>
           <span class="lp-brand-line2">PUBLICATIONS</span>
         </a>
         <nav class="lp-main-nav" aria-label="Main">
-          <a href="/reports/">Reports</a>
+          <a href="{{ '/reports/' | url }}">Reports</a>
           <a href="#list-to-our-podcast">Podcasts</a>
           <a href="#watch-our-videos">Videos</a>
-          <a href="/about/"{% if navPage == "about" %} aria-current="page"{% endif %}>About</a>
+          <a href="{{ '/about/' | url }}"{% if navPage == "about" %} aria-current="page"{% endif %}>About</a>
         </nav>
       </div>
     </header>
@@ -51,7 +51,7 @@
             role="search"
             aria-label="Search publications"
             method="get"
-            action="/"
+            action="{{ '/' | url }}"
             data-site-search
           >
             <label class="sr-only" for="lp-search">Search publications</label>
@@ -77,7 +77,7 @@
             <li><a href="#">Videos</a></li>
             <li><a href="#">By Topic &gt;</a></li>
           </ul> #}
-          <p class="lp-reports-link"><a class="lp-btn" href="/reports/">Browse All Reports</a></p>
+          <p class="lp-reports-link"><a class="lp-btn" href="{{ '/reports/' | url }}">Browse All Reports</a></p>
         </div>
       </section>
 
@@ -100,7 +100,7 @@
                   <h3>{{ report.title }}</h3>
                   <p>{{ report.creators | join(", ") }}</p>
                   <p>{{ report.published | isoDate }}</p>
-                  <a class="lp-btn" href="/reports/zenodo-{{ report.zenodo_id }}/">Read More</a>
+                  <a class="lp-btn" href="{{ ('/reports/zenodo-' + report.zenodo_id + '/') | url }}">Read More</a>
                 </div>
               </article>
             {% else %}
@@ -139,7 +139,7 @@
                         <source src="{{ episode.enclosureUrl }}" type="audio/mpeg" />
                         Your browser does not support the audio player.
                       </audio>
-                      <a class="lp-btn lp-btn-small" href="/items/podcast-{{ loop.index0 + 1 }}/">Listen</a>
+                      <a class="lp-btn lp-btn-small" href="{{ ('/items/podcast-' + (loop.index0 + 1) + '/') | url }}">Listen</a>
                     </div>
                   </article>
                 {% endif %}
@@ -204,7 +204,7 @@
           {% if latestAnnualReports and latestAnnualReports.length %}
             <div class="lp-annual-covers">
               {% for report in latestAnnualReports %}
-                <a class="lp-annual-cover" href="/reports/zenodo-{{ report.zenodo_id }}/">
+                <a class="lp-annual-cover" href="{{ ('/reports/zenodo-' + report.zenodo_id + '/') | url }}">
                   <div class="lp-media lp-media-report{{ (loop.index0 % 4) + 1 }}">
                     {% if report.thumbnail250 %}
                       {% image report.thumbnail250, "Cover image for " + report.title, "(max-width: 760px) 250px, 150px", [150, 300, 450], "lp-media-image lp-media-image-contain" %}
@@ -219,7 +219,7 @@
               {% endfor %}
             </div>
           {% endif %}
-          <a class="lp-btn lp-btn-outline" href="/annual-reports/">View Collection</a>
+          <a class="lp-btn lp-btn-outline" href="{{ '/annual-reports/' | url }}">View Collection</a>
         </div>
       </section>
     </main>
@@ -233,6 +233,6 @@
         <p>&copy; 2026 CLIR</p>
       </div>
     </footer>
-    <script src="/assets/js/site-search.js"></script>
+    <script src="{{ '/assets/js/site-search.js' | url }}"></script>
   </body>
 </html>
