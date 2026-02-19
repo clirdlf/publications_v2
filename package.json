@@ -18,7 +18,7 @@
     "dev:11ty": "eleventy --serve --watch",
     "build": "pnpm css:build && pnpm index && pnpm build:11ty",
     "dev": "pnpm index && pnpm css:watch & pnpm dev:11ty",
-    "fetch:zenodo": "node --env-file=.env scripts/fetch-zenodo.mjs",
+    "fetch:zenodo": "node scripts/fetch-zenodo.mjs",
     "fetch:podcast": "node scripts/fetch-podcast.mjs",
     "fetch:youtube": "node scripts/fetch-youtube.mjs"
   },

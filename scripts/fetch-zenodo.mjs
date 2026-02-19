@@ -2,10 +2,36 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 const OUT_PATH = path.join(process.cwd(), "src", "_data", "zenodo.json");
-const COMMUNITY = process.env.ZENODO_COMMUNITY || "clir";
 const BASE = "https://zenodo.org/api/records";
-const TOKEN = process.env.ZENODO_TOKEN || "";
-const REQUESTED_PAGE_SIZE = Number(process.env.ZENODO_PAGE_SIZE || 25);
+
+// Load local .env for developer convenience, but don't require it in CI.
+async function loadDotEnvIfPresent() {
+  const envPath = path.join(process.cwd(), ".env");
+
+  try {
+    const raw = await fs.readFile(envPath, "utf8");
+    for (const line of raw.split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) continue;
+
+      const eq = trimmed.indexOf("=");
+      if (eq <= 0) continue;
+
+      const key = trimmed.slice(0, eq).trim();
+      let value = trimmed.slice(eq + 1).trim();
+      if (!key || Object.prototype.hasOwnProperty.call(process.env, key)) continue;
+
+      const isQuoted =
+        (value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"));
+      if (isQuoted && value.length >= 2) value = value.slice(1, -1);
+
+      process.env[key] = value;
+    }
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error;
+  }
+}
 
 function isObject(value) {
   return typeof value === "object" && value !== null;
@@ -21,7 +47,7 @@ function inferTypeFromKeywords(keywords = []) {
   // Example: keywords include "type:report"
   const typeTag = keywords.find(k => k.toLowerCase().startsWith("type:"));
   if (typeTag) return typeTag.split(":")[1]?.trim().toLowerCase() || "other";
-  return "report"; // default for now since you’re focused on reports
+  return "report"; // default for now since you're focused on reports
 }
 
 function extractThumbnailPaths(links) {
@@ -68,22 +94,22 @@ function normalize(hit) {
   };
 }
 
-async function fetchPage(page, size = 100) {
-  if (!TOKEN && size > 25) {
+async function fetchPage(page, size, community, token) {
+  if (!token && size > 25) {
     throw new Error("Zenodo API: unauthenticated requests must use size <= 25. Set ZENODO_TOKEN for larger page sizes.");
   }
 
   const url = new URL(BASE);
   // Use dedicated community filter arg to avoid query-string syntax issues.
-  url.searchParams.set("communities", COMMUNITY);
+  url.searchParams.set("communities", community);
   url.searchParams.set("page", String(page));
   url.searchParams.set("size", String(size));
   url.searchParams.set("sort", "mostrecent");
 
   const res = await fetch(url.toString(), {
     headers: {
-      "Accept": "application/json",
-      ...(TOKEN ? { Authorization: `Bearer ${TOKEN}` } : {})
+      Accept: "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {})
     }
   });
 
@@ -97,15 +123,20 @@ async function fetchPage(page, size = 100) {
 }
 
 async function main() {
-  const pageSize = Number.isFinite(REQUESTED_PAGE_SIZE) && REQUESTED_PAGE_SIZE > 0
-    ? Math.floor(REQUESTED_PAGE_SIZE)
+  await loadDotEnvIfPresent();
+
+  const community = process.env.ZENODO_COMMUNITY || "clir";
+  const token = process.env.ZENODO_TOKEN || "";
+  const requestedPageSize = Number(process.env.ZENODO_PAGE_SIZE || 25);
+  const pageSize = Number.isFinite(requestedPageSize) && requestedPageSize > 0
+    ? Math.floor(requestedPageSize)
     : 25;
 
   const all = [];
   let page = 1;
 
   while (true) {
-    const data = await fetchPage(page, pageSize);
+    const data = await fetchPage(page, pageSize, community, token);
     const hits = data?.hits?.hits || [];
     if (hits.length === 0) break;
 
@@ -128,7 +159,7 @@ async function main() {
   await fs.mkdir(path.dirname(OUT_PATH), { recursive: true });
   await fs.writeFile(OUT_PATH, JSON.stringify(all, null, 2), "utf8");
 
-  console.log(`Fetched ${all.length} Zenodo records from community "${COMMUNITY}" -> ${OUT_PATH}`);
+  console.log(`Fetched ${all.length} Zenodo records from community "${community}" -> ${OUT_PATH}`);
 }
 
 main().catch((err) => {

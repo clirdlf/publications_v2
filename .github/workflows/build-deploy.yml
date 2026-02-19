@@ -40,7 +40,9 @@ jobs:
       # Production order from OPERATIONS.md
       - name: Fetch Zenodo records (includes normalization)
         env:
-          ZENODO_COMMUNITY: clir
+          ZENODO_COMMUNITY: ${{ vars.ZENODO_COMMUNITY || 'clir' }}
+          ZENODO_PAGE_SIZE: ${{ vars.ZENODO_PAGE_SIZE || '25' }}
+          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
         run: pnpm run fetch:zenodo
 
       - name: Fetch podcast metadata
