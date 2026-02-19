@@ -1114,6 +1114,103 @@
   line-height: 1.5;
 }
 
+.item-citation-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.item-citation-controls label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4a4147;
+}
+
+.item-citation-controls select {
+  min-height: 2.2rem;
+  border: 1px solid #cdbdc5;
+  border-radius: 0.3rem;
+  padding: 0.2rem 0.45rem;
+  color: #231b20;
+  background: #fff;
+}
+
+.item-citation-output-row {
+  margin-top: 0.65rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.55rem;
+  align-items: start;
+}
+
+.item-citation-copy {
+  min-height: 2.2rem;
+  min-width: 2.2rem;
+  border: 1px solid #cfbec6;
+  border-radius: 0.35rem;
+  background: #fff;
+  color: #6a555f;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    border-color 120ms ease,
+    color 120ms ease,
+    background-color 120ms ease;
+}
+
+.item-citation-copy:hover {
+  border-color: #b89ba8;
+  color: #4f3c44;
+}
+
+.item-citation-copy:focus-visible {
+  outline: 2px solid #8e3e5a;
+  outline-offset: 2px;
+}
+
+.item-citation-copy[data-copied="true"] {
+  border-color: #97b6a0;
+  color: #2d6a3c;
+  background: #f3faf5;
+}
+
+.item-citation-copy-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.item-citation-copy-icon-success {
+  display: none;
+}
+
+.item-citation-copy[data-copied="true"] .item-citation-copy-icon-default {
+  display: none;
+}
+
+.item-citation-copy[data-copied="true"] .item-citation-copy-icon-success {
+  display: block;
+}
+
+.item-citation-output {
+  margin: 0;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid #dfdbda;
+  border-radius: 0.35rem;
+  background: #faf8f7;
+  color: #302a2f;
+  white-space: pre-wrap;
+}
+
+.item-citation-status {
+  margin: 0.45rem 0 0;
+  min-height: 1.1rem;
+  font-size: 0.85rem;
+  color: #6a555f;
+}
+
 .item-actions {
   margin-top: 1.15rem;
   display: flex;
