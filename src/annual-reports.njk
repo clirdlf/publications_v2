@@ -36,12 +36,12 @@ navPage: reports
         {% endif %}
         {% set thumbnail = report.links and report.links.thumbnails and (report.links.thumbnails["250"] or report.links.thumbnails["100"]) %}
         <article class="lp-card lp-report-card">
-          <div
-            class="lp-media lp-media-report{{ (loop.index0 % 4) + 1 }}"
+          <div class="lp-media lp-media-report{{ (loop.index0 % 4) + 1 }}">
             {% if thumbnail %}
-              style="background-image: url('{{ thumbnail }}');"
+              {% image thumbnail, "Cover image for " + report.title, "(max-width: 760px) 100vw, 220px", [220, 440, 660], "lp-media-image lp-media-image-contain" %}
             {% endif %}
-          ><span class="lp-year-badge">{{ report.published | yearOffset(-1) }}</span></div>
+            <span class="lp-year-badge">{{ report.published | yearOffset(-1) }}</span>
+          </div>
           <div class="lp-card-body">
             <h3>{{ report.title }}</h3>
             <p>

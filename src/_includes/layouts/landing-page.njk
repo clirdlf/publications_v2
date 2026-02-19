@@ -87,12 +87,15 @@
           <div class="lp-grid lp-grid-reports">
             {% for report in latestReports %}
               <article class="lp-card lp-report-card">
-                <div
-                  class="lp-media lp-media-report{{ loop.index }}"
+                <div class="lp-media lp-media-report{{ loop.index }}">
                   {% if report.thumbnail250 %}
-                    style="background-image: url('{{ report.thumbnail250 }}');"
+                    {% set reportImageAlt %}
+                      Cover image of the CLIR report "{{ report.title }}"{% if report.creators and report.creators.length %} by {{ report.creators | join(", ") }}{% endif %}{% if report.published %}, published {{ report.published | year }}{% endif %}.
+                    {% endset %}
+                    {% image report.thumbnail250, reportImageAlt | trim, "(max-width: 760px) 100vw, 220px", [220, 440, 660], "lp-media-image lp-media-image-contain" %}
                   {% endif %}
-                ><span class="lp-year-badge">{{ report.published | year }}</span></div>
+                  <span class="lp-year-badge">{{ report.published | year }}</span>
+                </div>
                 <div class="lp-card-body">
                   <h3>{{ report.title }}</h3>
                   <p>{{ report.creators | join(", ") }}</p>
@@ -112,6 +115,9 @@
           <h2>Listen to Our Podcast</h2>
           <div class="lp-grid lp-grid-podcasts">
             <article class="lp-card lp-featured-podcast">
+              <div class="lp-featured-media" aria-hidden="true">
+                {% image "src/assets/images/Material_Memory-cover-1500x.jpg", "", "(max-width: 1050px) 100vw, 480px", [480, 960, 1440], "lp-featured-image" %}
+              </div>
               <div class="lp-featured-inner">
                 <div>
                   <p class="lp-eyebrow">Podcast Series</p>
@@ -164,12 +170,11 @@
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <div
-                      class="lp-media lp-media-video{{ loop.index }} lp-media-play"
+                    <div class="lp-media lp-media-video{{ loop.index }} lp-media-play">
                       {% if video.thumbnail %}
-                        style="background-image: url('{{ video.thumbnail }}');"
+                        {% image video.thumbnail, "Thumbnail for " + video.title, "(max-width: 760px) 100vw, (max-width: 1050px) 50vw, 33vw", [320, 640, 960], "lp-media-image" %}
                       {% endif %}
-                    ></div>
+                    </div>
                   </a>
                   <div class="lp-card-body">
                     <h3>{{ video.title }}</h3>
@@ -200,12 +205,10 @@
             <div class="lp-annual-covers">
               {% for report in latestAnnualReports %}
                 <a class="lp-annual-cover" href="/items/zenodo-{{ report.zenodo_id }}/">
-                  <div
-                    class="lp-media lp-media-report{{ (loop.index0 % 4) + 1 }}"
+                  <div class="lp-media lp-media-report{{ (loop.index0 % 4) + 1 }}">
                     {% if report.thumbnail250 %}
-                      style="background-image: url('{{ report.thumbnail250 }}');"
+                      {% image report.thumbnail250, "Cover image for " + report.title, "(max-width: 760px) 250px, 150px", [150, 300, 450], "lp-media-image lp-media-image-contain" %}
                     {% endif %}
-                  >
                     <span class="lp-year-badge">{{ report.published | yearOffset(-1) }}</span>
                   </div>
                   <div class="lp-annual-copy">

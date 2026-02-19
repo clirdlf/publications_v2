@@ -16,7 +16,7 @@ title: "{{item.title}} - A CLIR Publication"
   <section class="item-hero">
     <div class="item-cover">
       {% if primaryThumbnail %}
-        <img src="{{ primaryThumbnail }}" alt="Cover image for {{ item.title }}" loading="lazy" />
+        {% image primaryThumbnail, "Cover image for " + item.title, "(max-width: 760px) 90vw, 300px", [300, 600, 900], "item-cover-image" %}
       {% else %}
         <div class="item-cover-fallback" aria-hidden="true">CLIR</div>
       {% endif %}

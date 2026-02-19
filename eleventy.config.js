@@ -1,5 +1,75 @@
 // eleventy.config.js (CommonJS is simplest with 11ty)
+const path = require("path");
+const Image = require("@11ty/eleventy-img");
+
 module.exports = function (eleventyConfig) {
+  function escapeAttribute(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/"/g, "&quot;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  async function imageShortcode(
+    src,
+    alt = "",
+    sizes = "100vw",
+    widths = [320, 640, 960],
+    className = "",
+    loading = "lazy"
+  ) {
+    if (!src) return "";
+
+    const normalizedWidths = Array.isArray(widths)
+      ? widths
+      : String(widths || "")
+          .split(",")
+          .map((value) => Number(String(value).trim()))
+          .filter((value) => Number.isFinite(value) && value > 0);
+
+    const hasSvgSource = /\.svg(\?|$)/i.test(String(src));
+    if (hasSvgSource) {
+      const classAttr = className ? ` class="${className}"` : "";
+      return `<img src="${escapeAttribute(src)}" alt="${escapeAttribute(alt)}" loading="${escapeAttribute(loading)}" decoding="async"${classAttr}>`;
+    }
+
+    try {
+      const metadata = await Image(src, {
+        widths: normalizedWidths.length ? normalizedWidths : [320, 640, 960],
+        formats: ["avif", "webp", "jpeg"],
+        urlPath: "/assets/images/generated/",
+        outputDir: path.join(__dirname, "dist/assets/images/generated"),
+        filenameFormat: (id, source, width, format) => {
+          const basename = path.basename(String(source)).replace(/[^\w.-]/g, "-");
+          return `${basename}-${id}-${width}w.${format}`;
+        },
+        sharpOptions: {
+          animated: true,
+        },
+      });
+
+      if (!metadata) {
+        const classAttr = className ? ` class="${className}"` : "";
+        return `<img src="${escapeAttribute(src)}" alt="${escapeAttribute(alt)}" loading="${escapeAttribute(loading)}" decoding="async"${classAttr}>`;
+      }
+
+      const imageAttributes = {
+        alt,
+        sizes,
+        loading,
+        decoding: "async",
+      };
+
+      if (className) imageAttributes.class = className;
+
+      return Image.generateHTML(metadata, imageAttributes);
+    } catch (error) {
+      const classAttr = className ? ` class="${className}"` : "";
+      return `<img src="${escapeAttribute(src)}" alt="${escapeAttribute(alt)}" loading="${escapeAttribute(loading)}" decoding="async"${classAttr}>`;
+    }
+  }
+
   function isAnnualReport(record) {
     if (!record || record.kind !== "zenodo" || record.type !== "report") return false;
 
@@ -105,6 +175,8 @@ module.exports = function (eleventyConfig) {
       .filter((r) => isAnnualReport(r))
       .sort((a, b) => (b.published || "").localeCompare(a.published || ""));
   });
+
+  eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
 
   return {
     dir: {
