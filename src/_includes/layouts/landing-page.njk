@@ -148,28 +148,41 @@
       <section class="lp-section lp-section-alt">
         <div class="lp-container">
           <h2>Watch Our Videos</h2>
+          <p>
+            Explore talks, webinars, and updates from CLIR and DLF on our
+            <a href="https://www.youtube.com/@DLFCLIR" target="_blank" rel="noopener noreferrer">YouTube channel</a>.
+          </p>
           <div class="lp-grid lp-grid-videos">
-            <article class="lp-card lp-media-card">
-              <div class="lp-media lp-media-video1 lp-media-play"></div>
-              <div class="lp-card-body">
-                <h3>Webinar: Open Access Futures</h3>
-                <a class="lp-btn lp-btn-small" href="#">Watch Now</a>
-              </div>
-            </article>
-            <article class="lp-card lp-media-card">
-              <div class="lp-media lp-media-video2 lp-media-play"></div>
-              <div class="lp-card-body">
-                <h3>The Next Wave of Digital Humanities</h3>
-                <a class="lp-btn lp-btn-small" href="#">Watch Now</a>
-              </div>
-            </article>
-            <article class="lp-card lp-media-card">
-              <div class="lp-media lp-media-video3 lp-media-play"></div>
-              <div class="lp-card-body">
-                <h3>Preservation Case Studies</h3>
-                <a class="lp-btn lp-btn-small" href="#">Watch Now</a>
-              </div>
-            </article>
+            {% set youtubeVideos = youtube or [] %}
+            {% for video in youtubeVideos %}
+              {% if loop.index0 < 3 %}
+                <article class="lp-card lp-media-card">
+                  <a
+                    class="lp-media-link"
+                    href="{{ video.link }}"
+                    aria-label="Watch {{ video.title }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div
+                      class="lp-media lp-media-video{{ loop.index }} lp-media-play"
+                      {% if video.thumbnail %}
+                        style="background-image: url('{{ video.thumbnail }}');"
+                      {% endif %}
+                    ></div>
+                  </a>
+                  <div class="lp-card-body">
+                    <h3>{{ video.title }}</h3>
+                    {% if video.published %}
+                      <p class="lp-podcast-meta">{{ video.published | prettyDate }}</p>
+                    {% endif %}
+                    <a class="lp-btn lp-btn-small" href="{{ video.link }}" target="_blank" rel="noopener noreferrer">Watch Now</a>
+                  </div>
+                </article>
+              {% endif %}
+            {% else %}
+              <p>No videos available.</p>
+            {% endfor %}
           </div>
         </div>
       </section>

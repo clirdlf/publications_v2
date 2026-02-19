@@ -287,6 +287,17 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.lp-grid-videos .lp-media {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  background-size: cover;
+  background-position: center;
+}
+
+.lp-media-link {
+  display: block;
+}
+
 .lp-card {
   background: #fff;
   border: 1px solid #d6d5da;

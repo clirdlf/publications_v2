@@ -7,8 +7,8 @@
     "node": ">=23"
   },
   "scripts": {
-    "clean": "rm -rf dist src/_data/zenodo.json src/_data/podcast.json dist/assets/search-index.json dist/assets/redirects.map",
-    "fetch": "pnpm run fetch:zenodo && pnpm run fetch:podcast",
+    "clean": "rm -rf dist src/_data/zenodo.json src/_data/podcast.json src/_data/youtube.json dist/assets/search-index.json dist/assets/redirects.map",
+    "fetch": "pnpm run fetch:zenodo && pnpm run fetch:podcast && pnpm run fetch:youtube",
     "index": "node scripts/build-search-index.mjs",
     "redirects:map": "node scripts/build-apache-redirect-map.mjs",
     "smoke": "node scripts/smoke.mjs",
@@ -19,7 +19,8 @@
     "build": "pnpm css:build && pnpm index && pnpm build:11ty",
     "dev": "pnpm index && pnpm css:watch & pnpm dev:11ty",
     "fetch:zenodo": "node --env-file=.env scripts/fetch-zenodo.mjs",
-    "fetch:podcast": "node scripts/fetch-podcast.mjs"
+    "fetch:podcast": "node scripts/fetch-podcast.mjs",
+    "fetch:youtube": "node scripts/fetch-youtube.mjs"
   },
   "keywords": [],
   "author": "",
