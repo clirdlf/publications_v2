@@ -14,7 +14,9 @@
       "Masinter, Larry"
     ],
     "doi": "10.5281/zenodo.15978918",
-    "keywords": [],
+    "keywords": [
+      "type:report"
+    ],
     "type": "report",
     "zenodo_html": "",
     "links": {
@@ -4798,7 +4800,6 @@
     ],
     "doi": "10.5281/zenodo.7764902",
     "keywords": [
-      "Academic Libraries,,,,,,,,,,,",
       "Archives",
       "Electronic Libraries",
       "Higher Education",
@@ -4809,7 +4810,8 @@
       "Models",
       "Primary Sources",
       "Program Development",
-      "Research Libraries"
+      "Research Libraries",
+      "Academic Libraries"
     ],
     "type": "report",
     "zenodo_html": "",
@@ -6906,7 +6908,8 @@
       "Program Development",
       "Program Evaluation",
       "Program Implementation",
-      "User Needs (Information)"
+      "User Needs (Information)",
+      "series:annual-report"
     ],
     "type": "report",
     "zenodo_html": "",
@@ -6971,7 +6974,9 @@
       "Penniman, W. David"
     ],
     "doi": "10.5281/zenodo.7705899",
-    "keywords": [],
+    "keywords": [
+      "series:annual-report"
+    ],
     "type": "report",
     "zenodo_html": "",
     "links": {

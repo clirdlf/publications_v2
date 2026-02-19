@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{ title or "Reports - CLIR Publications" }}</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png" />
+    <link rel="icon" href="/assets/favicon/favicon.ico" />
+    <link rel="manifest" href="/assets/favicon/site.webmanifest" />
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body class="reports-page">
+    <header class="rp-topbar">
+      <div class="lp-container rp-topbar-inner">
+        <a class="rp-brand" href="/" aria-label="CLIR Publications home">CLIR Publications</a>
+        <nav class="rp-main-nav" aria-label="Main">
+          <a href="/">Home</a>
+          <a href="/reports/" aria-current="page">Reports</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="rp-main">
+      {{ content | safe }}
+    </main>
+    <script src="/assets/js/reports-browser.js"></script>
+  </body>
+</html>

@@ -1,15 +1,109 @@
 ---
-layout: layouts/base.njk
-title: Reports
+layout: layouts/reports-page.njk
+title: Reports - CLIR Publications
 ---
+{% set reports = zenodo or [] %}
 
-<h1>Reports</h1>
+<section class="rp-hero">
+  <div class="lp-container">
+    <p class="rp-eyebrow">Reports Library</p>
+    <h1>Browse CLIR Reports</h1>
+    <p>
+      Search across reports, filter by category, sort the list, and open any report in the item view.
+    </p>
+  </div>
+</section>
 
-<ul>
-{% for r in collections.reports %}
-  <li>
-    <a href="/items/zenodo-{{ r.zenodo_id }}/">{{ r.title }}</a>
-    {% if r.published %} ({{ r.published | year }}){% endif %}
-  </li>
-{% endfor %}
-</ul>
+<section class="rp-browser-wrap">
+  <div class="lp-container" data-reports-browser>
+    <div class="rp-controls">
+      <label class="rp-control rp-control-search">
+        <span>Search</span>
+        <input
+          type="search"
+          placeholder="Search title, author, or summary"
+          data-reports-search
+        />
+      </label>
+
+      <label class="rp-control">
+        <span>Category</span>
+        <select data-reports-category>
+          <option value="all">All categories</option>
+        </select>
+      </label>
+
+      <label class="rp-control">
+        <span>Sort</span>
+        <select data-reports-sort>
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="title-asc">Title A-Z</option>
+          <option value="title-desc">Title Z-A</option>
+        </select>
+      </label>
+
+      <label class="rp-control">
+        <span>Per page</span>
+        <select data-reports-page-size>
+          <option value="12">12</option>
+          <option value="24">24</option>
+          <option value="48">48</option>
+        </select>
+      </label>
+    </div>
+
+    <p class="rp-status" data-reports-status></p>
+
+    <ul class="rp-results" data-reports-list>
+      {% for r in reports %}
+        {% set authors = "" %}
+        {% if r.creators and r.creators.length %}
+          {% set authors = r.creators | join(", ") %}
+        {% endif %}
+        {% set summaryText = r.description | stripHtml | normalizeWhitespace %}
+        {% set summarySnippet = summaryText | snippet(190) %}
+        {% set categories = "" %}
+        {% if r.keywords and r.keywords.length %}
+          {% set categories = r.keywords | join("|") %}
+        {% endif %}
+        <li
+          class="rp-card"
+          data-report-card
+          data-title="{{ r.title }}"
+          data-published="{{ r.published }}"
+          data-categories="{{ categories }}"
+          data-searchable="{{ r.title }} {{ authors }} {{ summaryText }}"
+        >
+          <h2>
+            <a href="/items/zenodo-{{ r.zenodo_id }}/">{{ r.title }}</a>
+          </h2>
+          <dl class="rp-meta">
+            <div>
+              <dt>Date</dt>
+              <dd>{{ r.published | isoDate }}</dd>
+            </div>
+            <div>
+              <dt>Author</dt>
+              <dd>
+                {% if r.creators and r.creators.length %}
+                  {{ authors }}
+                {% else %}
+                  Unknown author
+                {% endif %}
+              </dd>
+            </div>
+          </dl>
+          <p class="rp-summary">{{ summarySnippet or "No summary available." }}</p>
+          <a class="rp-open" href="/items/zenodo-{{ r.zenodo_id }}/">Open report</a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <div class="rp-pagination">
+      <button type="button" data-reports-prev>Previous</button>
+      <p data-reports-page>Page 1 of 1</p>
+      <button type="button" data-reports-next>Next</button>
+    </div>
+  </div>
+</section>

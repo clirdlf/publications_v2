@@ -29,6 +29,24 @@ module.exports = function (eleventyConfig) {
     return files[0]?.url || "";
   });
 
+  eleventyConfig.addFilter("stripHtml", (value) => {
+    if (!value) return "";
+    return String(value).replace(/<[^>]*>/g, " ");
+  });
+
+  eleventyConfig.addFilter("normalizeWhitespace", (value) => {
+    if (!value) return "";
+    return String(value).replace(/\s+/g, " ").trim();
+  });
+
+  eleventyConfig.addFilter("snippet", (value, length = 180) => {
+    if (!value) return "";
+    const max = Number(length) > 0 ? Number(length) : 180;
+    const text = String(value).trim();
+    if (text.length <= max) return text;
+    return `${text.slice(0, max - 1).trimEnd()}…`;
+  });
+
   // Collections (example)
   eleventyConfig.addCollection("reports", (collectionApi) => {
     // Build from data, not from files (we’ll render items via a template)
