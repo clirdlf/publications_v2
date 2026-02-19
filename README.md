@@ -56,6 +56,20 @@ pnpm run smoke
 pnpm run clean
 ```
 
+## Tests
+
+Run automated tests:
+
+```bash
+pnpm run test
+```
+
+Watch mode:
+
+```bash
+pnpm run test:watch
+```
+
 ## Production Build Flow
 
 Production deployment uses this order:

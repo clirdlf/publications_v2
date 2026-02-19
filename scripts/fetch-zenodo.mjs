@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { z } from "zod";
 
 const OUT_PATH = path.join(process.cwd(), "src", "_data", "zenodo.json");
@@ -196,7 +197,21 @@ async function main() {
   console.log(`Fetched ${all.length} Zenodo records from community "${community}" -> ${OUT_PATH}`);
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+export {
+  ZenodoDatasetSchema,
+  ZenodoFileSchema,
+  ZenodoRecordSchema,
+  extractThumbnailPaths,
+  inferTypeFromKeywords,
+  isValidHit,
+  main,
+  normalize,
+};
+
+const isDirectRun = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+if (isDirectRun) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}
