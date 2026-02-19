@@ -16,7 +16,9 @@ module.exports = function (eleventyConfig) {
   // Copy assets straight through
   eleventyConfig.addPassthroughCopy({ "src/assets/img": "assets/img" });
   eleventyConfig.addPassthroughCopy({ "src/assets/js": "assets/js" });
-  eleventyConfig.addPassthroughCopy({ "src/assets/favicon": "assets/favicon" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/fonts": "assets/favicon" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/fonts": "assets/fonts" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/logos": "assets/logos" });
 
   // Useful: watch data files so changes trigger rebuild
   eleventyConfig.addWatchTarget("./src/_data/");
