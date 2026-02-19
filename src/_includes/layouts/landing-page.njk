@@ -159,8 +159,33 @@
       <section class="lp-cta">
         <div class="lp-container">
           <h2>Featured Collection: <em>Annual Reports</em></h2>
-          <p>Explore our archive of CLIR's Annual Reports.</p>
-          <a class="lp-btn lp-btn-outline" href="#">View Collection</a>
+          <p>
+            Explore our archive of CLIR's Annual Reports.
+            {% if annualReportCount %}
+              Currently featuring {{ annualReportCount }} annual report{% if annualReportCount != 1 %}s{% endif %}.
+            {% endif %}
+          </p>
+          {% if latestAnnualReports and latestAnnualReports.length %}
+            <div class="lp-annual-covers">
+              {% for report in latestAnnualReports %}
+                <a class="lp-annual-cover" href="/items/zenodo-{{ report.zenodo_id }}/">
+                  <div
+                    class="lp-media lp-media-report{{ (loop.index0 % 4) + 1 }}"
+                    {% if report.thumbnail250 %}
+                      style="background-image: url('{{ report.thumbnail250 }}');"
+                    {% endif %}
+                  >
+                    <span class="lp-year-badge">{{ report.published | yearOffset(-1) }}</span>
+                  </div>
+                  <div class="lp-annual-copy">
+                    <p>{{ report.title }}</p>
+                    <p>{{ report.published | isoDate }}</p>
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
+          {% endif %}
+          <a class="lp-btn lp-btn-outline" href="/annual-reports/">View Collection</a>
         </div>
       </section>
     </main>

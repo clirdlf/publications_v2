@@ -1,0 +1,66 @@
+---
+layout: layouts/reports-page.njk
+title: Annual Reports - CLIR Publications
+permalink: "/annual-reports/"
+---
+{% set reports = zenodo | annualReports %}
+
+<section class="rp-hero">
+  <div class="lp-container">
+    <p class="rp-eyebrow">Featured Collection</p>
+    <h1>Annual Reports</h1>
+    <p>
+      CLIR traces its roots to 1956, when the Council on Library Resources (CLR) was founded to
+      help libraries respond to long-term challenges in access, stewardship, and scholarship.
+      In 1997, CLR and the Commission on Preservation and Access merged to form CLIR, broadening
+      that mission for a networked and digital research environment.
+    </p>
+    <p>
+      This collection highlights annual reports from across that history, including records tagged
+      <code>series:annual-report</code> and legacy items with "Annual Report" in the title.
+    </p>
+    <p><a href="/reports/">Back to all reports</a></p>
+  </div>
+</section>
+
+<section class="lp-section lp-section-alt">
+  <div class="lp-container">
+    <p class="rp-status">{{ reports.length }} annual report{% if reports.length != 1 %}s{% endif %} found.</p>
+    <div class="lp-grid lp-grid-reports">
+      {% for report in reports %}
+        {% set authors = "" %}
+        {% if report.creators and report.creators.length %}
+          {% set authors = report.creators | join(", ") %}
+        {% endif %}
+        {% set thumbnail = report.links and report.links.thumbnails and (report.links.thumbnails["250"] or report.links.thumbnails["100"]) %}
+        <article class="lp-card lp-report-card">
+          <div
+            class="lp-media lp-media-report{{ (loop.index0 % 4) + 1 }}"
+            {% if thumbnail %}
+              style="background-image: url('{{ thumbnail }}');"
+            {% endif %}
+          ><span class="lp-year-badge">{{ report.published | yearOffset(-1) }}</span></div>
+          <div class="lp-card-body">
+            <h3>{{ report.title }}</h3>
+            <p>
+              {% if report.creators and report.creators.length %}
+                {{ authors }}
+              {% else %}
+                Unknown author
+              {% endif %}
+            </p>
+            <p>{{ report.published | isoDate }}</p>
+            <a class="lp-btn" href="/items/zenodo-{{ report.zenodo_id }}/">Read More</a>
+          </div>
+        </article>
+      {% else %}
+        <article class="lp-card rp-card">
+          <div class="lp-card-body">
+            <h3>No annual reports found.</h3>
+            <p>No records currently match this collection.</p>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

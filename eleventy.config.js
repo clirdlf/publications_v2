@@ -1,5 +1,18 @@
 // eleventy.config.js (CommonJS is simplest with 11ty)
 module.exports = function (eleventyConfig) {
+  function isAnnualReport(record) {
+    if (!record || record.kind !== "zenodo" || record.type !== "report") return false;
+
+    const keywords = Array.isArray(record.keywords) ? record.keywords : [];
+    const hasSeriesKeyword = keywords.some(
+      (entry) => String(entry || "").toLowerCase() === "series:annual-report"
+    );
+    if (hasSeriesKeyword) return true;
+
+    const title = String(record.title || "").toLowerCase();
+    return title.includes("annual report");
+  }
+
   // Copy assets straight through
   eleventyConfig.addPassthroughCopy({ "src/assets/img": "assets/img" });
   eleventyConfig.addPassthroughCopy({ "src/assets/js": "assets/js" });
@@ -22,6 +35,14 @@ module.exports = function (eleventyConfig) {
     const d = new Date(value);
     if (Number.isNaN(d.getTime())) return "";
     return String(d.getUTCFullYear());
+  });
+
+  eleventyConfig.addFilter("yearOffset", (value, offset = 0) => {
+    if (!value) return "";
+    const d = new Date(value);
+    if (Number.isNaN(d.getTime())) return "";
+    const parsedOffset = Number(offset) || 0;
+    return String(d.getUTCFullYear() + parsedOffset);
   });
 
   eleventyConfig.addFilter("firstFileUrl", (files) => {
@@ -47,12 +68,26 @@ module.exports = function (eleventyConfig) {
     return `${text.slice(0, max - 1).trimEnd()}…`;
   });
 
+  eleventyConfig.addFilter("annualReports", (records) => {
+    const items = Array.isArray(records) ? records : [];
+    return items
+      .filter((item) => isAnnualReport(item))
+      .sort((a, b) => (b?.published || "").localeCompare(a?.published || ""));
+  });
+
   // Collections (example)
   eleventyConfig.addCollection("reports", (collectionApi) => {
     // Build from data, not from files (we’ll render items via a template)
     const zenodo = collectionApi.eleventy?.globalData?.zenodo ?? [];
     return zenodo
       .filter((r) => r?.kind === "zenodo" && r?.type === "report")
+      .sort((a, b) => (b.published || "").localeCompare(a.published || ""));
+  });
+
+  eleventyConfig.addCollection("annualReports", (collectionApi) => {
+    const zenodo = collectionApi.eleventy?.globalData?.zenodo ?? [];
+    return zenodo
+      .filter((r) => isAnnualReport(r))
       .sort((a, b) => (b.published || "").localeCompare(a.published || ""));
   });
 
