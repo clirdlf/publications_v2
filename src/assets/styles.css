@@ -4,6 +4,37 @@
    Usually not needed in v4 because content detection is automatic. */
 /* @source "../src"; */
 
+/* ABC Otto font family */
+@font-face {
+  font-family: "ABC Otto";
+  src:
+    url("./fonts/Otto/ABCOtto-Regular.woff2") format("woff2"),
+    url("./fonts/Otto/ABCOtto-Regular.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ABC Otto";
+  src:
+    url("./fonts/Otto/ABCOtto-RegularItalic.woff2") format("woff2"),
+    url("./fonts/Otto/ABCOtto-RegularItalic.woff") format("woff");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ABC Otto";
+  src:
+    url("./fonts/Otto/ABCOtto-Bold.woff2") format("woff2"),
+    url("./fonts/Otto/ABCOtto-Bold.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 /* CLIR tokens (Tailwind v4 CSS-first config) */
 @theme {
   --color-clir-maroon: #9A1C46;
@@ -56,7 +87,7 @@
   color: #fff;
   display: inline-flex;
   flex-direction: column;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-serif);
 }
 
 .lp-brand-line1 {
@@ -100,7 +131,7 @@
 
 .lp-hero h1 {
   margin: 0 0 1rem;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-serif);
   color: #303743;
   font-size: clamp(2.2rem, 5vw, 4.9rem);
   line-height: 1.1;
@@ -227,7 +258,7 @@
 .lp-cta h2 {
   margin: 0 0 1.4rem;
   color: var(--color-clir-maroon);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-serif);
   font-size: clamp(2.2rem, 3vw, 3.3rem);
   border-bottom: 1px solid #d4d4d7;
   padding-bottom: 0.8rem;
