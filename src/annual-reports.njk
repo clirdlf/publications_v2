@@ -27,7 +27,7 @@ navPage: reports
 
 <section class="lp-section lp-section-alt">
   <div class="lp-container">
-    <p class="rp-status">{{ reports.length }} annual report{% if reports.length != 1 %}s{% endif %} found.</p>
+    {# <p class="rp-status">{{ reports.length }} annual report{% if reports.length != 1 %}s{% endif %} found.</p> #}
     <div class="lp-grid lp-grid-reports">
       {% for report in reports %}
         {% set authors = "" %}
@@ -52,7 +52,10 @@ navPage: reports
               {% endif %}
             </p>
             <p>{{ report.published | isoDate }}</p>
-            <a class="lp-btn" href="/reports/zenodo-{{ report.zenodo_id }}/">Read More</a>
+
+            <a class="lp-btn" href="{{ report.files[0].url }}">Read</a>
+{#             
+            <a class="lp-btn" href="/reports/zenodo-{{ report.zenodo_id }}/">Read</a> #}
           </div>
         </article>
       {% else %}
