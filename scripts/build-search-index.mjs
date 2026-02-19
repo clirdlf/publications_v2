@@ -30,7 +30,7 @@ async function main() {
     keywords: (r.keywords || []).join("; "),
     published: r.published || "",
     type: r.type || "report",
-    url: `/items/zenodo-${r.zenodo_id}/`,
+    url: `/reports/zenodo-${r.zenodo_id}/`,
     searchable: [
       r.title || "",
       stripHtml(r.description || "").slice(0, 1200),

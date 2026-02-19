@@ -1,6 +1,7 @@
 // eleventy.config.js (CommonJS is simplest with 11ty)
 const path = require("path");
 const Image = require("@11ty/eleventy-img");
+const { isAnnualReport } = require("./src/lib/report-utils.cjs");
 const PATH_PREFIX = "/publications_v2/";
 
 module.exports = function (eleventyConfig) {
@@ -69,19 +70,6 @@ module.exports = function (eleventyConfig) {
       const classAttr = className ? ` class="${className}"` : "";
       return `<img src="${escapeAttribute(src)}" alt="${escapeAttribute(alt)}" loading="${escapeAttribute(loading)}" decoding="async"${classAttr}>`;
     }
-  }
-
-  function isAnnualReport(record) {
-    if (!record || record.kind !== "zenodo" || record.type !== "report") return false;
-
-    const keywords = Array.isArray(record.keywords) ? record.keywords : [];
-    const hasSeriesKeyword = keywords.some(
-      (entry) => String(entry || "").toLowerCase() === "series:annual-report"
-    );
-    if (hasSeriesKeyword) return true;
-
-    const title = String(record.title || "").toLowerCase();
-    return title.includes("annual report");
   }
 
   // Copy assets straight through

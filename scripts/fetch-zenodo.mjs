@@ -1,8 +1,33 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { z } from "zod";
 
 const OUT_PATH = path.join(process.cwd(), "src", "_data", "zenodo.json");
 const BASE = "https://zenodo.org/api/records";
+
+const ZenodoFileSchema = z.object({
+  key: z.string(),
+  url: z.string(),
+});
+
+const ZenodoRecordSchema = z.object({
+  kind: z.literal("zenodo"),
+  zenodo_id: z.number().int().nonnegative(),
+  title: z.string(),
+  published: z.string(),
+  description: z.string(),
+  creators: z.array(z.string()),
+  doi: z.string(),
+  keywords: z.array(z.string()),
+  type: z.string(),
+  zenodo_html: z.string(),
+  links: z.object({
+    thumbnails: z.record(z.string(), z.string()),
+  }),
+  files: z.array(ZenodoFileSchema),
+});
+
+const ZenodoDatasetSchema = z.array(ZenodoRecordSchema);
 
 // Load local .env for developer convenience, but don't require it in CI.
 async function loadDotEnvIfPresent() {
@@ -156,8 +181,17 @@ async function main() {
     page += 1;
   }
 
+  const validation = ZenodoDatasetSchema.safeParse(all);
+  if (!validation.success) {
+    const details = validation.error.issues
+      .slice(0, 8)
+      .map((issue) => `${issue.path.join(".") || "<root>"}: ${issue.message}`)
+      .join("; ");
+    throw new Error(`Normalized Zenodo data failed schema validation: ${details}`);
+  }
+
   await fs.mkdir(path.dirname(OUT_PATH), { recursive: true });
-  await fs.writeFile(OUT_PATH, JSON.stringify(all, null, 2), "utf8");
+  await fs.writeFile(OUT_PATH, JSON.stringify(validation.data, null, 2), "utf8");
 
   console.log(`Fetched ${all.length} Zenodo records from community "${community}" -> ${OUT_PATH}`);
 }

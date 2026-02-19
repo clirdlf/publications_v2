@@ -1,15 +1,4 @@
-function isAnnualReport(item) {
-  if (item?.kind !== "zenodo" || item?.type !== "report") return false;
-
-  const keywords = Array.isArray(item?.keywords) ? item.keywords : [];
-  const hasSeriesKeyword = keywords.some(
-    (keyword) => String(keyword || "").toLowerCase() === "series:annual-report"
-  );
-  if (hasSeriesKeyword) return true;
-
-  const title = String(item?.title || "").toLowerCase();
-  return title.includes("annual report");
-}
+const { isAnnualReport } = require("./lib/report-utils.cjs");
 
 module.exports = {
   eleventyComputed: {
