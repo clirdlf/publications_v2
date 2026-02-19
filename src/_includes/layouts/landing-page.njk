@@ -114,28 +114,33 @@
             <article class="lp-card lp-featured-podcast">
               <div class="lp-featured-inner">
                 <div>
-                  <p class="lp-eyebrow">Material Memory</p>
-                  <h3>Latest Episode: Archives and Memory</h3>
+                  <p class="lp-eyebrow">Podcast Series</p>
+                  <h3>Material Memory</h3>
+                  <p>Stories from archives, libraries, and cultural memory communities.</p>
+                  <a class="lp-btn lp-btn-small" href="https://pod.link/1488667989">Listen Now</a>
                 </div>
-                <a class="lp-btn" href="#">Listen Now</a>
               </div>
             </article>
-            <article class="lp-card lp-media-card">
-              <div class="lp-media lp-media-podcast1 lp-media-play"></div>
-              <div class="lp-card-body">
-                <h3>Digitization Challenges</h3>
-                <p>Od: 1, 2021 <span>May 2022</span></p>
-                <a class="lp-btn lp-btn-small" href="#">Listen</a>
-              </div>
-            </article>
-            <article class="lp-card lp-media-card">
-              <div class="lp-media lp-media-podcast2 lp-media-play"></div>
-              <div class="lp-card-body">
-                <h3>Community Archives</h3>
-                <p>Gd: 1, 2023 <span>May 2023</span></p>
-                <a class="lp-btn lp-btn-small" href="#">Listen</a>
-              </div>
-            </article>
+            <div class="lp-podcast-list">
+              {% set podcastEpisodes = podcast or [] %}
+              {% for episode in podcastEpisodes %}
+                {% if loop.index0 < 2 %}
+                  <article class="lp-card lp-media-card lp-podcast-card">
+                    <div class="lp-card-body">
+                      <h3>{{ episode.title }}</h3>
+                      <p class="lp-podcast-meta">{{ episode.pubDate | prettyDate }} <span>{{ episode.duration }}</span></p>
+                      <audio controls preload="none" class="lp-podcast-player" aria-label="Play {{ episode.title }}">
+                        <source src="{{ episode.enclosureUrl }}" type="audio/mpeg" />
+                        Your browser does not support the audio player.
+                      </audio>
+                      <a class="lp-btn lp-btn-small" href="/items/podcast-{{ loop.index0 + 1 }}/">Listen</a>
+                    </div>
+                  </article>
+                {% endif %}
+              {% else %}
+                <p>No podcast episodes available.</p>
+              {% endfor %}
+            </div>
           </div>
         </div>
       </section>

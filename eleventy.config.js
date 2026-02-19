@@ -15,6 +15,7 @@ module.exports = function (eleventyConfig) {
 
   // Copy assets straight through
   eleventyConfig.addPassthroughCopy({ "src/assets/img": "assets/img" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/images": "assets/images" });
   eleventyConfig.addPassthroughCopy({ "src/assets/js": "assets/js" });
   eleventyConfig.addPassthroughCopy({ "src/assets/fonts": "assets/favicon" });
   eleventyConfig.addPassthroughCopy({ "src/assets/fonts": "assets/fonts" });
@@ -37,6 +38,18 @@ module.exports = function (eleventyConfig) {
     const d = new Date(value);
     if (Number.isNaN(d.getTime())) return "";
     return String(d.getUTCFullYear());
+  });
+
+  eleventyConfig.addFilter("prettyDate", (value) => {
+    if (!value) return "";
+    const d = new Date(value);
+    if (Number.isNaN(d.getTime())) return "";
+    return new Intl.DateTimeFormat("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      timeZone: "UTC",
+    }).format(d);
   });
 
   eleventyConfig.addFilter("yearOffset", (value, offset = 0) => {

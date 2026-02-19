@@ -279,7 +279,8 @@
 }
 
 .lp-grid-podcasts {
-  grid-template-columns: 1.35fr 1fr 1fr;
+  grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1.25fr);
+  align-items: stretch;
 }
 
 .lp-grid-videos {
@@ -407,7 +408,14 @@
 }
 
 .lp-featured-podcast {
-  background: radial-gradient(circle at 20% 20%, #37404f, #1d2635 70%);
+  position: relative;
+  isolation: isolate;
+  background-image:
+    linear-gradient(140deg, rgb(14 22 35 / 78%), rgb(28 38 55 / 80%)),
+    url("/assets/images/Material_Memory-cover-1500x.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #fff;
   display: grid;
   align-items: center;
@@ -415,23 +423,69 @@
 }
 
 .lp-featured-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  display: block;
 }
 
 .lp-featured-podcast .lp-eyebrow {
   margin: 0;
-  font-size: 2.1rem;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   font-weight: 700;
   color: #e8edf8;
 }
 
 .lp-featured-podcast h3 {
-  margin: 0.55rem 0 0;
-  font-size: 1.45rem;
+  margin: 0.55rem 0 0.65rem;
+  font-size: 2rem;
   color: #f6f8fe;
+}
+
+.lp-featured-podcast p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: #d4dceb;
+}
+
+.lp-podcast-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.lp-podcast-card {
+  display: grid;
+}
+
+.lp-podcast-card .lp-card-body {
+  display: grid;
+  gap: 0.7rem;
+  padding: 1.2rem;
+}
+
+.lp-podcast-card .lp-eyebrow {
+  margin: 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: #7b6470;
+}
+
+.lp-podcast-card h3 {
+  margin: 0;
+}
+
+.lp-podcast-meta {
+  margin: 0;
+  font-size: 1rem;
+  color: #5e6169;
+}
+
+.lp-podcast-player {
+  width: 100%;
+  max-width: 100%;
 }
 
 .lp-media-podcast1 {
@@ -672,8 +726,8 @@
   }
 
   .lp-featured-inner {
-    align-items: flex-start;
-    flex-direction: column;
+    align-items: initial;
+    flex-direction: initial;
   }
 
   .lp-footer-inner {
@@ -1016,6 +1070,14 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
+}
+
+.item-hero-podcast {
+  grid-template-columns: 1fr;
+}
+
+.item-audio-player {
+  width: min(560px, 100%);
 }
 
 .item-btn-alt {

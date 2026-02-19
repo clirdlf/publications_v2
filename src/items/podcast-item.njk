@@ -1,0 +1,51 @@
+---
+pagination:
+  data: podcast
+  size: 1
+  alias: item
+permalink: "/items/podcast-{{ pagination.pageNumber + 1 }}/index.html"
+layout: layouts/item-page.njk
+title: "{{ item.title }} - CLIR Podcast"
+---
+
+<article class="item-view lp-container">
+  <p class="item-breadcrumb"><a href="/">Home</a> / Podcast</p>
+
+  <section class="item-hero item-hero-podcast">
+    <div class="item-summary">
+      <p class="item-kicker">Podcast Episode</p>
+      <h1>{{ item.title }}</h1>
+
+      <dl class="item-meta">
+        {% if item.pubDate %}
+          <div>
+            <dt>Published</dt>
+            <dd>{{ item.pubDate | prettyDate }}</dd>
+          </div>
+        {% endif %}
+        {% if item.duration %}
+          <div>
+            <dt>Duration</dt>
+            <dd>{{ item.duration }}</dd>
+          </div>
+        {% endif %}
+      </dl>
+
+      {% if item.enclosureUrl %}
+        <div class="item-actions">
+          <audio controls preload="none" class="item-audio-player" aria-label="Play {{ item.title }}">
+            <source src="{{ item.enclosureUrl }}" type="audio/mpeg" />
+            Your browser does not support the audio player.
+          </audio>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+  {% if item.description %}
+    <section class="item-panel">
+      <h2>Episode Description</h2>
+      <div class="item-description">{{ item.description | safe }}</div>
+    </section>
+  {% endif %}
+</article>
