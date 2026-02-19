@@ -142,6 +142,10 @@ module.exports = function (eleventyConfig) {
     return `${text.slice(0, max - 1).trimEnd()}…`;
   });
 
+  eleventyConfig.addFilter("json", (value) => {
+    return JSON.stringify(value);
+  });
+
   eleventyConfig.addFilter("annualReports", (records) => {
     const items = Array.isArray(records) ? records : [];
     return items

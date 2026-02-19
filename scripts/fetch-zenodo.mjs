@@ -11,6 +11,32 @@ const ZenodoFileSchema = z.object({
   url: z.string(),
 });
 
+const ZenodoCreatorSchema = z.object({
+  name: z.string(),
+  orcid: z.string(),
+  gnd: z.string(),
+  affiliation: z.array(z.string()),
+});
+
+const ZenodoRelatedIdentifierSchema = z.object({
+  identifier: z.string(),
+  scheme: z.string(),
+  relation: z.string(),
+  resource_type: z.string(),
+});
+
+const ZenodoLicenseSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  url: z.string(),
+});
+
+const ZenodoFunderSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  award_number: z.string(),
+});
+
 const ZenodoRecordSchema = z.object({
   kind: z.literal("zenodo"),
   zenodo_id: z.number().int().nonnegative(),
@@ -18,10 +44,15 @@ const ZenodoRecordSchema = z.object({
   published: z.string(),
   description: z.string(),
   creators: z.array(z.string()),
+  creator_details: z.array(ZenodoCreatorSchema),
   doi: z.string(),
   keywords: z.array(z.string()),
   type: z.string(),
   zenodo_html: z.string(),
+  related_identifiers: z.array(ZenodoRelatedIdentifierSchema),
+  license: ZenodoLicenseSchema,
+  funders: z.array(ZenodoFunderSchema),
+  communities: z.array(z.string()),
   links: z.object({
     thumbnails: z.record(z.string(), z.string()),
   }),
@@ -96,6 +127,16 @@ function extractThumbnailPaths(links) {
 function normalize(hit) {
   const md = hit.metadata || {};
   const keywords = md.keywords || [];
+  const creators = Array.isArray(md.creators) ? md.creators : [];
+  const relatedIdentifiers = Array.isArray(md.related_identifiers)
+    ? md.related_identifiers
+    : [];
+  const funders = Array.isArray(md.funding)
+    ? md.funding
+    : Array.isArray(md.funders)
+      ? md.funders
+      : [];
+  const communities = Array.isArray(md.communities) ? md.communities : [];
 
   const files = (hit.files || []).map(f => ({
     key: f.key || "",
@@ -108,11 +149,48 @@ function normalize(hit) {
     title: md.title || "",
     published: md.publication_date || "",
     description: md.description || "",
-    creators: (md.creators || []).map(c => c.name).filter(Boolean),
+    creators: creators.map(c => c.name).filter(Boolean),
+    creator_details: creators
+      .filter((c) => isObject(c))
+      .map((c) => ({
+        name: c.name || "",
+        orcid: c.orcid || "",
+        gnd: c.gnd || "",
+        affiliation: Array.isArray(c.affiliation)
+          ? c.affiliation.filter(Boolean).map(String)
+          : [],
+      })),
     doi: md.doi || "",
     keywords,
     type: inferTypeFromKeywords(keywords),
     zenodo_html: hit.links?.html || "",
+    related_identifiers: relatedIdentifiers
+      .filter((id) => isObject(id))
+      .map((id) => ({
+        identifier: id.identifier || "",
+        scheme: id.scheme || "",
+        relation: id.relation || "",
+        resource_type: id.resource_type || "",
+      })),
+    license: {
+      id: isObject(md.license) ? md.license.id || "" : "",
+      title: isObject(md.license) ? md.license.title || "" : "",
+      url: isObject(md.license) ? md.license.url || "" : "",
+    },
+    funders: funders
+      .filter((f) => isObject(f))
+      .map((f) => ({
+        id: f.id || "",
+        name: f.name || "",
+        award_number: f.award?.number || f.award_number || "",
+      })),
+    communities: communities
+      .map((entry) =>
+        isObject(entry)
+          ? entry.id || entry.identifier || entry.slug || ""
+          : ""
+      )
+      .filter(Boolean),
     links: {
       thumbnails: extractThumbnailPaths(hit.links)
     },
@@ -200,7 +278,9 @@ async function main() {
 export {
   ZenodoDatasetSchema,
   ZenodoFileSchema,
+  ZenodoCreatorSchema,
   ZenodoRecordSchema,
+  ZenodoRelatedIdentifierSchema,
   extractThumbnailPaths,
   inferTypeFromKeywords,
   isValidHit,

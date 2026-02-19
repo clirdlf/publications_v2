@@ -47,6 +47,8 @@ describe("fetch-zenodo normalization contract", () => {
     expect(normalized.type).toBe("report");
     expect(normalized.files[0].key).toBe("test.pdf");
     expect(normalized.links.thumbnails["250"]).toBeTruthy();
+    expect(Array.isArray(normalized.creator_details)).toBe(true);
+    expect(Array.isArray(normalized.related_identifiers)).toBe(true);
   });
 
   it("falls back to type report when no type keyword is present", () => {
@@ -57,5 +59,42 @@ describe("fetch-zenodo normalization contract", () => {
   it("parses type keyword when present", () => {
     const type = inferTypeFromKeywords(["type:video"]);
     expect(type).toBe("video");
+  });
+
+  it("preserves linked-data oriented creator and related identifier fields", () => {
+    const hit = buildHit({
+      metadata: {
+        creators: [
+          {
+            name: "Jane Doe",
+            orcid: "0000-0002-1825-0097",
+            affiliation: ["CLIR"],
+          },
+        ],
+        related_identifiers: [
+          {
+            identifier: "10.1000/example",
+            scheme: "doi",
+            relation: "isSupplementTo",
+            resource_type: "publication-report",
+          },
+        ],
+        license: {
+          id: "cc-by-4.0",
+          title: "Creative Commons Attribution 4.0 International",
+          url: "https://creativecommons.org/licenses/by/4.0/",
+        },
+        communities: [{ id: "clir" }],
+        funding: [{ id: "501100000923", name: "Mellon Foundation" }],
+      },
+    });
+
+    const normalized = normalize(hit);
+
+    expect(normalized.creator_details[0].orcid).toBe("0000-0002-1825-0097");
+    expect(normalized.related_identifiers[0].identifier).toBe("10.1000/example");
+    expect(normalized.license.id).toBe("cc-by-4.0");
+    expect(normalized.communities).toContain("clir");
+    expect(normalized.funders[0].name).toBe("Mellon Foundation");
   });
 });
