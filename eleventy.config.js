@@ -3,6 +3,10 @@ const path = require("path");
 const Image = require("@11ty/eleventy-img");
 const { isAnnualReport } = require("./src/lib/report-utils.cjs");
 const PATH_PREFIX = "/publications_v2/";
+const FAST_DEV_IMAGES =
+  process.env.FAST_DEV_IMAGES === "1" ||
+  process.argv.includes("--serve") ||
+  process.env.ELEVENTY_RUN_MODE === "serve";
 
 module.exports = function (eleventyConfig) {
   function escapeAttribute(value) {
@@ -31,7 +35,7 @@ module.exports = function (eleventyConfig) {
           .filter((value) => Number.isFinite(value) && value > 0);
 
     const hasSvgSource = /\.svg(\?|$)/i.test(String(src));
-    if (hasSvgSource) {
+    if (hasSvgSource || FAST_DEV_IMAGES) {
       const classAttr = className ? ` class="${className}"` : "";
       return `<img src="${escapeAttribute(src)}" alt="${escapeAttribute(alt)}" loading="${escapeAttribute(loading)}" decoding="async"${classAttr}>`;
     }

@@ -15,7 +15,7 @@
     "css:build": "postcss src/assets/styles.css -o dist/assets/styles.css",
     "css:watch": "postcss src/assets/styles.css -o dist/assets/styles.css -w",
     "build:11ty": "eleventy",
-    "dev:11ty": "eleventy --serve --watch",
+    "dev:11ty": "FAST_DEV_IMAGES=1 eleventy --serve --watch --incremental",
     "build": "pnpm css:build && pnpm index && pnpm build:11ty",
     "dev": "pnpm index && pnpm css:watch & pnpm dev:11ty",
     "fetch:zenodo": "node scripts/fetch-zenodo.mjs",
