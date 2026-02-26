@@ -80,7 +80,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets/img": "assets/img" });
   eleventyConfig.addPassthroughCopy({ "src/assets/images": "assets/images" });
   eleventyConfig.addPassthroughCopy({ "src/assets/js": "assets/js" });
-  eleventyConfig.addPassthroughCopy({ "src/assets/fonts": "assets/favicon" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/favicon": "assets/favicon" });
   eleventyConfig.addPassthroughCopy({ "src/assets/fonts": "assets/fonts" });
   eleventyConfig.addPassthroughCopy({ "src/assets/logos": "assets/logos" });
 

@@ -2,7 +2,7 @@
   "name": "clir_publications",
   "version": "2.0.0",
   "description": "Front end skin for CLIR Publications",
-  "private": "true",
+  "private": true,
   "engines": {
     "node": ">=23"
   },
