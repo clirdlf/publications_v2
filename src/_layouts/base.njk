@@ -1,4 +1,5 @@
-<html lang="en">
+<!doctype html>
+<html lang="en" data-path-prefix="{{ '/' | url }}">
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width,initial-scale=1"/>
@@ -9,10 +10,20 @@
         <link rel="icon" href="{{ '/assets/favicon/favicon.ico' | url }}"/>
         <link rel="manifest" href="{{ '/assets/favicon/site.webmanifest' | url }}"/>
         <link rel="stylesheet" href="{{ '/assets/styles.css' | url }}"/>
+        {% include "opengraph.njk" %}
+        {% if site.google_analytics %}
+            {% include "google_analytics.njk" %}
+        {% endif %}
     </head>
-    <body class="{{ bodyClass or '' }}">
-        {% include "components/header.njk" %}
+    <body class="{{ title | slugify }}-page">
+        {%- include "header.njk" %}
 
-        {% include "components/footer.njk" %}
+        <main>
+            {{ content | safe }}
+        </main>
+
+        {%- include "footer.njk" %}
+        {%- include "scripts.njk" %}
+
     </body>
 </html>

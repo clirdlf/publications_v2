@@ -1,52 +1,12 @@
-<!doctype html>
-<html lang="en" data-path-prefix="{{ '/' | url }}">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="description" content="{{ description or 'Research, resources, and media from CLIR Publications.' }}" />
-    {% if canonicalUrl %}
-      <link rel="canonical" href="{{ canonicalUrl }}" />
-    {% endif %}
-    <meta property="og:title" content="{{ ogTitle or title or 'CLIR Publications' }}" />
-    <meta property="og:description" content="{{ ogDescription or description or 'Research, resources, and media from CLIR Publications.' }}" />
-    <meta property="og:type" content="{{ ogType or 'website' }}" />
-    {% if ogUrl %}
-      <meta property="og:url" content="{{ ogUrl }}" />
-    {% endif %}
-    <meta name="twitter:card" content="{{ twitterCard or 'summary' }}" />
-    <meta name="twitter:title" content="{{ twitterTitle or ogTitle or title or 'CLIR Publications' }}" />
-    <meta name="twitter:description" content="{{ twitterDescription or ogDescription or description or 'Research, resources, and media from CLIR Publications.' }}" />
-    <title>{{ title or "CLIR Publications" }}</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/favicon/apple-touch-icon.png' | url }}" />
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon/favicon-32x32.png' | url }}" />
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon/favicon-16x16.png' | url }}" />
-    <link rel="icon" href="{{ '/assets/favicon/favicon.ico' | url }}" />
-    <link rel="manifest" href="{{ '/assets/favicon/site.webmanifest' | url }}" />
-    <link rel="stylesheet" href="{{ '/assets/styles.css' | url }}" />
-  </head>
-  <body class="landing-page">
-    <header class="lp-topbar">
-      <div class="lp-container lp-topbar-inner">
-        <a class="lp-brand" href="{{ '/' | url }}" aria-label="CLIR Publications home">
-          <span class="lp-brand-line1">CLIR</span>
-          <span class="lp-brand-line2">PUBLICATIONS</span>
-        </a>
-        <nav class="lp-main-nav" aria-label="Main">
-          <a href="{{ '/reports/' | url }}">Reports</a>
-          <a href="#list-to-our-podcast">Podcasts</a>
-          <a href="#watch-our-videos">Videos</a>
-          <a href="{{ '/about/' | url }}"{% if navPage == "about" %} aria-current="page"{% endif %}>About</a>
-        </nav>
-      </div>
-    </header>
+---
+layout: base.njk
+---
+<section class="lp-hero">
+  <div class="lp-container lp-hero-inner">
+    <h1>Explore Our Publications</h1>
+    <p>Research, Resources, and Media from the Council on Library and Information Resources.</p>
 
-    <main>
-      <section class="lp-hero">
-        <div class="lp-container lp-hero-inner">
-          <h1>Explore Our Publications</h1>
-          <p>Research, Resources, and Media from the Council on Library and Information Resources.</p>
-
-          <form
+    <form
             class="lp-searchbar"
             role="search"
             aria-label="Search publications"
@@ -54,185 +14,171 @@
             action="{{ '/' | url }}"
             data-site-search
           >
-            <label class="sr-only" for="lp-search">Search publications</label>
-            <input
+      <label class="sr-only" for="lp-search">Search publications</label>
+      <input
               id="lp-search"
               name="q"
               type="search"
               placeholder="Search publications..."
               data-search-input
-            />
-            <button type="submit">Search</button>
-          </form>
+/>
+      <button type="submit">Search</button>
+    </form>
 
-          <section class="lp-search-results" data-search-results hidden aria-live="polite">
-            <p class="lp-search-status" data-search-status></p>
-            <ul class="lp-search-list" data-search-list></ul>
-          </section>
+    <section class="lp-search-results" data-search-results hidden aria-live="polite">
+      <p class="lp-search-status" data-search-status></p>
+      <ul class="lp-search-list" data-search-list></ul>
+    </section>
 
-          {# <ul class="lp-filters" aria-label="Content filters">
-            <li><a href="#" class="is-active">All</a></li>
-            <li><a href="/reports/">Reports</a></li>
-            <li><a href="#">Podcasts</a></li>
-            <li><a href="#">Videos</a></li>
-            <li><a href="#">By Topic &gt;</a></li>
-          </ul> #}
-          <p class="lp-reports-link"><a class="lp-btn" href="{{ '/reports/' | url }}">Browse All Reports</a></p>
-        </div>
-      </section>
+    <p class="lp-reports-link">
+      <a class="lp-btn" href="{{ '/reports/' | url }}">Browse All Reports</a>
+    </p>
+  </div>
+</section>
 
-      <section class="lp-section lp-section-alt">
-        <div class="lp-container">
-          <h2>Latest Reports</h2>
-          <div class="lp-grid lp-grid-reports">
-            {% for report in latestReports %}
-              <article class="lp-card lp-report-card">
-                <div class="lp-media lp-media-report{{ loop.index }}">
-                  {% if report.thumbnail250 %}
-                    {% set reportImageAlt %}
-                      Cover image of the CLIR report "{{ report.title }}"{% if report.creators and report.creators.length %} by {{ report.creators | join(", ") }}{% endif %}{% if report.published %}, published {{ report.published | year }}{% endif %}.
+<section class="lp-section lp-section-alt">
+  <div class="lp-container">
+    <h2>Latest Reports</h2>
+    <div class="lp-grid lp-grid-reports">
+      {% for report in latestReports %}
+        <article class="lp-card lp-report-card">
+          <div class="lp-media lp-media-report{{ loop.index }}">
+            {% if report.thumbnail250 %}
+              {% set reportImageAlt %}
+                      Cover image of the CLIR report "{{ report.title }}"{% if report.creators and report.creators.length %} by {{ report.creators | join(", ") }}
+              {% endif %}
+              {% if report.published %}, published {{ report.published | year }}
+              {% endif %}.
                     {% endset %}
-                    {% image report.thumbnail250, reportImageAlt | trim, "(max-width: 760px) 100vw, 220px", [220, 440, 660], "lp-media-image lp-media-image-contain" %}
-                  {% endif %}
-                  <span class="lp-year-badge">{{ report.published | year }}</span>
-                </div>
-                <div class="lp-card-body">
-                  <h3>{{ report.title }}</h3>
-                  <p>{{ report.creators | join(", ") }}</p>
-                  <p>{{ report.published | isoDate }}</p>
-                  <a class="lp-btn" href="{{ ('/reports/zenodo-' + report.zenodo_id + '/') | url }}">Read More</a>
-                </div>
-              </article>
-            {% else %}
-              <p>No reports available.</p>
-            {% endfor %}
+              {% image report.thumbnail250, reportImageAlt | trim, "(max-width: 760px) 100vw, 220px", [220, 440, 660], "lp-media-image lp-media-image-contain" %}
+            {% endif %}
+            <span class="lp-year-badge">{{ report.published | year }}</span>
+          </div>
+          <div class="lp-card-body">
+            <h3>{{ report.title }}</h3>
+            <p>{{ report.creators | join(", ") }}</p>
+            <p>{{ report.published | isoDate }}</p>
+            <a class="lp-btn" href="{{ ('/reports/zenodo-' + report.zenodo_id + '/') | url }}">Read More</a>
+          </div>
+        </article>
+      {% else %}
+        <p>No reports available.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="lp-section">
+  <div class="lp-container">
+    <h2 id="list-to-our-podcast">Listen to Our Podcast</h2>
+    <div class="lp-grid lp-grid-podcasts">
+      <article class="lp-card lp-featured-podcast">
+        <div class="lp-featured-media" aria-hidden="true">
+          {% image "src/assets/images/Material_Memory-cover-1500x.png", "", "(max-width: 1050px) 100vw, 480px", [480, 960, 1440], "lp-featured-image" %}
+        </div>
+        <div class="lp-featured-inner">
+          <div>
+            <p class="lp-eyebrow">Podcast Series</p>
+            <h3>Material Memory</h3>
+            <p>Stories from archives, libraries, and cultural memory communities.</p>
+            <a class="lp-btn lp-btn-small" href="https://pod.link/1488667989">Listen Now</a>
           </div>
         </div>
-      </section>
-
-      <section class="lp-section">
-        <div class="lp-container">
-          <h2 id="list-to-our-podcast">Listen to Our Podcast</h2>
-          <div class="lp-grid lp-grid-podcasts">
-            <article class="lp-card lp-featured-podcast">
-              <div class="lp-featured-media" aria-hidden="true">
-                {% image "src/assets/images/Material_Memory-cover-1500x.png", "", "(max-width: 1050px) 100vw, 480px", [480, 960, 1440], "lp-featured-image" %}
-              </div>
-              <div class="lp-featured-inner">
-                <div>
-                  <p class="lp-eyebrow">Podcast Series</p>
-                  <h3>Material Memory</h3>
-                  <p>Stories from archives, libraries, and cultural memory communities.</p>
-                  <a class="lp-btn lp-btn-small" href="https://pod.link/1488667989">Listen Now</a>
-                </div>
-              </div>
-            </article>
-            <div class="lp-podcast-list">
-              {% set podcastEpisodes = podcast or [] %}
-              {% for episode in podcastEpisodes %}
-                {% if loop.index0 < 2 %}
-                  <article class="lp-card lp-media-card lp-podcast-card">
-                    <div class="lp-card-body">
-                      <h3>{{ episode.title }}</h3>
-                      <p class="lp-podcast-meta">{{ episode.pubDate | prettyDate }} <span>{{ episode.duration }}</span></p>
-                      <audio controls preload="none" class="lp-podcast-player" aria-label="Play {{ episode.title }}">
-                        <source src="{{ episode.enclosureUrl }}" type="audio/mpeg" />
+      </article>
+      <div class="lp-podcast-list">
+        {% set podcastEpisodes = podcast or[] %}
+        {% for episode in podcastEpisodes %}
+          {% if loop.index0 < 2 %}
+            <article class="lp-card lp-media-card lp-podcast-card">
+              <div class="lp-card-body">
+                <h3>{{ episode.title }}</h3>
+                <p class="lp-podcast-meta">{{ episode.pubDate | prettyDate }}
+                  <span>{{ episode.duration }}</span></p>
+                <audio controls preload="none" class="lp-podcast-player" aria-label="Play {{ episode.title }}">
+                  <source src="{{ episode.enclosureUrl }}" type="audio/mpeg"/>
                         Your browser does not support the audio player.
                       </audio>
-                      <a class="lp-btn lp-btn-small" href="{{ ('/items/podcast-' + (loop.index0 + 1) + '/') | url }}">Listen</a>
-                    </div>
-                  </article>
-                {% endif %}
-              {% else %}
-                <p>No podcast episodes available.</p>
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-      </section>
+                <a class="lp-btn lp-btn-small" href="{{ ('/items/podcast-' + (loop.index0 + 1) + '/') | url }}">Listen</a>
+              </div>
+            </article>
+          {% endif %}
+        {% else %}
+          <p>No podcast episodes available.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
 
-      <section class="lp-section lp-section-alt">
-        <div class="lp-container">
-          <h2 id="watch-our-videos">Watch Our Videos</h2>
-          <p>
+<section class="lp-section lp-section-alt">
+  <div class="lp-container">
+    <h2 id="watch-our-videos">Watch Our Videos</h2>
+    <p>
             Explore talks, webinars, and updates from CLIR and DLF on our
             <a href="https://www.youtube.com/@DLFCLIR" target="_blank" rel="noopener noreferrer">YouTube channel</a>.
           </p>
-          <div class="lp-grid lp-grid-videos">
-            {% set youtubeVideos = youtube or [] %}
-            {% for video in youtubeVideos %}
-              {% if loop.index0 < 3 %}
-                <article class="lp-card lp-media-card">
-                  <a
+    <div class="lp-grid lp-grid-videos">
+      {% set youtubeVideos = youtube or[] %}
+      {% for video in youtubeVideos %}
+        {% if loop.index0 < 3 %}
+          <article class="lp-card lp-media-card">
+            <a
                     class="lp-media-link"
                     href="{{ video.link }}"
                     aria-label="Watch {{ video.title }}"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <div class="lp-media lp-media-video{{ loop.index }} lp-media-play">
-                      {% if video.thumbnail %}
-                        {% image video.thumbnail, "Thumbnail for " + video.title, "(max-width: 760px) 100vw, (max-width: 1050px) 50vw, 33vw", [320, 640, 960], "lp-media-image" %}
-                      {% endif %}
-                    </div>
-                  </a>
-                  <div class="lp-card-body">
-                    <h3>{{ video.title }}</h3>
-                    {% if video.published %}
-                      <p class="lp-podcast-meta">{{ video.published | prettyDate }}</p>
-                    {% endif %}
-                    <a class="lp-btn lp-btn-small" href="{{ video.link }}" target="_blank" rel="noopener noreferrer">Watch Now</a>
-                  </div>
-                </article>
+              <div class="lp-media lp-media-video{{ loop.index }} lp-media-play">
+                {% if video.thumbnail %}
+                  {% image video.thumbnail, "Thumbnail for " + video.title, "(max-width: 760px) 100vw, (max-width: 1050px) 50vw, 33vw", [320, 640, 960], "lp-media-image" %}
+                {% endif %}
+              </div>
+            </a>
+            <div class="lp-card-body">
+              <h3>{{ video.title }}</h3>
+              {% if video.published %}
+                <p class="lp-podcast-meta">{{ video.published | prettyDate }}</p>
               {% endif %}
-            {% else %}
-              <p>No videos available.</p>
-            {% endfor %}
-          </div>
-        </div>
-      </section>
+              <a class="lp-btn lp-btn-small" href="{{ video.link }}" target="_blank" rel="noopener noreferrer">Watch Now</a>
+            </div>
+          </article>
+        {% endif %}
+      {% else %}
+        <p>No videos available.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
-      <section class="lp-cta">
-        <div class="lp-container">
-          <h2>Featured Collection: <em>Annual Reports</em></h2>
-          <p>
+<section class="lp-cta">
+  <div class="lp-container">
+    <h2>Featured Collection: <em>Annual Reports</em>
+    </h2>
+    <p>
             Explore our archive of CLIR's Annual Reports.
             {% if annualReportCount %}
               Currently featuring {{ annualReportCount }} annual report{% if annualReportCount != 1 %}s{% endif %}.
             {% endif %}
-          </p>
-          {% if latestAnnualReports and latestAnnualReports.length %}
-            <div class="lp-annual-covers">
-              {% for report in latestAnnualReports %}
-                <a class="lp-annual-cover" href="{{ ('/reports/zenodo-' + report.zenodo_id + '/') | url }}">
-                  <div class="lp-media lp-media-report{{ (loop.index0 % 4) + 1 }}">
-                    {% if report.thumbnail250 %}
-                      {% image report.thumbnail250, "Cover image for " + report.title, "(max-width: 760px) 250px, 150px", [150, 300, 450], "lp-media-image lp-media-image-contain" %}
-                    {% endif %}
-                    <span class="lp-year-badge">{{ report.published | yearOffset(-1) }}</span>
-                  </div>
-                  <div class="lp-annual-copy">
-                    <p>{{ report.title }}</p>
-                    <p>{{ report.published | isoDate }}</p>
-                  </div>
-                </a>
-              {% endfor %}
+    </p>
+    {% if latestAnnualReports and latestAnnualReports.length %}
+      <div class="lp-annual-covers">
+        {% for report in latestAnnualReports %}
+          <a class="lp-annual-cover" href="{{ ('/reports/zenodo-' + report.zenodo_id + '/') | url }}">
+            <div class="lp-media lp-media-report{{ (loop.index0 % 4) + 1 }}">
+              {% if report.thumbnail250 %}
+                {% image report.thumbnail250, "Cover image for " + report.title, "(max-width: 760px) 250px, 150px", [150, 300, 450], "lp-media-image lp-media-image-contain" %}
+              {% endif %}
+              <span class="lp-year-badge">{{ report.published | yearOffset(-1) }}</span>
             </div>
-          {% endif %}
-          <a class="lp-btn lp-btn-outline" href="{{ '/annual-reports/' | url }}">View Collection</a>
-        </div>
-      </section>
-    </main>
-
-    <footer class="lp-footer">
-      <div class="lp-container lp-footer-inner">
-        <nav aria-label="Footer links">
-          <a target="_blank" href="https://www.clir.org/privacy/">Privacy Policy</a>
-          <a href="#">Contact Us</a>
-        </nav>
-        <p>&copy; 2026 CLIR</p>
+            <div class="lp-annual-copy">
+              <p>{{ report.title }}</p>
+              <p>{{ report.published | isoDate }}</p>
+            </div>
+          </a>
+        {% endfor %}
       </div>
-    </footer>
-    <script src="{{ '/assets/js/site-search.js' | url }}"></script>
-  </body>
-</html>
+    {% endif %}
+    <a class="lp-btn lp-btn-outline" href="{{ '/annual-reports/' | url }}">View Collection</a>
+  </div>
+</section>

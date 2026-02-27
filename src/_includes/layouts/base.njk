@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-path-prefix="{{ '/' | url }}">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -10,19 +10,20 @@
     <link rel="icon" href="{{ '/assets/favicon/favicon.ico' | url }}" />
     <link rel="manifest" href="{{ '/assets/favicon/site.webmanifest' | url }}" />
     <link rel="stylesheet" href="{{ '/assets/styles.css' | url }}" />
+    {% include "opengraph.njk" %}
+    {% if site.google_analytics %}
+      {% include "google_analytics.njk" %}
+    {% endif %}
   </head>
-  <body class="bg-[var(--color-clir-white)] text-[var(--color-clir-ink)] font-[var(--font-sans)]">
-    <header>
-        <h1 class="font-[var(--font-serif)] text-[var(--color-clir-maroon)] text-4xl">
+  <body class="{{ title | slugify }}-page">
+    {%- include "header.njk" %}
 
-      <a href="{{ '/' | url }}">CLIR Publications</a>
-      </h1>
-      <nav>
-        <a href="{{ '/reports/' | url }}">Reports</a>
-      </nav>
-    </header>
     <main>
       {{ content | safe }}
     </main>
+
+    {%- include "footer.njk" %}
+    {%- include "scripts.njk" %}
+
   </body>
 </html>
