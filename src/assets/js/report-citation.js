@@ -278,7 +278,8 @@ async function initCitationWidget(root) {
     } catch {
       activeCitation = localFallbackCitation(source, styleKey);
       output.textContent = activeCitation;
-      status.textContent = "Using fallback formatter for this citation style.";
+      // status.textContent = "Using fallback formatter for this citation style.";
+      status.textContent = "";
       setCopiedState(false);
     }
   }

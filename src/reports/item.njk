@@ -4,7 +4,7 @@ pagination:
   size: 1
   alias: item
 permalink: "/reports/zenodo-{{ item.zenodo_id }}/index.html"
-layout: publication-item-page.njk
+layout: item-page.njk
 eleventyComputed:
   title: "{{ item.title }} - A CLIR Publication"
 ---
@@ -21,7 +21,8 @@ eleventyComputed:
 } %}
 
 <article class="item-view lp-container">
-  <p class="item-breadcrumb"><a href="{{ '/reports/' | url }}">Reports</a> / {{ item.title }}</p>
+  <p class="item-breadcrumb pt-4"><a href="{{ '/' | url }}">Home</a> /
+    <a href="{{ '/reports/' | url }}">Reports</a> / {{ item.title }}</p>
 
   <section class="item-hero">
     <div class="item-cover">
@@ -109,7 +110,7 @@ eleventyComputed:
     </section>
   {% endif %}
 
-  <section class="item-panel">
+  <section class="item-panel mb-4">
     <h2>Files</h2>
     {% if item.files and item.files.length %}
       <ul class="item-files">
@@ -124,4 +125,5 @@ eleventyComputed:
     {% endif %}
   </section>
 </article>
+
 <script type="module" src="{{ '/assets/js/report-citation.js' | url }}"></script>

@@ -10,3 +10,8 @@
 <meta name="twitter:card" content="{{ twitterCard or 'summary' }}"/>
 <meta name="twitter:title" content="{{ twitterTitle or ogTitle or title or 'CLIR Publications' }}"/>
 <meta name="twitter:description" content="{{ twitterDescription or ogDescription or description or 'Research, resources, and media from CLIR Publications.' }}"/>
+{% if reportJsonLd %}
+    <script type="application/ld+json">
+        {{ reportJsonLd | json | safe }}
+    </script>
+{% endif %}
