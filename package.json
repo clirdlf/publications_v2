@@ -27,7 +27,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.30.0",
+  "packageManager": "pnpm@10.32.1",
   "dependencies": {
     "minisearch": "^7.2.0",
     "zod": "^4.3.6"
