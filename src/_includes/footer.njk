@@ -1,9 +1,97 @@
 <footer class="lp-footer">
+  <div class="lp-footer-top-rule" aria-hidden="true"></div>
   <div class="lp-container lp-footer-inner">
-    <nav aria-label="Footer links">
-      <a target="_blank" href="https://www.clir.org/privacy/">Privacy Policy</a>
-      <a href="#">Contact Us</a>
-    </nav>
-    <p>&copy; 2026 CLIR</p>
+    <section class="lp-footer-panel lp-footer-branding" aria-label="CLIR contact information">
+      <div class="lp-footer-brand">
+        <img
+          class="lp-footer-logo"
+          src="{{ '/assets/images/clir-logo.png' | url }}"
+          alt="CLIR logo"
+          width="905"
+          height="466"
+        />
+        <h2>Council on Library &amp; Information Resources</h2>
+      </div>
+      <address class="lp-footer-contact">
+        <strong>Council on Library and Information Resources</strong>
+        <span>1800 Diagonal Road, Suite 600</span>
+        <span>Alexandria, VA 22314</span>
+        <a href="mailto:contact@dev.clir.org">contact@dev.clir.org</a>
+        <span>(Non-grant related communication ONLY)</span>
+      </address>
+    </section>
+
+    <section class="lp-footer-panel lp-footer-about" aria-labelledby="lp-footer-about-heading">
+      <h2 id="lp-footer-about-heading">
+        <a href="https://www.clir.org/about-clir/" target="_blank" rel="noopener noreferrer">About CLIR</a>
+      </h2>
+      <p>
+        CLIR is an independent, nonprofit organization that forges strategies to enhance research,
+        teaching, and learning environments in collaboration with libraries, cultural institutions,
+        and communities of higher learning.
+      </p>
+    </section>
+
+    <section class="lp-footer-panel lp-footer-connect" aria-labelledby="lp-footer-connect-heading">
+      <h2 id="lp-footer-connect-heading">Stay In Touch</h2>
+      <p>Sign up for news from CLIR.</p>
+      <p class="lp-footer-signup-wrap">
+        <a
+          class="lp-footer-signup"
+          href="https://www.clir.org/stay-connected/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Sign Up</a>
+      </p>
+
+      <div class="lp-footer-socials-block">
+        <h3>Follow Us</h3>
+        <ul class="lp-footer-socials" aria-label="Social media links">
+          <li>
+            <a href="https://www.facebook.com/clirdlf" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5H17V4a21 21 0 0 0-2.8-.2c-2.8 0-4.7 1.7-4.7 4.8V10H7v3h2.5v8h4z" fill="currentColor"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://x.com/Clirdlf" target="_blank" rel="noopener noreferrer" aria-label="X">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M18.9 3H22l-6.8 7.8 8 10.2h-6.2l-4.8-6.1-5.3 6.1H3.8l7.2-8.3L3.3 3h6.4l4.3 5.6L18.9 3zm-1.1 16h1.7L8.7 4.9H7l10.8 14.1z" fill="currentColor"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/@DLFCLIR" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M21.8 8.4a3 3 0 0 0-2.1-2.1C17.8 5.8 12 5.8 12 5.8s-5.8 0-7.7.5A3 3 0 0 0 2.2 8.4 31 31 0 0 0 1.8 12c0 1.2.1 2.4.4 3.6a3 3 0 0 0 2.1 2.1c1.9.5 7.7.5 7.7.5s5.8 0 7.7-.5a3 3 0 0 0 2.1-2.1c.3-1.2.4-2.4.4-3.6s-.1-2.4-.4-3.6zM9.7 15.6V8.4l6.2 3.6-6.2 3.6z" fill="currentColor"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/company/council-on-library-and-information-resources/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M6.4 8.8H3.5V20h2.9V8.8zM5 7.5a1.7 1.7 0 1 0 0-3.5 1.7 1.7 0 0 0 0 3.5zM20.5 20v-6.1c0-3.3-1.8-4.8-4.2-4.8-1.9 0-2.8 1-3.2 1.8v-1.5h-2.9V20h2.9v-5.9c0-.3 0-.7.1-.9.3-.7.9-1.5 2.1-1.5 1.5 0 2.1 1.2 2.1 2.9V20h3.1z" fill="currentColor"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.clir.org/feed/" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M6.2 17.8a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4zm-3.3-7.6v3.2c4.5 0 8.2 3.7 8.2 8.2h3.2c0-6.3-5.1-11.4-11.4-11.4zm0-6.4V7c8 0 14.5 6.5 14.5 14.5h3.2c0-9.8-7.9-17.7-17.7-17.7z" fill="currentColor"/>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <div class="lp-container lp-footer-meta">
+    <a href="https://www.clir.org/privacy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    <p>
+      Unless otherwise indicated, content on this site is available for re-use under
+      <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0 License</a>
+    </p>
   </div>
 </footer>
