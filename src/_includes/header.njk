@@ -1,15 +1,46 @@
-<header class="lp-topbar">
-    <div class="lp-container lp-topbar-inner">
-        <a class="lp-brand" href="{{ '/' | url }}" aria-label="CLIR Publications home">
-            <span class="lp-brand-line1">CLIR</span>
-            <span class="lp-brand-line2">PUBLICATIONS</span>
-        </a>
-        
-        <nav class="lp-main-nav" aria-label="Main">
-            <a href="{{ '/reports/' | url }} {% if navPage == "about" %} aria-current="page"{% endif %}">Reports</a>
-            <a href="#list-to-our-podcast">Podcasts</a>
-            <a href="#watch-our-videos">Videos</a>
-            <a href="{{ '/about/' | url }}"{% if navPage == "about" %} aria-current="page"{% endif %}>About</a>
-        </nav>
+<header class="lp-site-header">
+  <div class="lp-utility-bar">
+    <div class="lp-container lp-utility-bar-inner">
+      <nav class="lp-utility-nav" aria-label="CLIR network">
+        <a href="https://www.clir.org/dlf/" target="_blank" rel="noopener noreferrer">DLF</a>
+        <a href="https://www.clir.org/grants/" target="_blank" rel="noopener noreferrer">Grants</a>
+        <a href="https://jobs.clir.org/" target="_blank" rel="noopener noreferrer">Job Board</a>
+      </nav>
     </div>
+  </div>
+
+  <div class="lp-topbar">
+    <div class="lp-container lp-topbar-inner">
+      <a class="lp-brand" href="https://www.clir.org/" aria-label="Visit clir.org">
+        <img
+          class="lp-brand-logo"
+          src="{{ '/assets/logos/CLIR-logo-bounded-red-hairline.svg' | url }}"
+          alt="CLIR"
+          width="190"
+          height="92"
+        />
+      </a>
+
+      <button
+        class="lp-menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="lp-mobile-nav"
+        aria-label="Open publications menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="lp-nav-panel" id="lp-mobile-nav">
+        <nav class="lp-main-nav" aria-label="Publications">
+          <a href="{{ '/reports/' | url }}"{% if navPage == "reports" %} aria-current="page"{% endif %}>Reports</a>
+          <a href="#list-to-our-podcast">Podcasts</a>
+          <a href="#watch-our-videos">Videos</a>
+          <a href="{{ '/about/' | url }}"{% if navPage == "about" %} aria-current="page"{% endif %}>About</a>
+        </nav>
+      </div>
+    </div>
+  </div>
 </header>
