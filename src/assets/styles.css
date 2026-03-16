@@ -746,15 +746,6 @@
   margin-bottom: 0.15rem;
 }
 
-.lp-footer-contact a {
-  text-decoration: none;
-}
-
-.lp-footer-contact a:hover,
-.lp-footer-about a:hover,
-.lp-footer-meta a:hover {
-  text-decoration: underline;
-}
 
 .lp-footer-about {
   display: grid;
