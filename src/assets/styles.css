@@ -35,13 +35,24 @@
   font-display: swap;
 }
 
+.instrument-sans-<uniquifier> {
+  font-family: "Instrument Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+
 /* CLIR tokens (Tailwind v4 CSS-first config) */
 @theme {
-  --color-clir-maroon: #9A1C46;
+  --color-clir-maroon: #9D2235;
+  /* --color-clir-maroon: rgb(157, 34, 53); */
   --color-clir-ink: #252114;
   --color-clir-white: #ffffff;
 
-  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "ABC Otto", ui-serif, Georgia, serif;
 }
 
@@ -78,10 +89,11 @@
 .lp-utility-bar {
   background: var(--color-clir-maroon);
   color: #fff;
+  /* max-height: 54px; */
 }
 
 .lp-utility-bar-inner {
-  min-height: 54px;
+  min-height: 2.1rem;
   display: flex;
   justify-content: flex-end;
 }
@@ -99,8 +111,9 @@
   padding: 0 1.5rem;
   color: #fff;
   text-decoration: none;
-  font-size: 1.25rem;
-  font-weight: 500;
+  font-size: 1.0rem;
+  font-weight: 600;
+  line-height: 1rem;
   border-left: 1px solid rgb(255 255 255 / 28%);
 }
 
@@ -117,7 +130,9 @@
 }
 
 .lp-topbar-inner {
-  min-height: 130px;
+  /* min-height: 130px; */
+
+  height: 5.547rem;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -132,8 +147,9 @@
 
 .lp-brand-logo {
   display: block;
-  width: clamp(150px, 16vw, 192px);
-  height: auto;
+  width: 126px;
+  height: 64.76px;
+  max-width: 100%;
 }
 
 .lp-menu-toggle {
@@ -173,8 +189,8 @@
 .lp-main-nav a {
   color: #131313;
   text-decoration: none;
-  font-weight: 600;
-  font-size: clamp(1.15rem, 1.45vw, 1.9rem);
+  font-weight: 400;
+  font-size: clamp(1.0rem, 1.2vw, 1.8rem);
   line-height: 1.1;
 }
 
@@ -975,10 +991,6 @@
     grid-template-columns: 1fr auto;
     justify-items: start;
     padding: 1rem 0 1.1rem;
-  }
-
-  .lp-brand-logo {
-    width: 148px;
   }
 
   .lp-menu-toggle {
