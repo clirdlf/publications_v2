@@ -505,7 +505,7 @@
 }
 
 .lp-btn:hover {
-  background: #80173a;
+  background: color-mix(in srgb, var(--color-clir-maroon), black 10%);
 }
 
 .lp-btn-small {
@@ -876,7 +876,7 @@
 }
 
 .lp-footer-signup:hover {
-  background: #85183d;
+  background: color-mix(in srgb, var(--color-clir-maroon), black 10%);
 }
 
 .lp-footer-socials-block {
@@ -901,7 +901,7 @@
   width: 2.65rem;
   height: 2.65rem;
   border-radius: 999px;
-  background: #9f334d;
+  background: var(--color-clir-maroon);
   color: #fff;
   transition:
     transform 120ms ease,
@@ -910,7 +910,7 @@
 
 .lp-footer-socials a:hover {
   transform: translateY(-1px);
-  background: #85183d;
+  background: color-mix(in srgb, var(--color-clir-maroon), black 10%);
 }
 
 .lp-footer-socials svg {
