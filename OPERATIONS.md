@@ -96,18 +96,39 @@ Some historical reports:
 * May only have consolidated HTML pages
 * May not exist in Zenodo
 
-These are handled via:
+Do not default to a catch-all JSON outlier file. Prefer a canonical content package per report:
 
 ```bash
-src/_data/outliers.json
+content/legacy-reports/<report-slug>/
+  report.md
+  manifest.json
+  images/
+  files/
 ```
 
-Only use this file when:
+Why:
 
-* A record cannot reasonably be represented in Zenodo
-* A legacy HTML page must be preserved
+* keeps markdown as the editorial source
+* keeps report-local assets together
+* preserves provenance and legacy URL mappings
+* makes future migrations mostly a metadata export task
 
-Goal: keep this file small.
+Normalization target:
+
+* legacy packages should be transformed into the same report shape used by Zenodo-backed records
+* add a small source discriminator such as `kind: legacy`
+
+PDF guidance:
+
+* attach PDFs when they exist
+* do not treat PDFs as the preferred source if normalized markdown is available
+* PDF-only is acceptable for archival, low-traffic, or layout-sensitive reports
+
+Reference:
+
+```bash
+docs/legacy-reports.md
+```
 
 ---
 
@@ -180,7 +201,7 @@ If build fails, fix the error before deploying.
 
 ## 7. Deployment
 
-* Hosted on Cloudflare Pages (or GitHub Pages if changed later)
+* Hosted on Github Pages (or Cloudflare Pages if changed later)
 * GitHub Actions triggers:
     * Scheduled nightly build
     * Manual rebuild via workflow_dispatch

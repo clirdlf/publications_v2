@@ -87,9 +87,27 @@ See: `.github/workflows/build-deploy.yml`
 ## Data Sources
 
 - Reports: Zenodo community `clir`
-- Legacy/manual exceptions: `src/_data/outliers.json`
+- Legacy report migration model: `docs/legacy-reports.md`
 - Redirect source of truth: `src/_data/redirects.json`
 - Generated redirect map: `dist/assets/redirects.map` (do not edit manually)
+
+## Legacy Reports
+
+Historical reports that only exist as legacy HTML should be migrated as structured content packages, not as ad hoc HTML fragments or one-off JSON records.
+
+Preferred shape:
+
+```text
+content/legacy-reports/<report-slug>/
+  report.md
+  manifest.json
+  images/
+  files/
+```
+
+This keeps source markdown, report-local assets, provenance, and optional PDFs together in a form that can be normalized into the same report schema used by Zenodo-backed content.
+
+See: `docs/legacy-reports.md`
 
 ## Metadata Rules (Zenodo)
 
