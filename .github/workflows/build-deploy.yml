@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # Nightly UTC rebuild
-    - cron: "0 5 * * *"
+    - cron: "17 5 * * *"
 
 permissions:
   contents: read
