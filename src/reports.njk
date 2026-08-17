@@ -12,7 +12,7 @@ reportsBrowser: true
     <p class="rp-eyebrow">Reports Library</p>
     <h1>Browse CLIR Reports</h1>
     <p>
-      Search across reports, filter by category, sort the list, and open any report in the item view.
+      Search across reports, choose how they are sorted, and open any report in the item view.
     </p>
     <p><a class="lp-btn" href="{{ '/annual-reports/' | url }}">Featured Collection: Annual Reports</a></p>
   </div>
@@ -21,7 +21,7 @@ reportsBrowser: true
 <section class="rp-browser-wrap">
   <div class="lp-container" data-reports-browser>
     <details class="rp-filter-panel" data-reports-filter-panel open>
-      <summary>Search, filter, and sort</summary>
+      <summary>Search and sort</summary>
       <div class="rp-controls">
       <label class="rp-control rp-control-search">
         <span>Search</span>
@@ -32,7 +32,7 @@ reportsBrowser: true
         />
       </label>
 
-      <label class="rp-control">
+      {# <label class="rp-control">
         <span>Category</span>
         <input
           type="search"
@@ -42,7 +42,7 @@ reportsBrowser: true
           data-reports-category
         />
         <datalist id="reports-categories" data-reports-category-list></datalist>
-      </label>
+      </label> #}
 
       <label class="rp-control">
         <span>Sort</span>
@@ -83,34 +83,53 @@ reportsBrowser: true
         {% if r.keywords and r.keywords.length %}
           {% set categories = r.keywords | join("|") %}
         {% endif %}
+        {% set thumbnail250 = r.links and r.links.thumbnails and (r.links.thumbnails["250"] or r.links.thumbnails["100"]) %}
+        {% set thumbnail750 = r.links and r.links.thumbnails and (r.links.thumbnails["750"] or thumbnail250) %}
         <li
-          class="rp-card"
+          class="rp-card{% if thumbnail250 %} rp-card-with-cover{% endif %}"
           data-report-card
           data-title="{{ r.title }}"
           data-published="{{ r.published }}"
           data-categories="{{ categories }}"
           data-searchable="{{ r.title }} {{ authors }} {{ summaryText }}"
         >
-          <h2>
-            <a href="{{ ('/reports/zenodo-' + r.zenodo_id + '/') | url }}">{{ r.title }}</a>
-          </h2>
-          <dl class="rp-meta">
-            <div>
-              <dt>Date</dt>
-              <dd><time datetime="{{ r.published | isoDate }}">{{ r.published | prettyDate }}</time></dd>
+          {% if thumbnail250 %}
+            <div class="rp-card-cover" aria-hidden="true">
+              <img
+                src="{{ thumbnail250 }}"
+                srcset="{{ thumbnail250 }} 250w, {{ thumbnail750 }} 750w"
+                sizes="(max-width: 760px) 72px, 132px"
+                alt=""
+                width="250"
+                height="333"
+                loading="{% if loop.index <= 2 %}eager{% else %}lazy{% endif %}"
+                {% if loop.index <= 2 %}fetchpriority="high"{% endif %}
+                decoding="async"
+              />
             </div>
-            <div>
-              <dt>Author</dt>
-              <dd>
-                {% if r.creators and r.creators.length %}
-                  {{ authors }}
-                {% else %}
-                  Unknown author
-                {% endif %}
-              </dd>
-            </div>
-          </dl>
-          <p class="rp-summary">{{ summarySnippet or "No summary available." }}</p>
+          {% endif %}
+          <div class="rp-card-content">
+            <h2>
+              <a href="{{ ('/reports/zenodo-' + r.zenodo_id + '/') | url }}">{{ r.title }}</a>
+            </h2>
+            <dl class="rp-meta">
+              <div>
+                <dt>Date</dt>
+                <dd><time datetime="{{ r.published | isoDate }}">{{ r.published | prettyDate }}</time></dd>
+              </div>
+              <div>
+                <dt>Author</dt>
+                <dd>
+                  {% if r.creators and r.creators.length %}
+                    {{ authors }}
+                  {% else %}
+                    Unknown author
+                  {% endif %}
+                </dd>
+              </div>
+            </dl>
+            <p class="rp-summary">{{ summarySnippet or "No summary available." }}</p>
+          </div>
         </li>
       {% endfor %}
     </ul>

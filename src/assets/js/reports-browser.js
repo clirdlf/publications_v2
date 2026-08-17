@@ -84,7 +84,7 @@
     const pageSize = Number.parseInt(params.get("size") || `${DEFAULT_PAGE_SIZE}`, 10);
 
     if (query) state.query = query;
-    state.category = category || "all";
+    state.category = categorySelect ? category || "all" : "all";
     if (["newest", "oldest", "title-asc", "title-desc"].includes(sort)) state.sort = sort;
     state.page = Number.isFinite(page) && page > 0 ? page : 1;
     state.pageSize = [12, 24, 48].includes(pageSize) ? pageSize : DEFAULT_PAGE_SIZE;
