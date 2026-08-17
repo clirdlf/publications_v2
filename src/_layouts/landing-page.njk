@@ -45,14 +45,14 @@ layout: base.njk
             {% for report in latestReports %}
                 <article class="lp-card lp-report-card">
                     <div class="lp-media lp-media-report{{ loop.index }}">
-                        {% if report.thumbnail250 %}
+                        {% if report.thumbnail750 %}
                             {% set reportImageAlt %}
                                 Cover image of the CLIR report "{{ report.title }}"{% if report.creators and report.creators.length %} by {{ report.creators | join(", ") }}
                             {% endif %}
                             {% if report.published %}, published {{ report.published | year }}
                             {% endif %}.
                     {% endset %}
-                            {% image report.thumbnail250, reportImageAlt | trim, "(max-width: 760px) 100vw, 220px", [220, 440, 660], "lp-media-image lp-media-image-contain" %}
+                            {% image report.thumbnail750, reportImageAlt | trim, "(max-width: 760px) 100vw, 220px", [220, 440, 660], "lp-media-image lp-media-image-contain" %}
                         {% endif %}
                         <span class="lp-year-badge">{{ report.published | year }}</span>
                     </div>
@@ -70,7 +70,7 @@ layout: base.njk
     </div>
 </section>
 
-<section class="lp-section">
+{# <section class="lp-section">
     <div class="lp-container">
         <p class="lp-section-eyebrow">Listen</p>
         <h2 id="list-to-our-podcast">Listen to Our Podcast</h2>
@@ -111,9 +111,9 @@ layout: base.njk
             </div>
         </div>
     </div>
-</section>
+</section> #}
 
-<section class="lp-section lp-section-alt">
+<section class="lp-section">
     <div class="lp-container">
         <p class="lp-section-eyebrow">Watch</p>
         <h2 id="watch-our-videos">Watch Our Videos</h2>
@@ -157,7 +157,7 @@ layout: base.njk
 
 <section class="lp-cta">
     <div class="lp-container">
-        <h2>Featured Collection: <em>Annual Reports</em>
+        <h2><em>Annual Reports</em>
         </h2>
         <p>
             Explore our archive of CLIR's Annual Reports.
@@ -170,14 +170,14 @@ layout: base.njk
                 {% for report in latestAnnualReports %}
                     <a class="lp-annual-cover" href="{{ ('/reports/zenodo-' + report.zenodo_id + '/') | url }}">
                         <div class="lp-media lp-media-report{{ (loop.index0 % 4) + 1 }}">
-                            {% if report.thumbnail250 %}
-                                {% image report.thumbnail250, "Cover image for " + report.title, "(max-width: 760px) 250px, 150px", [150, 300, 450], "lp-media-image lp-media-image-contain" %}
+                            {% if report.thumbnail750 %}
+                                {% image report.thumbnail750, "Cover image for " + report.title, "(max-width: 760px) 250px, 150px", [150, 300, 450], "lp-media-image lp-media-image-contain" %}
                             {% endif %}
-                            <span class="lp-year-badge">{{ report.published | yearOffset(-1) }}</span>
+                            <span class="lp-annual-badge">Annual Report</span>
                         </div>
                         <div class="lp-annual-copy">
                             <p>{{ report.title }}</p>
-                            <p>{{ report.published | isoDate }}</p>
+                            <p>{{ report.published | yearOffset(-1) }}</p>
                         </div>
                     </a>
                 {% endfor %}

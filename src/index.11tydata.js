@@ -10,6 +10,7 @@ module.exports = {
         .map((item) => ({
           ...item,
           thumbnail250: item?.links?.thumbnails?.["250"] || "",
+          thumbnail750: item?.links?.thumbnails?.["750"] || "",
         }));
     },
     annualReportCount: (data) => {
@@ -25,6 +26,7 @@ module.exports = {
         .map((item) => ({
           ...item,
           thumbnail250: item?.links?.thumbnails?.["250"] || "",
+          thumbnail750: item?.links?.thumbnails?.["750"] || "",
         }));
     },
   },
