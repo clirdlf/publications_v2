@@ -4,6 +4,7 @@
 
   const searchInput = root.querySelector("[data-reports-search]");
   const categorySelect = root.querySelector("[data-reports-category]");
+  const categoryList = root.querySelector("[data-reports-category-list]");
   const sortSelect = root.querySelector("[data-reports-sort]");
   const pageSizeSelect = root.querySelector("[data-reports-page-size]");
   const status = root.querySelector("[data-reports-status]");
@@ -11,6 +12,12 @@
   const prevBtn = root.querySelector("[data-reports-prev]");
   const nextBtn = root.querySelector("[data-reports-next]");
   const pageLabel = root.querySelector("[data-reports-page]");
+  const pageNumbers = root.querySelector("[data-reports-pages]");
+  const clearBtn = root.querySelector("[data-reports-clear]");
+  const emptyState = root.querySelector("[data-reports-empty]");
+  const emptyClearBtn = root.querySelector("[data-reports-empty-clear]");
+  const activeFilters = root.querySelector("[data-reports-active-filters]");
+  const filterPanel = root.querySelector("[data-reports-filter-panel]");
 
   if (!list) return;
 
@@ -31,6 +38,13 @@
     return Number.isNaN(ts) ? 0 : ts;
   };
 
+  const normalizeCategory = (value) =>
+    (value || "")
+      .trim()
+      .replace(/,+$/, "")
+      .replace(/\s+/g, " ")
+      .toLocaleLowerCase();
+
   const collectCategories = () => {
     const counts = new Map();
     for (const card of cards) {
@@ -39,21 +53,25 @@
         .map((c) => c.trim())
         .filter(Boolean);
       for (const category of categories) {
-        counts.set(category, (counts.get(category) || 0) + 1);
+        const key = normalizeCategory(category);
+        if (!key || key.startsWith("type:") || key.startsWith("series:")) continue;
+        const current = counts.get(key) || { name: category.replace(/,+$/, ""), count: 0 };
+        current.count += 1;
+        counts.set(key, current);
       }
     }
-    return [...counts.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+    return [...counts.entries()].sort((a, b) => a[1].name.localeCompare(b[1].name));
   };
 
   const hydrateCategories = () => {
-    if (!categorySelect) return;
+    if (!categorySelect || !categoryList) return;
     const categories = collectCategories();
-    for (const [name, count] of categories) {
+    for (const [value, category] of categories) {
       const option = document.createElement("option");
-      option.value = name.toLowerCase();
-      option.textContent = `${name} (${count})`;
-      option.dataset.label = name;
-      categorySelect.append(option);
+      option.value = category.name;
+      option.label = `${category.count} reports`;
+      option.dataset.key = value;
+      categoryList.append(option);
     }
   };
 
@@ -74,11 +92,10 @@
 
   const syncControls = () => {
     if (searchInput) searchInput.value = state.query;
-    if (categorySelect && [...categorySelect.options].some((o) => o.value === state.category)) {
-      categorySelect.value = state.category;
-    } else if (categorySelect) {
-      categorySelect.value = "all";
-      state.category = "all";
+    if (categorySelect) {
+      const category = collectCategories().find(([key]) => key === state.category);
+      categorySelect.value = category ? category[1].name : "";
+      if (!category && state.category !== "all") state.category = "all";
     }
     if (sortSelect) sortSelect.value = state.sort;
     if (pageSizeSelect) pageSizeSelect.value = String(state.pageSize);
@@ -102,9 +119,9 @@
     const categories = (card.dataset.categories || "")
       .toLowerCase()
       .split("|")
-      .map((c) => c.trim())
+      .map(normalizeCategory)
       .filter(Boolean);
-    return categories.includes(state.category);
+    return categories.includes(normalizeCategory(state.category));
   };
 
   const queryMatches = (card) => {
@@ -153,9 +170,62 @@
       status.textContent = `${total} ${plural} found`;
     }
 
+    if (list) list.hidden = total === 0;
+    if (emptyState) emptyState.hidden = total !== 0;
+
+    const hasFilters = Boolean(state.query || state.category !== "all");
+    if (clearBtn) clearBtn.hidden = !hasFilters;
+    if (activeFilters) {
+      activeFilters.replaceChildren();
+      const addChip = (label, clear) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "rp-filter-chip";
+        button.textContent = `${label} ×`;
+        button.setAttribute("aria-label", `Remove ${label} filter`);
+        button.addEventListener("click", clear);
+        activeFilters.append(button);
+      };
+      if (state.query) addChip(`Search: ${state.query}`, () => {
+        state.query = "";
+        if (searchInput) searchInput.value = "";
+        resetPage();
+        render();
+      });
+      if (state.category !== "all") addChip(`Category: ${categorySelect?.value || state.category}`, () => {
+        state.category = "all";
+        if (categorySelect) categorySelect.value = "";
+        resetPage();
+        render();
+      });
+    }
+
     if (pageLabel) pageLabel.textContent = `Page ${state.page} of ${totalPages}`;
     if (prevBtn) prevBtn.disabled = state.page <= 1;
     if (nextBtn) nextBtn.disabled = state.page >= totalPages;
+
+    if (pageNumbers) {
+      pageNumbers.replaceChildren();
+      const pages = new Set([1, totalPages, state.page - 1, state.page, state.page + 1]);
+      let previous = 0;
+      [...pages].filter((page) => page > 0 && page <= totalPages).sort((a, b) => a - b).forEach((page) => {
+        if (previous && page - previous > 1) {
+          const gap = document.createElement("span");
+          gap.textContent = "…";
+          gap.setAttribute("aria-hidden", "true");
+          pageNumbers.append(gap);
+        }
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = String(page);
+        button.className = "rp-page-number";
+        if (page === state.page) button.setAttribute("aria-current", "page");
+        button.setAttribute("aria-label", `Page ${page}`);
+        button.addEventListener("click", () => goToPage(page));
+        pageNumbers.append(button);
+        previous = page;
+      });
+    }
 
     updateUrl();
   };
@@ -164,22 +234,61 @@
     state.page = 1;
   };
 
+  const focusResults = () => {
+    const firstHeading = list.querySelector("[data-report-card]:not([hidden]) h2 a");
+    firstHeading?.focus({ preventScroll: true });
+    list.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      block: "start",
+    });
+  };
+
+  const goToPage = (page) => {
+    state.page = page;
+    render();
+    focusResults();
+  };
+
+  const clearFilters = () => {
+    state.query = "";
+    state.category = "all";
+    state.page = 1;
+    if (searchInput) searchInput.value = "";
+    if (categorySelect) categorySelect.value = "";
+    render();
+    searchInput?.focus();
+  };
+
   hydrateCategories();
   readUrlState();
   syncControls();
   render();
 
+  let searchTimer;
   searchInput?.addEventListener("input", () => {
-    state.query = searchInput.value.trim();
-    resetPage();
-    render();
+    window.clearTimeout(searchTimer);
+    searchTimer = window.setTimeout(() => {
+      state.query = searchInput.value.trim();
+      resetPage();
+      render();
+    }, 180);
   });
 
-  categorySelect?.addEventListener("change", () => {
-    state.category = categorySelect.value;
+  const applyCategoryInput = ({ clearInvalid = false } = {}) => {
+    const value = normalizeCategory(categorySelect?.value);
+    const selected = collectCategories().find(([, category]) => normalizeCategory(category.name) === value);
+    state.category = selected ? selected[0] : "all";
+    if (!selected && clearInvalid && categorySelect) categorySelect.value = "";
     resetPage();
     render();
+  };
+
+  let categoryTimer;
+  categorySelect?.addEventListener("input", () => {
+    window.clearTimeout(categoryTimer);
+    categoryTimer = window.setTimeout(() => applyCategoryInput(), 120);
   });
+  categorySelect?.addEventListener("change", () => applyCategoryInput({ clearInvalid: true }));
 
   sortSelect?.addEventListener("change", () => {
     state.sort = sortSelect.value;
@@ -196,16 +305,20 @@
 
   prevBtn?.addEventListener("click", () => {
     if (state.page <= 1) return;
-    state.page -= 1;
-    render();
+    goToPage(state.page - 1);
   });
 
   nextBtn?.addEventListener("click", () => {
-    state.page += 1;
-    render();
-    list.scrollIntoView({
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-      block: "start",
-    });
+    goToPage(state.page + 1);
   });
+
+  clearBtn?.addEventListener("click", clearFilters);
+  emptyClearBtn?.addEventListener("click", clearFilters);
+
+  const mobileQuery = window.matchMedia("(max-width: 760px)");
+  const syncFilterPanel = () => {
+    if (filterPanel) filterPanel.open = !mobileQuery.matches;
+  };
+  syncFilterPanel();
+  mobileQuery.addEventListener("change", syncFilterPanel);
 })();

@@ -20,7 +20,9 @@ reportsBrowser: true
 
 <section class="rp-browser-wrap">
   <div class="lp-container" data-reports-browser>
-    <div class="rp-controls">
+    <details class="rp-filter-panel" data-reports-filter-panel open>
+      <summary>Search, filter, and sort</summary>
+      <div class="rp-controls">
       <label class="rp-control rp-control-search">
         <span>Search</span>
         <input
@@ -32,9 +34,14 @@ reportsBrowser: true
 
       <label class="rp-control">
         <span>Category</span>
-        <select data-reports-category>
-          <option value="all">All categories</option>
-        </select>
+        <input
+          type="search"
+          placeholder="All categories"
+          list="reports-categories"
+          autocomplete="off"
+          data-reports-category
+        />
+        <datalist id="reports-categories" data-reports-category-list></datalist>
       </label>
 
       <label class="rp-control">
@@ -55,9 +62,14 @@ reportsBrowser: true
           <option value="48">48</option>
         </select>
       </label>
-    </div>
+      </div>
+    </details>
 
-    <p class="rp-status" data-reports-status></p>
+    <div class="rp-feedback">
+      <p class="rp-status" data-reports-status role="status" aria-live="polite"></p>
+      <button class="rp-clear" type="button" data-reports-clear hidden>Clear all filters</button>
+    </div>
+    <div class="rp-active-filters" data-reports-active-filters aria-label="Active filters"></div>
 
     <ul class="rp-results" data-reports-list>
       {% for r in reports %}
@@ -85,7 +97,7 @@ reportsBrowser: true
           <dl class="rp-meta">
             <div>
               <dt>Date</dt>
-              <dd>{{ r.published | isoDate }}</dd>
+              <dd><time datetime="{{ r.published | isoDate }}">{{ r.published | prettyDate }}</time></dd>
             </div>
             <div>
               <dt>Author</dt>
@@ -99,15 +111,21 @@ reportsBrowser: true
             </div>
           </dl>
           <p class="rp-summary">{{ summarySnippet or "No summary available." }}</p>
-          <a class="rp-open" href="{{ ('/reports/zenodo-' + r.zenodo_id + '/') | url }}">Open report</a>
         </li>
       {% endfor %}
     </ul>
 
-    <div class="rp-pagination">
+    <div class="rp-empty" data-reports-empty hidden>
+      <h2>No matching reports</h2>
+      <p>Try a broader search, choose another category, or clear your filters.</p>
+      <button type="button" data-reports-empty-clear>Reset search and filters</button>
+    </div>
+
+    <nav class="rp-pagination" aria-label="Reports pages">
       <button type="button" data-reports-prev>Previous</button>
       <p data-reports-page>Page 1 of 1</p>
+      <div class="rp-page-numbers" data-reports-pages></div>
       <button type="button" data-reports-next>Next</button>
-    </div>
+    </nav>
   </div>
 </section>
