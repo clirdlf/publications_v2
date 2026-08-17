@@ -203,5 +203,9 @@
   nextBtn?.addEventListener("click", () => {
     state.page += 1;
     render();
+    list.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      block: "start",
+    });
   });
 })();
