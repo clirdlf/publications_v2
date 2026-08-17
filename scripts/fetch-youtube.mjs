@@ -1,5 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
+import { plainText, slugifyMedia } from "./fetch-podcast.mjs";
 
 const FEED_URL = "https://www.youtube.com/feeds/videos.xml?channel_id=UCTlqPVhBqGnyKsebb3mjA0Q";
 const OUT_PATH = path.join(process.cwd(), "src", "_data", "youtube.json");
@@ -44,7 +46,7 @@ function extractSelfClosingTagAttr(xml, tagName, attrName) {
   return decodeXmlEntities(match[1].trim());
 }
 
-function extractEntries(xml) {
+export function extractEntries(xml) {
   const entryPattern = /<entry\b[^>]*>([\s\S]*?)<\/entry>/gi;
   const entries = [];
   let match;
@@ -54,17 +56,20 @@ function extractEntries(xml) {
     const authorMatch = rawEntry.match(/<author>([\s\S]*?)<\/author>/i);
     const authorXml = authorMatch ? authorMatch[1] : "";
 
+    const videoId = extractTag(rawEntry, "yt:videoId");
+    const title = plainText(extractTag(rawEntry, "title"));
     entries.push({
       id: extractTag(rawEntry, "id"),
-      videoId: extractTag(rawEntry, "yt:videoId"),
+      videoId,
+      slug: slugifyMedia(`${title}-${videoId}`),
       channelId: extractTag(rawEntry, "yt:channelId"),
-      title: extractTag(rawEntry, "title"),
+      title,
       link: extractSelfClosingTagAttr(rawEntry, "link", "href"),
       published: extractTag(rawEntry, "published"),
       updated: extractTag(rawEntry, "updated"),
       authorName: extractTag(authorXml, "name"),
       authorUri: extractTag(authorXml, "uri"),
-      description: extractTag(rawEntry, "media:description"),
+      description: plainText(extractTag(rawEntry, "media:description")),
       thumbnail: extractSelfClosingTagAttr(rawEntry, "media:thumbnail", "url")
     });
   }
@@ -72,7 +77,7 @@ function extractEntries(xml) {
   return entries;
 }
 
-async function main() {
+export async function main() {
   const response = await fetch(FEED_URL, {
     headers: { 
       'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
@@ -94,7 +99,9 @@ async function main() {
   console.log(`Fetched ${entries.length} YouTube videos -> ${OUT_PATH}`);
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}

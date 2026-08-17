@@ -1,0 +1,29 @@
+---
+pagination:
+  data: youtube
+  size: 1
+  alias: item
+permalink: "/items/video-{{ item.slug or ((item.title + '-' + item.videoId) | slugify) }}/index.html"
+layout: item-page.njk
+title: "{{ item.title }} - CLIR Video"
+description: "{{ item.description | snippet(155) }}"
+ogType: video.other
+twitterCard: summary_large_image
+---
+
+<article class="item-view lp-container">
+  <p class="item-breadcrumb"><a href="{{ '/videos/' | url }}">Videos</a> / {{ item.title }}</p>
+  <section class="item-hero item-hero-video">
+    <div class="item-video-frame">
+      <iframe src="https://www.youtube-nocookie.com/embed/{{ item.videoId }}" title="{{ item.title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <div class="item-summary">
+      <p class="item-kicker">Video</p><h1>{{ item.title }}</h1>
+      {% if item.published %}<p class="lp-podcast-meta"><time datetime="{{ item.published | isoDate }}">{{ item.published | prettyDate }}</time></p>{% endif %}
+      <p><a class="lp-btn" href="{{ item.link }}" target="_blank" rel="noopener noreferrer">Watch on YouTube <span class="sr-only">(opens in a new tab)</span></a></p>
+    </div>
+  </section>
+  {% if item.description %}<section class="item-panel"><h2>Video description</h2><p>{{ item.description }}</p></section>{% endif %}
+  {% if item.transcriptUrl %}<section class="item-panel"><h2>Transcript</h2><p><a href="{{ item.transcriptUrl }}">Read the video transcript</a>.</p></section>{% endif %}
+  <script type="application/ld+json">{{ {"@context":"https://schema.org","@type":"VideoObject","name":item.title,"description":item.description,"thumbnailUrl":item.thumbnail,"uploadDate":item.published,"embedUrl":("https://www.youtube-nocookie.com/embed/" + item.videoId),"contentUrl":item.link} | json | safe }}</script>
+</article>

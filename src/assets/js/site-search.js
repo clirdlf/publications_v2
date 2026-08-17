@@ -105,10 +105,10 @@
     list.innerHTML = ranked
       .map(({ doc }) => {
         const published = formatDate(doc.published);
+        const type = doc.type === "podcast" ? "Podcast" : doc.type === "video" ? "Video" : "Publication";
         return `<li class="lp-search-item">
           <a href="${escapeHtml(withPathPrefix(doc.url || "/"))}">${escapeHtml(doc.title || "Untitled publication")}</a>
-          <p>${escapeHtml(doc.creators || "")}</p>
-          <p>${escapeHtml(published)}</p>
+          <p>${escapeHtml(type)}${doc.creators ? ` · ${escapeHtml(doc.creators)}` : ""}${published ? ` · ${escapeHtml(published)}` : ""}</p>
         </li>`;
       })
       .join("");

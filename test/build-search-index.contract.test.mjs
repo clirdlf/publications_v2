@@ -61,4 +61,17 @@ describe("build-search-index contract", () => {
     expect(output.docs[0].url).toBe("/reports/zenodo-987/");
     expect(output.docs[0].searchable).toContain("stable systems report");
   });
+
+  it("indexes podcast and video records when their data files exist", async () => {
+    const workspace = await createWorkspace();
+    await fs.writeFile(path.join(workspace, "src", "_data", "zenodo.json"), "[]");
+    await fs.writeFile(path.join(workspace, "src", "_data", "podcast.json"), JSON.stringify([{ id: "ep-1", slug: "episode-one-ep-1", title: "Episode One", description: "Archives", pubDate: "2025-01-01" }]));
+    await fs.writeFile(path.join(workspace, "src", "_data", "youtube.json"), JSON.stringify([{ videoId: "vid-1", slug: "video-one-vid-1", title: "Video One", description: "Libraries", published: "2025-02-01" }]));
+
+    await execFile("node", [scriptPath], { cwd: workspace });
+    const output = JSON.parse(await fs.readFile(path.join(workspace, "dist", "assets", "search-index.json"), "utf8"));
+
+    expect(output.docs.map((doc) => doc.type)).toEqual(["podcast", "video"]);
+    expect(output.docs[0].url).toBe("/items/podcast-episode-one-ep-1/");
+  });
 });

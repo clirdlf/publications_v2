@@ -3,13 +3,13 @@ pagination:
   data: podcast
   size: 1
   alias: item
-permalink: "/items/podcast-{{ pagination.pageNumber + 1 }}/index.html"
+permalink: "/items/podcast-{{ item.slug or ((item.title + '-' + item.pubDate) | slugify) }}/index.html"
 layout: item-page.njk
 title: "{{ item.title }} - CLIR Podcast"
 ---
 
 <article class="item-view lp-container">
-  <p class="item-breadcrumb"><a href="{{ '/podcasts/' | url }}">Podcasts</a> / {{ item.title }}</p>
+  <p class="item-breadcrumb pt-4"><a href="{{ '/podcasts/' | url }}">Material Memory</a> / {{ item.title }}</p>
 
   <section class="item-hero item-hero-podcast">
     <div class="item-summary">
@@ -20,7 +20,7 @@ title: "{{ item.title }} - CLIR Podcast"
         {% if item.pubDate %}
           <div>
             <dt>Published</dt>
-            <dd>{{ item.pubDate | prettyDate }}</dd>
+            <dd><time datetime="{{ item.pubDate | isoDate }}">{{ item.pubDate | prettyDate }}</time></dd>
           </div>
         {% endif %}
         {% if item.duration %}
@@ -34,7 +34,7 @@ title: "{{ item.title }} - CLIR Podcast"
       {% if item.enclosureUrl %}
         <div class="item-actions">
           <audio controls preload="none" class="item-audio-player" aria-label="Play {{ item.title }}">
-            <source src="{{ item.enclosureUrl }}" type="audio/mpeg" />
+            <source src="{{ item.enclosureUrl }}" type="{{ item.enclosureType or 'audio/mpeg' }}" />
             Your browser does not support the audio player.
           </audio>
         </div>
@@ -43,9 +43,13 @@ title: "{{ item.title }} - CLIR Podcast"
   </section>
 
   {% if item.description %}
-    <section class="item-panel">
+    <section class="item-panel mb-10">
       <h2>Episode Description</h2>
-      <div class="item-description">{{ item.description | safe }}</div>
+      <div class="item-description"><p>{{ item.description | stripHtml | normalizeWhitespace }}</p></div>
     </section>
   {% endif %}
+  {% if item.transcriptUrl %}
+    <section class="item-panel"><h2>Transcript</h2><p><a href="{{ item.transcriptUrl }}">Read the episode transcript</a>.</p></section>
+  {% endif %}
+  <script type="application/ld+json">{{ {"@context":"https://schema.org","@type":"PodcastEpisode","name":item.title,"datePublished":(item.pubDate | isoDate),"duration":item.duration,"url":page.url,"associatedMedia":item.enclosureUrl} | json | safe }}</script>
 </article>

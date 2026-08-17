@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 
 const FEED_URL = "https://feeds.libsyn.com/229370/rss";
 const OUT_PATH = path.join(process.cwd(), "src", "_data", "podcast.json");
@@ -12,7 +13,7 @@ function stripCdata(value) {
     .trim();
 }
 
-function decodeXmlEntities(value) {
+export function decodeXmlEntities(value) {
   if (typeof value !== "string") return "";
   return value
     .replace(/&lt;/g, "<")
@@ -20,6 +21,7 @@ function decodeXmlEntities(value) {
     .replace(/&quot;/g, "\"")
     .replace(/&#39;/g, "'")
     .replace(/&apos;/g, "'")
+    .replace(/&nbsp;/gi, " ")
     .replace(/&amp;/g, "&");
 }
 
@@ -37,7 +39,24 @@ function extractSelfClosingTagAttr(xml, tagName, attrName) {
   return decodeXmlEntities(match[1].trim());
 }
 
-function extractItems(xml) {
+export function slugifyMedia(value) {
+  return String(value || "")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 90);
+}
+
+export function plainText(value) {
+  return decodeXmlEntities(String(value || "").replace(/<[^>]*>/g, " "))
+    .replace(/\u00a0/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+export function extractItems(xml) {
   const channelImage = extractSelfClosingTagAttr(xml, "itunes:image", "href");
   const itemPattern = /<item\b[^>]*>([\s\S]*?)<\/item>/gi;
   const items = [];
@@ -54,12 +73,26 @@ function extractItems(xml) {
       imageFromImageTag ||
       channelImage;
 
+    const title = plainText(extractTag(rawItem, "title"));
+    const pubDate = extractTag(rawItem, "pubDate");
+    const guid = plainText(extractTag(rawItem, "guid"));
+    const canonicalUrl = extractTag(rawItem, "link");
+    const season = plainText(extractTag(rawItem, "itunes:season"));
+    const episode = plainText(extractTag(rawItem, "itunes:episode"));
+    const identity = guid || canonicalUrl || `${title}-${pubDate}`;
+
     items.push({
-      title: extractTag(rawItem, "title"),
-      pubDate: extractTag(rawItem, "pubDate"),
-      description: extractTag(rawItem, "description"),
+      id: identity,
+      slug: slugifyMedia(`${title}-${pubDate}`),
+      title,
+      pubDate,
+      description: plainText(extractTag(rawItem, "description")),
+      canonicalUrl,
       enclosureUrl: extractSelfClosingTagAttr(rawItem, "enclosure", "url"),
+      enclosureType: extractSelfClosingTagAttr(rawItem, "enclosure", "type") || "audio/mpeg",
       duration: extractTag(rawItem, "itunes:duration"),
+      season,
+      episode,
       image
     });
   }
@@ -67,7 +100,7 @@ function extractItems(xml) {
   return items;
 }
 
-async function main() {
+export async function main() {
   const response = await fetch(FEED_URL, {
     headers: { Accept: "application/rss+xml, application/xml, text/xml;q=0.9, */*;q=0.8" }
   });
@@ -86,7 +119,9 @@ async function main() {
   console.log(`Fetched ${items.length} podcast episodes -> ${OUT_PATH}`);
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}

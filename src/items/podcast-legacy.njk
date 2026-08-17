@@ -1,0 +1,20 @@
+---
+pagination:
+  data: podcast
+  size: 1
+  alias: item
+permalink: "/items/podcast-{{ pagination.pageNumber + 1 }}/index.html"
+layout: false
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  {% set destination = ('/items/podcast-' + (item.slug or ((item.title + '-' + item.pubDate) | slugify)) + '/') | url %}
+  <meta http-equiv="refresh" content="0;url={{ destination }}">
+  <link rel="canonical" href="{{ destination }}">
+  <title>Episode moved</title>
+</head><body>
+  <p>This episode has moved to <a href="{{ destination }}">{{ item.title }}</a>.</p>
+</body></html>
