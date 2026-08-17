@@ -10,6 +10,9 @@ eleventyComputed:
 ---
 
 {% set primaryThumbnail = item.links and item.links.thumbnails and (item.links.thumbnails["750"] or item.links.thumbnails["250"] or item.links.thumbnails["100"]) %}
+{% set hasDescription = item.description | hasSubstantiveDescription %}
+{% set legacyDeposit = item | isLegacyDeposit %}
+{% set sparseHero = item | hasSparseHero %}
 {% set citationSource = {
   title: item.title,
   published: item.published,
@@ -21,13 +24,23 @@ eleventyComputed:
 } %}
 
 <article class="item-view lp-container">
-  <p class="item-breadcrumb pt-4"><a href="{{ '/' | url }}">Home</a> /
-    <a href="{{ '/reports/' | url }}">Reports</a> / {{ item.title }}</p>
+  <nav class="item-breadcrumb pt-4" aria-label="Breadcrumb">
+    <a href="{{ '/' | url }}">Home</a><span aria-hidden="true">/</span>
+    <a href="{{ '/reports/' | url }}">Reports</a><span aria-hidden="true">/</span>
+    <span aria-current="page">Current report</span>
+  </nav>
 
-  <section class="item-hero">
+  <section class="item-hero{% if sparseHero %} item-hero-sparse{% endif %}">
     <div class="item-cover">
       {% if primaryThumbnail %}
-        {% image primaryThumbnail, "Cover image for " + item.title, "(max-width: 760px) 90vw, 300px", [300, 600, 900], "item-cover-image" %}
+        {% if item.files and item.files.length %}
+          <a class="item-cover-link" href="{{ item.files[0].url }}" aria-label="Open {{ item.files[0].key }}">
+            {% image primaryThumbnail, "Cover image for " + item.title, "(max-width: 760px) 90vw, 300px", [300, 600, 900], "item-cover-image" %}
+            <span class="item-cover-action">Open {{ item.files[0].key | fileType }}</span>
+          </a>
+        {% else %}
+          {% image primaryThumbnail, "Cover image for " + item.title, "(max-width: 760px) 90vw, 300px", [300, 600, 900], "item-cover-image" %}
+        {% endif %}
       {% else %}
         <div class="item-cover-fallback" aria-hidden="true">CLIR</div>
       {% endif %}
@@ -40,61 +53,21 @@ eleventyComputed:
       <dl class="item-meta">
         {% if item.published %}
           <div>
-            <dt>Published</dt>
-            <dd>{{ item.published | isoDate }}</dd>
+            <dt>{% if legacyDeposit %}Repository date{% else %}Published{% endif %}</dt>
+            <dd><time datetime="{{ item.published | isoDate }}">{{ item.published | prettyDate }}</time></dd>
           </div>
         {% endif %}
         {% if item.creators and item.creators.length %}
           <div>
             <dt>Creators</dt>
-            <dd>{{ item.creators | join(", ") }}</dd>
+            <dd>{{ item.creators | naturalCreators }}</dd>
           </div>
         {% endif %}
-        {% if item.doi %}
-          <div>
-            <dt>DOI</dt>
-            <dd><a class="underline" target="_blank" rel="noopener noreferrer" href="https://doi.org/{{ item.doi }}">{{ item.doi }}</a></dd>
-          </div>
-        {% endif %}
-        <div class="item-citation" data-citation-root>
-          <dt>Citation</dt>
-          <dd>
-            <div class="item-citation-controls">
-              <label for="citation-style-{{ item.zenodo_id }}">Format</label>
-              <select id="citation-style-{{ item.zenodo_id }}" data-citation-style>
-                <option value="chicago" selected>Chicago</option>
-                <option value="mla">MLA</option>
-                <option value="harvard">Harvard</option>
-                <option value="vancouver">Vancouver</option>
-              </select>
-            </div>
-            <div class="item-citation-output-row">
-              <p class="item-citation-output" data-citation-output>Loading citation...</p>
-              <button
-                type="button"
-                class="item-citation-copy"
-                data-citation-copy
-                aria-label="Copy citation"
-                title="Copy citation"
-              >
-                <svg class="item-citation-copy-icon item-citation-copy-icon-default" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="M16 1H6C4.9 1 4 1.9 4 3V15H6V3H16V1ZM19 5H10C8.9 5 8 5.9 8 7V21C8 22.1 8.9 23 10 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H10V7H19V21Z" fill="currentColor"/>
-                </svg>
-                <svg class="item-citation-copy-icon item-citation-copy-icon-success" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="M9 16.2L4.8 12 3.4 13.4 9 19 21 7 19.6 5.6 9 16.2Z" fill="currentColor"/>
-                </svg>
-                <span class="sr-only">Copy citation</span>
-              </button>
-            </div>
-            <p class="item-citation-status" data-citation-status aria-live="polite"></p>
-            <script type="application/json" data-citation-source>{{ citationSource | json | safe }}</script>
-          </dd>
-        </div>
       </dl>
 
       <div class="item-actions">
         {% if item.files and item.files.length %}
-          <a class="lp-btn" href="{{ item.files[0].url }}">Download</a>
+          <a class="lp-btn" href="{{ item.files[0].url }}">Download {{ item.files[0].key | fileType }}</a>
         {% endif %}
         {% if item.zenodo_html %}
           <a class="lp-btn lp-btn-outline item-btn-alt" href="{{ item.zenodo_html }}">View on Zenodo</a>
@@ -103,27 +76,87 @@ eleventyComputed:
     </div>
   </section>
 
-  {% if item.description %}
-    <section class="item-panel">
+  <section class="item-panel item-citation-panel" data-citation-root>
+    <div class="item-citation-heading">
+      <div>
+        <p class="item-section-kicker">Reference</p>
+        <h2>Cite this report</h2>
+        {% if item.doi %}
+          <p class="item-doi"><span>DOI</span> <a target="_blank" rel="noopener noreferrer" href="https://doi.org/{{ item.doi }}">{{ item.doi }}</a></p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="item-citation-layout">
+      <div class="item-citation-controls">
+        <label for="citation-style-{{ item.zenodo_id }}">Citation format</label>
+        <select id="citation-style-{{ item.zenodo_id }}" data-citation-style>
+          <option value="chicago" selected>Chicago</option>
+          <option value="mla">MLA</option>
+          <option value="harvard">Harvard</option>
+          <option value="vancouver">Vancouver</option>
+        </select>
+      </div>
+      <div>
+        <div class="item-citation-output-row">
+          <p class="item-citation-output" data-citation-output>Loading citation…</p>
+          <button type="button" class="item-citation-copy" data-citation-copy aria-label="Copy citation" title="Copy citation">
+            <svg class="item-citation-copy-icon item-citation-copy-icon-default" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M16 1H6C4.9 1 4 1.9 4 3V15H6V3H16V1ZM19 5H10C8.9 5 8 5.9 8 7V21C8 22.1 8.9 23 10 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H10V7H19V21Z" fill="currentColor"/>
+            </svg>
+            <svg class="item-citation-copy-icon item-citation-copy-icon-success" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M9 16.2L4.8 12 3.4 13.4 9 19 21 7 19.6 5.6 9 16.2Z" fill="currentColor"/>
+            </svg>
+            <span class="item-citation-copy-label">Copy citation</span>
+          </button>
+        </div>
+        <p class="item-citation-status" data-citation-status aria-live="polite"></p>
+      </div>
+    </div>
+    <script type="application/json" data-citation-source>{{ citationSource | json | safe }}</script>
+    {% if legacyDeposit %}
+      <p class="item-citation-note">Citation dates are generated from the available repository metadata; the original publication date may differ.</p>
+    {% endif %}
+  </section>
+
+  {% if hasDescription %}
+    <section class="item-panel item-about">
       <h2>About</h2>
       <div class="item-description">{{ item.description | safe }}</div>
     </section>
   {% endif %}
 
-  <section class="item-panel mb-4">
-    <h2>Files</h2>
-    {% if item.files and item.files.length %}
+  {% if item.files and item.files.length == 1 %}
+    <section class="item-document-details mb-4" aria-labelledby="document-details-heading">
+      <h2 id="document-details-heading">Document details</h2>
+      <ul class="item-files">
+        <li class="item-file-row">
+          <span class="item-file-type" aria-hidden="true">{{ item.files[0].key | fileType }}</span>
+          <span class="item-file-name"><span class="sr-only">File name: </span>{{ item.files[0].key }}</span>
+        </li>
+      </ul>
+    </section>
+  {% else %}
+    <section class="item-panel mb-4">
+      <h2>Files</h2>
+      {% if item.files and item.files.length %}
       <ul class="item-files">
         {% for f in item.files %}
-          <li>
-            <a href="{{ f.url }}">{{ f.key }}</a>
+          <li class="item-file-row">
+            <span class="item-file-type" aria-hidden="true">{{ f.key | fileType }}</span>
+            <span class="item-file-name"><span class="sr-only">File name: </span>{{ f.key }}</span>
+            {% if item.files.length > 1 %}
+              <a class="item-file-download" href="{{ f.url }}">Download <span class="sr-only">{{ f.key }}</span></a>
+            {% endif %}
           </li>
         {% endfor %}
       </ul>
-    {% else %}
-      <p class="item-empty">No files attached.</p>
-    {% endif %}
-  </section>
+      {% else %}
+        <p class="item-empty">No files attached.</p>
+      {% endif %}
+    </section>
+  {% endif %}
+
+  <a class="item-back-link mb-5" href="{{ '/reports/' | url }}">← Back to all reports</a>
 </article>
 
 <script type="module" src="{{ '/assets/js/report-citation.js' | url }}"></script>

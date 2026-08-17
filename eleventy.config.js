@@ -115,6 +115,43 @@ module.exports = function (eleventyConfig) {
     }).format(d);
   });
 
+  eleventyConfig.addFilter("naturalCreators", (creators) => {
+    if (!Array.isArray(creators)) return "";
+    const names = creators.filter(Boolean).map((name) => {
+      const parts = String(name).split(",").map((part) => part.trim());
+      return parts.length === 2 ? `${parts[1]} ${parts[0]}` : String(name);
+    });
+    if (names.length < 2) return names[0] || "";
+    if (names.length === 2) return names.join(" and ");
+    return `${names.slice(0, -1).join(", ")}, and ${names.at(-1)}`;
+  });
+
+  eleventyConfig.addFilter("fileType", (filename) => {
+    const cleanName = String(filename || "").split(/[?#]/, 1)[0];
+    const match = cleanName.match(/\.([a-z0-9]{1,8})$/i);
+    return match ? match[1].toUpperCase() : "FILE";
+  });
+
+  eleventyConfig.addFilter("hasSubstantiveDescription", (value) => {
+    const text = String(value || "")
+      .replace(/<[^>]*>/g, " ")
+      .replace(/&[a-z0-9#]+;/gi, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    return text.length >= 120;
+  });
+
+  eleventyConfig.addFilter("hasSparseHero", (item) => {
+    const title = String(item?.title || "").trim();
+    return title.length > 0 && title.length <= 60;
+  });
+
+  eleventyConfig.addFilter("isLegacyDeposit", (item) => {
+    if (!item || Number(item.zenodo_id) >= 10_000_000) return false;
+    const year = Number(String(item.published || "").slice(0, 4));
+    return year >= 2023;
+  });
+
   eleventyConfig.addFilter("yearOffset", (value, offset = 0) => {
     if (!value) return "";
     const d = new Date(value);
