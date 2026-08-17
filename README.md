@@ -47,6 +47,15 @@ Core build:
 pnpm run build
 ```
 
+Production URL settings are environment-driven:
+
+```bash
+SITE_URL=https://publications.clir.org PATH_PREFIX=/ pnpm run build
+```
+
+`GOOGLE_ANALYTICS_ID` is optional. Analytics markup is omitted unless that
+variable is set to a valid production measurement ID.
+
 Other build-related commands:
 
 ```bash

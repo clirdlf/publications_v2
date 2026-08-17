@@ -1,0 +1,19 @@
+---
+permalink: sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for pathname in ['/', '/reports/', '/annual-reports/', '/podcasts/', '/videos/', '/about/'] %}
+  <url><loc>{{ pathname | absoluteUrl(site.url) }}</loc></url>
+{%- endfor %}
+{%- for item in zenodo %}
+  <url><loc>{{ ('/reports/zenodo-' + item.zenodo_id + '/') | absoluteUrl(site.url) }}</loc></url>
+{%- endfor %}
+{%- for item in podcast %}
+  <url><loc>{{ ('/items/podcast-' + (item.slug or ((item.title + '-' + item.pubDate) | slugify)) + '/') | absoluteUrl(site.url) }}</loc></url>
+{%- endfor %}
+{%- for item in youtube %}
+  <url><loc>{{ ('/items/video-' + (item.slug or ((item.title + '-' + item.videoId) | slugify)) + '/') | absoluteUrl(site.url) }}</loc></url>
+{%- endfor %}
+</urlset>

@@ -2,6 +2,9 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
+import contentUtils from "../src/lib/content-utils.cjs";
+
+const { sanitizeHttpUrl } = contentUtils;
 
 const OUT_PATH = path.join(process.cwd(), "src", "_data", "zenodo.json");
 const BASE = "https://zenodo.org/api/records";
@@ -118,8 +121,9 @@ function extractThumbnailPaths(links) {
 
   const thumbs = {};
   for (const [size, url] of Object.entries(source)) {
-    if (typeof url !== "string" || url.length === 0) continue;
-    thumbs[size] = url;
+    const safeUrl = sanitizeHttpUrl(url);
+    if (!safeUrl) continue;
+    thumbs[size] = safeUrl;
   }
   return thumbs;
 }
@@ -140,7 +144,7 @@ function normalize(hit) {
 
   const files = (hit.files || []).map(f => ({
     key: f.key || "",
-    url: f.links?.self || ""
+    url: sanitizeHttpUrl(f.links?.self)
   }));
 
   return {
@@ -163,7 +167,7 @@ function normalize(hit) {
     doi: md.doi || "",
     keywords,
     type: inferTypeFromKeywords(keywords),
-    zenodo_html: hit.links?.html || "",
+    zenodo_html: sanitizeHttpUrl(hit.links?.html),
     related_identifiers: relatedIdentifiers
       .filter((id) => isObject(id))
       .map((id) => ({
@@ -175,7 +179,7 @@ function normalize(hit) {
     license: {
       id: isObject(md.license) ? md.license.id || "" : "",
       title: isObject(md.license) ? md.license.title || "" : "",
-      url: isObject(md.license) ? md.license.url || "" : "",
+      url: isObject(md.license) ? sanitizeHttpUrl(md.license.url) : "",
     },
     funders: funders
       .filter((f) => isObject(f))

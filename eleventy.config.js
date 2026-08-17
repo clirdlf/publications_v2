@@ -2,7 +2,11 @@
 const path = require("path");
 const Image = require("@11ty/eleventy-img");
 const { isAnnualReport } = require("./src/lib/report-utils.cjs");
-const PATH_PREFIX = "/publications_v2/";
+const { richTextToPlainText, scriptSafeJson } = require("./src/lib/content-utils.cjs");
+const configuredPathPrefix = process.env.PATH_PREFIX || "/";
+const PATH_PREFIX = configuredPathPrefix === "/"
+  ? "/"
+  : `/${configuredPathPrefix.replace(/^\/+|\/+$/g, "")}/`;
 const FAST_DEV_IMAGES =
   process.env.FAST_DEV_IMAGES === "1" ||
   process.argv.includes("--serve") ||
@@ -83,6 +87,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets/favicon": "assets/favicon" });
   eleventyConfig.addPassthroughCopy({ "src/assets/fonts": "assets/fonts" });
   eleventyConfig.addPassthroughCopy({ "src/assets/logos": "assets/logos" });
+  eleventyConfig.addPassthroughCopy("src/CNAME");
 
   // Useful: watch data files so changes trigger rebuild
   eleventyConfig.addWatchTarget("./src/_data/");
@@ -166,8 +171,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("stripHtml", (value) => {
-    if (!value) return "";
-    return String(value).replace(/<[^>]*>/g, " ");
+    return richTextToPlainText(value);
   });
 
   eleventyConfig.addFilter("normalizeWhitespace", (value) => {
@@ -184,7 +188,15 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("json", (value) => {
-    return JSON.stringify(value);
+    return scriptSafeJson(value);
+  });
+
+  eleventyConfig.addFilter("absoluteUrl", (value, baseUrl) => {
+    if (!value || !baseUrl) return "";
+    const root = String(baseUrl).replace(/\/+$/, "");
+    const pathname = String(value).startsWith("/") ? String(value) : `/${value}`;
+    const prefix = PATH_PREFIX === "/" ? "" : PATH_PREFIX.replace(/\/$/, "");
+    return `${root}${prefix}${pathname}`;
   });
 
   eleventyConfig.addFilter("annualReports", (records) => {

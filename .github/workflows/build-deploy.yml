@@ -59,6 +59,10 @@ jobs:
         run: pnpm run css:build
 
       - name: Build Eleventy site
+        env:
+          SITE_URL: https://publications.clir.org
+          PATH_PREFIX: /
+          GOOGLE_ANALYTICS_ID: ${{ vars.GOOGLE_ANALYTICS_ID }}
         run: pnpm run build:11ty
 
       - name: Smoke tests

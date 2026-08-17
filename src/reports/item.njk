@@ -121,7 +121,7 @@ eleventyComputed:
   {% if hasDescription %}
     <section class="item-panel item-about">
       <h2>About</h2>
-      <div class="item-description">{{ item.description | safe }}</div>
+      <p class="item-description">{{ item.description | stripHtml }}</p>
     </section>
   {% endif %}
 
