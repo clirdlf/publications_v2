@@ -41,6 +41,39 @@
           <a href="{{ '/about/' | url }}"{% if navPage == "about" %} aria-current="page"{% endif %}>About</a>
         </nav>
       </div>
+
+      <div class="lp-header-actions">
+        <form class="lp-header-search-form" role="search" method="get" action="{{ '/' | url }}">
+          <div class="lp-header-search-box">
+            <button
+              class="lp-header-search"
+              type="button"
+              aria-label="Open publication search"
+              aria-expanded="false"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="11" cy="11" r="6.5"></circle>
+                <path d="m16 16 4.25 4.25"></path>
+              </svg>
+            </button>
+            <label class="sr-only" for="lp-header-search-input">Search publications</label>
+            <input
+              class="lp-header-search-input"
+              id="lp-header-search-input"
+              type="search"
+              name="q"
+              placeholder="Search publications..."
+              autocomplete="off"
+            />
+          </div>
+        </form>
+        <a
+          class="lp-header-donate"
+          href="https://www.clir.org/support/give/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Donate</a>
+      </div>
     </div>
   </div>
 </header>
