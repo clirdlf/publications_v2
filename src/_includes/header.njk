@@ -36,8 +36,8 @@
       <div class="lp-nav-panel" id="lp-mobile-nav">
         <nav class="lp-main-nav" aria-label="Publications">
           <a href="{{ '/reports/' | url }}"{% if navPage == "reports" %} aria-current="page"{% endif %}>Reports</a>
-          <a href="#list-to-our-podcast">Podcasts</a>
-          <a href="#watch-our-videos">Videos</a>
+          <a href="{{ '/podcasts/' | url }}"{% if navPage == "podcasts" %} aria-current="page"{% endif %}>Podcasts</a>
+          <a href="{{ '/videos/' | url }}"{% if navPage == "videos" %} aria-current="page"{% endif %}>Videos</a>
           <a href="{{ '/about/' | url }}"{% if navPage == "about" %} aria-current="page"{% endif %}>About</a>
         </nav>
       </div>

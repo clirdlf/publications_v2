@@ -1,0 +1,58 @@
+---
+layout: reports-page.njk
+title: Podcasts - CLIR Publications
+permalink: "/podcasts/"
+description: Listen to podcast episodes from CLIR.
+navPage: podcasts
+---
+{% set episodes = podcast or [] %}
+
+<section class="lp-hero">
+  <div class="lp-container lp-hero-inner">
+    <p class="lp-hero-eyebrow">Featured Collection</p>
+    <h1>Podcasts</h1>
+    <p>
+      Listen to Material Memory, featuring stories from archives, libraries, and cultural memory
+      communities.
+    </p>
+    <p><a class="lp-btn" href="https://pod.link/1488667989" target="_blank" rel="noopener noreferrer">Follow the podcast</a></p>
+  </div>
+</section>
+
+<section class="lp-section lp-section-alt">
+  <div class="lp-container">
+    <div class="lp-grid lp-grid-reports">
+      {% for episode in episodes %}
+        {% set summary = episode.description | stripHtml | normalizeWhitespace | snippet(170) %}
+        <article class="lp-card lp-media-card lp-podcast-card">
+          {% if episode.image %}
+            <div class="lp-media">
+              {% image episode.image, "Cover art for " + episode.title, "(max-width: 760px) 100vw, 300px", [300, 600], "lp-media-image" %}
+            </div>
+          {% endif %}
+          <div class="lp-card-body">
+            <h3>{{ episode.title }}</h3>
+            <p class="lp-podcast-meta">
+              {{ episode.pubDate | prettyDate }}{% if episode.duration %}<span>{{ episode.duration }}</span>{% endif %}
+            </p>
+            {% if summary %}<p>{{ summary }}</p>{% endif %}
+            {% if episode.enclosureUrl %}
+              <audio controls preload="none" class="lp-podcast-player" aria-label="Play {{ episode.title }}">
+                <source src="{{ episode.enclosureUrl }}" type="audio/mpeg" />
+                Your browser does not support the audio player.
+              </audio>
+            {% endif %}
+            <a class="lp-btn lp-btn-small" href="{{ ('/items/podcast-' + (loop.index0 + 1) + '/') | url }}">Listen</a>
+          </div>
+        </article>
+      {% else %}
+        <article class="lp-card rp-card">
+          <div class="lp-card-body">
+            <h3>No podcast episodes found.</h3>
+            <p>No episodes are currently available.</p>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

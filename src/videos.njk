@@ -1,0 +1,49 @@
+---
+layout: reports-page.njk
+title: Videos - CLIR Publications
+permalink: "/videos/"
+description: Watch videos from CLIR and DLF.
+navPage: videos
+---
+{% set videos = youtube or [] %}
+
+<section class="lp-hero">
+  <div class="lp-container lp-hero-inner">
+    <p class="lp-hero-eyebrow">Featured Collection</p>
+    <h1>Videos</h1>
+    <p>Explore talks, webinars, and updates from CLIR and DLF.</p>
+    <p><a class="lp-btn" href="https://www.youtube.com/@DLFCLIR" target="_blank" rel="noopener noreferrer">Visit the YouTube channel</a></p>
+  </div>
+</section>
+
+<section class="lp-section lp-section-alt">
+  <div class="lp-container">
+    <div class="lp-grid lp-grid-reports">
+      {% for video in videos %}
+        {% set summary = video.description | normalizeWhitespace | snippet(170) %}
+        <article class="lp-card lp-media-card">
+          <a class="lp-media-link" href="{{ video.link }}" aria-label="Watch {{ video.title }}" target="_blank" rel="noopener noreferrer">
+            <div class="lp-media lp-media-play">
+              {% if video.thumbnail %}
+                {% image video.thumbnail, "Thumbnail for " + video.title, "(max-width: 760px) 100vw, 300px", [320, 640, 960], "lp-media-image" %}
+              {% endif %}
+            </div>
+          </a>
+          <div class="lp-card-body">
+            <h3>{{ video.title }}</h3>
+            {% if video.published %}<p class="lp-podcast-meta">{{ video.published | prettyDate }}</p>{% endif %}
+            {% if summary %}<p>{{ summary }}</p>{% endif %}
+            <a class="lp-btn lp-btn-small" href="{{ video.link }}" target="_blank" rel="noopener noreferrer">Watch</a>
+          </div>
+        </article>
+      {% else %}
+        <article class="lp-card rp-card">
+          <div class="lp-card-body">
+            <h3>No videos found.</h3>
+            <p>No videos are currently available.</p>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
