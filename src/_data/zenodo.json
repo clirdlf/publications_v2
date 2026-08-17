@@ -1,6 +1,118 @@
 [
   {
     "kind": "zenodo",
+    "zenodo_id": 19686344,
+    "title": "Preserving Endangered Cultural Memory at a Time of Heightened Risk: Evaluating the Recordings at Risk Grant Program, a Shift Collective Report",
+    "published": "2026-04-21",
+    "description": "<p>In this report, researchers from Shift Collective summarize the findings from their two-year assessment of CLIR&rsquo;s Recordings at Risk regranting program. Since 2017, this program has awarded over $6 million to collecting organizations for the preservation of audio and audiovisual content on fragile and obsolete media. Zakiya Collier, Lynette Johnson, and Gabriel Sol&iacute;s surveyed and interviewed program participants and other stakeholders in order to understand the program&rsquo;s impact and future potential. Insights from their investigation will help CLIR better serve applicants, and the potential redesign of the program mapped out in the report can help CLIR and other cultural heritage funders make more substantive changes to better serve under-resourced collecting organizations.</p>",
+    "creators": [
+      "Collier, Zakiya",
+      "Johnson, Lynette",
+      "Solís, Gabriel"
+    ],
+    "creator_details": [
+      {
+        "name": "Collier, Zakiya",
+        "orcid": "0000-0002-0904-4689",
+        "gnd": "",
+        "affiliation": []
+      },
+      {
+        "name": "Johnson, Lynette",
+        "orcid": "",
+        "gnd": "",
+        "affiliation": []
+      },
+      {
+        "name": "Solís, Gabriel",
+        "orcid": "",
+        "gnd": "",
+        "affiliation": []
+      }
+    ],
+    "doi": "10.5281/zenodo.19686344",
+    "keywords": [],
+    "type": "report",
+    "zenodo_html": "",
+    "related_identifiers": [],
+    "license": {
+      "id": "cc-by-4.0",
+      "title": "",
+      "url": ""
+    },
+    "funders": [],
+    "communities": [
+      "clir"
+    ],
+    "links": {
+      "thumbnails": {
+        "10": "https://zenodo.org/api/iiif/record:19686344:pub195_Preserving_Endangered_Cultural_Memory.pdf/full/%5E10,/0/default.jpg",
+        "50": "https://zenodo.org/api/iiif/record:19686344:pub195_Preserving_Endangered_Cultural_Memory.pdf/full/%5E50,/0/default.jpg",
+        "100": "https://zenodo.org/api/iiif/record:19686344:pub195_Preserving_Endangered_Cultural_Memory.pdf/full/%5E100,/0/default.jpg",
+        "250": "https://zenodo.org/api/iiif/record:19686344:pub195_Preserving_Endangered_Cultural_Memory.pdf/full/%5E250,/0/default.jpg",
+        "750": "https://zenodo.org/api/iiif/record:19686344:pub195_Preserving_Endangered_Cultural_Memory.pdf/full/%5E750,/0/default.jpg",
+        "1200": "https://zenodo.org/api/iiif/record:19686344:pub195_Preserving_Endangered_Cultural_Memory.pdf/full/%5E1200,/0/default.jpg"
+      }
+    },
+    "files": [
+      {
+        "key": "pub195_Preserving_Endangered_Cultural_Memory.pdf",
+        "url": "https://zenodo.org/api/records/19686344/files/pub195_Preserving_Endangered_Cultural_Memory.pdf/content"
+      }
+    ]
+  },
+  {
+    "kind": "zenodo",
+    "zenodo_id": 19355119,
+    "title": "Annual Report: 2024-2025",
+    "published": "2026-03-31",
+    "description": "<p>Annual Report for the Council on Library and Information Resources, 2024-2025</p>",
+    "creators": [
+      "Council on Library and Information Resources"
+    ],
+    "creator_details": [
+      {
+        "name": "Council on Library and Information Resources",
+        "orcid": "",
+        "gnd": "",
+        "affiliation": []
+      }
+    ],
+    "doi": "10.5281/zenodo.19355119",
+    "keywords": [
+      "Annual Reports"
+    ],
+    "type": "report",
+    "zenodo_html": "",
+    "related_identifiers": [],
+    "license": {
+      "id": "cc-by-4.0",
+      "title": "",
+      "url": ""
+    },
+    "funders": [],
+    "communities": [
+      "clir"
+    ],
+    "links": {
+      "thumbnails": {
+        "10": "https://zenodo.org/api/iiif/record:19355119:CLIR_Annual_Report_2024-25v2.pdf/full/%5E10,/0/default.jpg",
+        "50": "https://zenodo.org/api/iiif/record:19355119:CLIR_Annual_Report_2024-25v2.pdf/full/%5E50,/0/default.jpg",
+        "100": "https://zenodo.org/api/iiif/record:19355119:CLIR_Annual_Report_2024-25v2.pdf/full/%5E100,/0/default.jpg",
+        "250": "https://zenodo.org/api/iiif/record:19355119:CLIR_Annual_Report_2024-25v2.pdf/full/%5E250,/0/default.jpg",
+        "750": "https://zenodo.org/api/iiif/record:19355119:CLIR_Annual_Report_2024-25v2.pdf/full/%5E750,/0/default.jpg",
+        "1200": "https://zenodo.org/api/iiif/record:19355119:CLIR_Annual_Report_2024-25v2.pdf/full/%5E1200,/0/default.jpg"
+      }
+    },
+    "files": [
+      {
+        "key": "CLIR_Annual_Report_2024-25v2.pdf",
+        "url": "https://zenodo.org/api/records/19355119/files/CLIR_Annual_Report_2024-25v2.pdf/content"
+      }
+    ]
+  },
+  {
+    "kind": "zenodo",
     "zenodo_id": 15978918,
     "title": "An Overview of Emulation as a Preservation Method",
     "published": "2025-07-16",
@@ -451,7 +563,7 @@
       },
       {
         "key": "Inclusive Metatada Toolkit_Resources Directory_v1.xlsx",
-        "url": "https://zenodo.org/api/records/13988293/files/Inclusive Metatada Toolkit_Resources Directory_v1.xlsx/content"
+        "url": "https://zenodo.org/api/records/13988293/files/Inclusive%20Metatada%20Toolkit_Resources%20Directory_v1.xlsx/content"
       }
     ]
   },
@@ -499,19 +611,19 @@
     "files": [
       {
         "key": "Heerman CLIR.pptx.pdf",
-        "url": "https://zenodo.org/api/records/12636841/files/Heerman CLIR.pptx.pdf/content"
+        "url": "https://zenodo.org/api/records/12636841/files/Heerman%20CLIR.pptx.pdf/content"
       },
       {
         "key": "CLIR Mellon, DTW, Panel Discussion.pptx.pdf",
-        "url": "https://zenodo.org/api/records/12636841/files/CLIR Mellon, DTW, Panel Discussion.pptx.pdf/content"
+        "url": "https://zenodo.org/api/records/12636841/files/CLIR%20Mellon,%20DTW,%20Panel%20Discussion.pptx.pdf/content"
       },
       {
         "key": "Panel Agenda_CLIR-Mellon_AtlanticWorldSlavery.docx - Google Docs.pdf",
-        "url": "https://zenodo.org/api/records/12636841/files/Panel Agenda_CLIR-Mellon_AtlanticWorldSlavery.docx - Google Docs.pdf/content"
+        "url": "https://zenodo.org/api/records/12636841/files/Panel%20Agenda_CLIR-Mellon_AtlanticWorldSlavery.docx%20-%20Google%20Docs.pdf/content"
       },
       {
         "key": "Fox-Amato_CLIR-Mellon Reunion Symposium.pptx.pdf",
-        "url": "https://zenodo.org/api/records/12636841/files/Fox-Amato_CLIR-Mellon Reunion Symposium.pptx.pdf/content"
+        "url": "https://zenodo.org/api/records/12636841/files/Fox-Amato_CLIR-Mellon%20Reunion%20Symposium.pptx.pdf/content"
       }
     ]
   },
@@ -559,11 +671,11 @@
     "files": [
       {
         "key": "CLIR 2022 Paper.docx.pdf",
-        "url": "https://zenodo.org/api/records/12636400/files/CLIR 2022 Paper.docx.pdf/content"
+        "url": "https://zenodo.org/api/records/12636400/files/CLIR%202022%20Paper.docx.pdf/content"
       },
       {
         "key": "Information Resources.mp3",
-        "url": "https://zenodo.org/api/records/12636400/files/Information Resources.mp3/content"
+        "url": "https://zenodo.org/api/records/12636400/files/Information%20Resources.mp3/content"
       }
     ]
   },
@@ -611,11 +723,11 @@
     "files": [
       {
         "key": "Teaching Physical Archival Research in the Digital Age.docx.pdf",
-        "url": "https://zenodo.org/api/records/12636300/files/Teaching Physical Archival Research in the Digital Age.docx.pdf/content"
+        "url": "https://zenodo.org/api/records/12636300/files/Teaching%20Physical%20Archival%20Research%20in%20the%20Digital%20Age.docx.pdf/content"
       },
       {
         "key": "Teaching Physical Archival Research in the Digital Age.mp3",
-        "url": "https://zenodo.org/api/records/12636300/files/Teaching Physical Archival Research in the Digital Age.mp3/content"
+        "url": "https://zenodo.org/api/records/12636300/files/Teaching%20Physical%20Archival%20Research%20in%20the%20Digital%20Age.mp3/content"
       }
     ]
   },
@@ -663,11 +775,11 @@
     "files": [
       {
         "key": "Dunagin Symposium Paper_Serendipity in and beyond the Archive.docx.pdf",
-        "url": "https://zenodo.org/api/records/12636211/files/Dunagin Symposium Paper_Serendipity in and beyond the Archive.docx.pdf/content"
+        "url": "https://zenodo.org/api/records/12636211/files/Dunagin%20Symposium%20Paper_Serendipity%20in%20and%20beyond%20the%20Archive.docx.pdf/content"
       },
       {
         "key": "Serendipity in and beyond the Archive.mp3",
-        "url": "https://zenodo.org/api/records/12636211/files/Serendipity in and beyond the Archive.mp3/content"
+        "url": "https://zenodo.org/api/records/12636211/files/Serendipity%20in%20and%20beyond%20the%20Archive.mp3/content"
       }
     ]
   },
@@ -1025,7 +1137,7 @@
     "files": [
       {
         "key": "Digital Library Accessibility Policy and Practice Guidelines.pdf",
-        "url": "https://zenodo.org/api/records/10045111/files/Digital Library Accessibility Policy and Practice Guidelines.pdf/content"
+        "url": "https://zenodo.org/api/records/10045111/files/Digital%20Library%20Accessibility%20Policy%20and%20Practice%20Guidelines.pdf/content"
       }
     ]
   },
@@ -16135,7 +16247,7 @@
     "files": [
       {
         "key": "E-Journal Archiving Metes and Bounds- A Survey of the Landscape.pdf",
-        "url": "https://zenodo.org/api/records/7613340/files/E-Journal Archiving Metes and Bounds- A Survey of the Landscape.pdf/content"
+        "url": "https://zenodo.org/api/records/7613340/files/E-Journal%20Archiving%20Metes%20and%20Bounds-%20A%20Survey%20of%20the%20Landscape.pdf/content"
       }
     ]
   },
@@ -16722,7 +16834,7 @@
     "files": [
       {
         "key": "DLF CEI GLAM Diversity Subgroup DEI Survey Report_09142023.pdf",
-        "url": "https://zenodo.org/api/records/8433043/files/DLF CEI GLAM Diversity Subgroup DEI Survey Report_09142023.pdf/content"
+        "url": "https://zenodo.org/api/records/8433043/files/DLF%20CEI%20GLAM%20Diversity%20Subgroup%20DEI%20Survey%20Report_09142023.pdf/content"
       }
     ]
   }
