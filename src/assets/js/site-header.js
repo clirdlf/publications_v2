@@ -62,6 +62,18 @@ if (siteHeader) {
     }
   });
 
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key.toLowerCase() === "k" &&
+      (event.ctrlKey || event.metaKey) &&
+      !event.altKey &&
+      !event.shiftKey
+    ) {
+      event.preventDefault();
+      setSearchOpen(true);
+    }
+  });
+
   siteHeader.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && searchForm?.dataset.open === "true") {
       setSearchOpen(false);

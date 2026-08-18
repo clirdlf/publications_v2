@@ -1,11 +1,11 @@
 ---
-layout: reports-page.njk
+layout: base.njk
 title: Videos - CLIR Publications
 permalink: "/videos/"
 description: Watch videos from CLIR and DLF.
 navPage: videos
 ---
-{% set videos = youtube or [] %}
+{% from "media-browser.njk" import mediaBrowserHeader, mediaBrowserEmpty %}
 
 <section class="lp-hero">
   <div class="lp-container lp-hero-inner">
@@ -18,22 +18,11 @@ navPage: videos
 
 <section class="lp-section lp-section-alt">
   <div class="lp-container" data-media-browser>
-    <div class="media-collection-heading">
-      <div><p class="lp-section-eyebrow">Browse the collection</p><h2>Watch recent videos</h2></div>
-      <div class="media-controls">
-        <label>Search videos <input type="search" placeholder="Title or description" data-media-search></label>
-        <label>Sort <select data-media-sort><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title</option></select></label>
-      </div>
-    </div>
-    <p class="media-archive-note">Watch recent talks, webinars, and conversations from CLIR and the Digital Library Federation. Visit YouTube for the complete archive.</p>
-    <p class="media-results-status" data-media-status aria-live="polite"></p>
+    {{ mediaBrowserHeader("Watch recent videos", "Search videos", "Watch recent talks, webinars, and conversations from CLIR and the Digital Library Federation. Visit YouTube for the complete archive.") }}
     <div class="lp-grid lp-grid-reports">
-      {% for video in videos %}
-        {% set summary = video.description | normalizeWhitespace | snippet(170) %}
-        {% set videoSlug = video.slug or ((video.title + '-' + video.videoId) | slugify) %}
-        {% set videoUrl = ('/items/video-' + videoSlug + '/') | url %}
-        <article class="lp-card lp-media-card" data-media-item data-title="{{ video.title }}" data-description="{{ summary }}" data-date="{{ video.published | isoDate }}">
-          <a class="lp-media-link" href="{{ videoUrl }}" aria-label="View details for {{ video.title }}">
+      {% for video in videoCards %}
+        <article class="lp-card lp-media-card" data-media-item data-title="{{ video.title }}" data-description="{{ video.summary }}" data-date="{{ video.date }}">
+          <a class="lp-media-link" href="{{ video.detailPath | url }}" aria-label="View details for {{ video.title }}">
             <div class="lp-media lp-media-play">
               {% if video.thumbnail %}
                 {% image video.thumbnail, "", "(max-width: 760px) 100vw, 300px", [320, 640, 960], "lp-media-image" %}
@@ -41,10 +30,10 @@ navPage: videos
             </div>
           </a>
           <div class="lp-card-body">
-            <h3><a href="{{ videoUrl }}">{{ video.title }}</a></h3>
-            {% if video.published %}<p class="lp-podcast-meta"><time datetime="{{ video.published | isoDate }}">{{ video.published | prettyDate }}</time></p>{% endif %}
-            {% if summary %}<p>{{ summary }}</p>{% endif %}
-            <a class="lp-btn lp-btn-small" href="{{ videoUrl }}">Video details</a>
+            <h3><a href="{{ video.detailPath | url }}">{{ video.title }}</a></h3>
+            {% if video.date %}<p class="lp-podcast-meta"><time datetime="{{ video.date }}">{{ video.publishedLabel }}</time></p>{% endif %}
+            {% if video.summary %}<p>{{ video.summary }}</p>{% endif %}
+            <a class="lp-btn lp-btn-small" href="{{ video.detailPath | url }}">Video details</a>
           </div>
         </article>
       {% else %}
@@ -56,6 +45,6 @@ navPage: videos
         </article>
       {% endfor %}
     </div>
-    <div class="media-empty" data-media-empty hidden>No videos match your search.</div>
+    {{ mediaBrowserEmpty("No videos match your search.") }}
   </div>
 </section>

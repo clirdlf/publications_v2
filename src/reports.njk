@@ -1,12 +1,10 @@
 ---
-layout: reports-page.njk
+layout: base.njk
 title: Reports - CLIR Publications
 description: Browse CLIR reports by title, author, category, and publication date.
 navPage: reports
 reportsBrowser: true
 ---
-{% set reportItems = reports or [] %}
-
 <section class="rp-hero">
   <div class="lp-container">
     <p class="rp-eyebrow">Reports Library</p>
@@ -73,32 +71,20 @@ reportsBrowser: true
     <div class="rp-active-filters" data-reports-active-filters aria-label="Active filters"></div>
 
     <ul class="rp-results" data-reports-list>
-      {% for r in reportItems %}
-        {% set authors = "" %}
-        {% if r.creators and r.creators.length %}
-          {% set authors = r.creators | join(", ") %}
-        {% endif %}
-        {% set summaryText = r.description | stripHtml | normalizeWhitespace %}
-        {% set summarySnippet = summaryText | snippet(190) %}
-        {% set categories = "" %}
-        {% if r.keywords and r.keywords.length %}
-          {% set categories = r.keywords | join("|") %}
-        {% endif %}
-        {% set thumbnail250 = r.links and r.links.thumbnails and (r.links.thumbnails["250"] or r.links.thumbnails["100"]) %}
-        {% set thumbnail750 = r.links and r.links.thumbnails and (r.links.thumbnails["750"] or thumbnail250) %}
+      {% for report in reportCards %}
         <li
           class="rp-card rp-card-with-cover"
           data-report-card
-          data-title="{{ r.title }}"
-          data-published="{{ r.published }}"
-          data-categories="{{ categories }}"
-          data-searchable="{{ r.title }} {{ authors }} {{ summaryText }}"
+          data-title="{{ report.title }}"
+          data-published="{{ report.published }}"
+          data-categories="{{ report.categories }}"
+          data-searchable="{{ report.searchableText }}"
         >
-          <div class="rp-card-cover{% if not thumbnail250 %} rp-card-cover-fallback{% endif %}" aria-hidden="true">
-          {% if thumbnail250 %}
+          <div class="rp-card-cover{% if not report.thumbnail250 %} rp-card-cover-fallback{% endif %}" aria-hidden="true">
+          {% if report.thumbnail250 %}
               <img
-                src="{{ thumbnail250 }}"
-                srcset="{{ thumbnail250 }} 250w, {{ thumbnail750 }} 750w"
+                src="{{ report.thumbnail250 }}"
+                srcset="{{ report.thumbnail250 }} 250w, {{ report.thumbnail750 }} 750w"
                 sizes="(max-width: 760px) 72px, 132px"
                 alt=""
                 width="250"
@@ -114,25 +100,25 @@ reportsBrowser: true
           </div>
           <div class="rp-card-content">
             <h2>
-              <a href="{{ ('/reports/zenodo-' + r.zenodo_id + '/') | url }}">{{ r.title }}</a>
+              <a href="{{ report.detailPath | url }}">{{ report.title }}</a>
             </h2>
             <dl class="rp-meta">
               <div>
                 <dt>Date</dt>
-                <dd><time datetime="{{ r.published | isoDate }}">{{ r.published | prettyDate }}</time></dd>
+                <dd><time datetime="{{ report.published | isoDate }}">{{ report.published | prettyDate }}</time></dd>
               </div>
               <div>
                 <dt>Author</dt>
                 <dd>
-                  {% if r.creators and r.creators.length %}
-                    {{ authors }}
+                  {% if report.authors %}
+                    {{ report.authors }}
                   {% else %}
                     Unknown author
                   {% endif %}
                 </dd>
               </div>
             </dl>
-            <p class="rp-summary">{{ summarySnippet or "No summary available." }}</p>
+            <p class="rp-summary">{{ report.summary or "No summary available." }}</p>
           </div>
         </li>
       {% endfor %}

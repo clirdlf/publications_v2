@@ -4,7 +4,7 @@ pagination:
   size: 1
   alias: item
 permalink: "/items/podcast-{{ item.slug or ((item.title + '-' + item.pubDate) | slugify) }}/index.html"
-layout: item-page.njk
+layout: base.njk
 title: "{{ item.title }} - CLIR Podcast"
 ---
 

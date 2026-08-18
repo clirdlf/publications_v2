@@ -4,7 +4,7 @@ pagination:
   size: 1
   alias: item
 permalink: "/items/video-{{ item.slug or ((item.title + '-' + item.videoId) | slugify) }}/index.html"
-layout: item-page.njk
+layout: base.njk
 title: "{{ item.title }} - CLIR Video"
 description: "{{ item.description | snippet(155) }}"
 ogType: video.other

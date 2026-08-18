@@ -2,7 +2,12 @@ import { createRequire } from "node:module";
 import { describe, expect, it } from "vitest";
 
 const require = createRequire(import.meta.url);
-const { getReports, isAnnualReport, isLegacyDeposit } = require("../src/lib/report-utils.cjs");
+const {
+  getReports,
+  isAnnualReport,
+  isLegacyDeposit,
+  reportCards,
+} = require("../src/lib/report-utils.cjs");
 
 describe("getReports", () => {
   it("returns only reports in newest-first order without mutating the input", () => {
@@ -57,5 +62,27 @@ describe("isLegacyDeposit", () => {
     expect(isLegacyDeposit({ zenodo_id: 9_999_999, published: "2023-01-01" })).toBe(true);
     expect(isLegacyDeposit({ zenodo_id: 10_000_000, published: "2023-01-01" })).toBe(false);
     expect(isLegacyDeposit({ zenodo_id: 9_999_999, published: "2022-12-31" })).toBe(false);
+  });
+});
+
+describe("reportCards", () => {
+  it("prepares report browser fields without mutating source records", () => {
+    const source = [{
+      zenodo_id: 42,
+      title: "A report",
+      creators: ["One", "Two"],
+      description: "<p>A useful   summary</p>",
+      keywords: ["archives", "preservation"],
+      links: { thumbnails: { "100": "small.jpg", "750": "large.jpg" } },
+    }];
+
+    const [card] = reportCards(source);
+    expect(card.detailPath).toBe("/reports/zenodo-42/");
+    expect(card.authors).toBe("One, Two");
+    expect(card.summary).toBe("A useful summary");
+    expect(card.categories).toBe("archives|preservation");
+    expect(card.thumbnail250).toBe("small.jpg");
+    expect(card.thumbnail750).toBe("large.jpg");
+    expect(source[0]).not.toHaveProperty("summary");
   });
 });

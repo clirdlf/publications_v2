@@ -2,8 +2,10 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import contentUtils from "../src/lib/content-utils.cjs";
+import mediaUtils from "../src/lib/media-utils.cjs";
 
 const { sanitizeHttpUrl } = contentUtils;
+const { mediaSlug } = mediaUtils;
 
 const FEED_URL = "https://feeds.libsyn.com/229370/rss";
 const OUT_PATH = path.join(process.cwd(), "src", "_data", "podcast.json");
@@ -43,13 +45,7 @@ function extractSelfClosingTagAttr(xml, tagName, attrName) {
 }
 
 export function slugifyMedia(value) {
-  return String(value || "")
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "")
-    .slice(0, 90);
+  return mediaSlug(value);
 }
 
 export function plainText(value) {

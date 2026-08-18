@@ -1,11 +1,11 @@
 ---
-layout: reports-page.njk
+layout: base.njk
 title: Material Memory Podcast - CLIR Publications
 permalink: "/podcasts/"
 description: Listen to podcast episodes from CLIR.
 navPage: podcasts
 ---
-{% set episodes = podcast or [] %}
+{% from "media-browser.njk" import mediaBrowserHeader, mediaBrowserEmpty %}
 
 <section class="lp-hero">
   <div class="lp-container lp-hero-inner">
@@ -21,41 +21,28 @@ navPage: podcasts
 
 <section class="lp-section lp-section-alt lp-section-audio">
   <div class="lp-container" data-media-browser>
-    <div class="media-collection-heading">
-      <div>
-        <p class="lp-section-eyebrow">Browse the collection</p>
-        <h2>Explore the episodes</h2>
-      </div>
-      <div class="media-controls">
-        <label>Search episodes <input type="search" placeholder="Title or description" data-media-search></label>
-        <label>Sort <select data-media-sort><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title</option></select></label>
-      </div>
-    </div>
-    <p class="media-results-status" data-media-status aria-live="polite"></p>
+    {{ mediaBrowserHeader("Explore the episodes", "Search episodes") }}
     <div class="lp-grid lp-grid-reports">
-      {% for episode in episodes %}
-        {% set summary = episode.description | stripHtml | normalizeWhitespace | snippet(170) %}
-        {% set episodeSlug = episode.slug or ((episode.title + '-' + episode.pubDate) | slugify) %}
-        {% set episodeUrl = ('/items/podcast-' + episodeSlug + '/') | url %}
-        <article class="lp-card lp-media-card lp-podcast-card" data-media-item data-title="{{ episode.title }}" data-description="{{ summary }}" data-date="{{ episode.pubDate | isoDate }}">
+      {% for episode in podcastCards %}
+        <article class="lp-card lp-media-card lp-podcast-card" data-media-item data-title="{{ episode.title }}" data-description="{{ episode.summary }}" data-date="{{ episode.date }}">
           {% if episode.image %}
             <div class="lp-media">
               {% image episode.image, "Cover art for " + episode.title, "(max-width: 760px) 100vw, 300px", [300, 600], "lp-media-image" %}
             </div>
           {% endif %}
           <div class="lp-card-body">
-            <h3><a href="{{ episodeUrl }}">{{ episode.title }}</a></h3>
+            <h3><a href="{{ episode.detailPath | url }}">{{ episode.title }}</a></h3>
             <p class="lp-podcast-meta">
-              <time datetime="{{ episode.pubDate | isoDate }}">{{ episode.pubDate | prettyDate }}</time>{% if episode.season %}<span>Season {{ episode.season }}{% if episode.episode %}, episode {{ episode.episode }}{% endif %}</span>{% endif %}{% if episode.duration %}<span>{{ episode.duration }}</span>{% endif %}
+              <time datetime="{{ episode.date }}">{{ episode.publishedLabel }}</time>{% if episode.season %}<span>Season {{ episode.season }}{% if episode.episode %}, episode {{ episode.episode }}{% endif %}</span>{% endif %}{% if episode.duration %}<span>{{ episode.duration }}</span>{% endif %}
             </p>
-            {% if summary %}<p>{{ summary }}</p>{% endif %}
+            {% if episode.summary %}<p>{{ episode.summary }}</p>{% endif %}
             {% if episode.enclosureUrl %}
               <audio controls preload="none" class="lp-podcast-player" aria-label="Play {{ episode.title }}">
                 <source src="{{ episode.enclosureUrl }}" type="{{ episode.enclosureType or 'audio/mpeg' }}" />
                 Your browser does not support the audio player.
               </audio>
             {% endif %}
-            <a class="lp-btn lp-btn-small" href="{{ episodeUrl }}">Episode details{% if episode.transcriptUrl %} and transcript{% endif %}</a>
+            <a class="lp-btn lp-btn-small" href="{{ episode.detailPath | url }}">Episode details{% if episode.transcriptUrl %} and transcript{% endif %}</a>
           </div>
         </article>
       {% else %}
@@ -67,6 +54,6 @@ navPage: podcasts
         </article>
       {% endfor %}
     </div>
-    <div class="media-empty" data-media-empty hidden>No episodes match your search.</div>
+    {{ mediaBrowserEmpty("No episodes match your search.") }}
   </div>
 </section>

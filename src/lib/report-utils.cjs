@@ -23,8 +23,31 @@ function isLegacyDeposit(item) {
   return publicationYear >= 2023;
 }
 
+function reportCards(records) {
+  return (Array.isArray(records) ? records : []).map((report) => {
+    const authors = Array.isArray(report?.creators) ? report.creators.filter(Boolean).join(", ") : "";
+    const summaryText = normalizeWhitespace(richTextToPlainText(report?.description));
+    const thumbnails = report?.links?.thumbnails || {};
+    const thumbnail250 = thumbnails["250"] || thumbnails["100"] || "";
+
+    return {
+      ...report,
+      authors,
+      categories: Array.isArray(report?.keywords) ? report.keywords.filter(Boolean).join("|") : "",
+      detailPath: `/reports/zenodo-${report?.zenodo_id}/`,
+      searchableText: normalizeWhitespace(`${report?.title || ""} ${authors} ${summaryText}`),
+      summary: snippet(summaryText, 190),
+      thumbnail250,
+      thumbnail750: thumbnails["750"] || thumbnail250,
+    };
+  });
+}
+
 module.exports = {
   getReports,
   isAnnualReport,
   isLegacyDeposit,
+  reportCards,
 };
+const { richTextToPlainText } = require("./content-utils.cjs");
+const { normalizeWhitespace, snippet } = require("./template-utils.cjs");
