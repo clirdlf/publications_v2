@@ -1,0 +1,209 @@
+---
+layout: base.njk
+title: Visual styleguide - CLIR Publications
+description: Internal visual and editorial reference for CLIR Publications.
+permalink: "/styleguide/"
+noindex: true
+eleventyExcludeFromCollections: true
+---
+
+<div class="sg-page">
+  <header class="sg-hero">
+    <div class="lp-container sg-hero-inner">
+      <p class="sg-kicker">Internal reference</p>
+      <h1>CLIR Publications visual styleguide</h1>
+      <p class="sg-intro">A shared reference for maintainers who build the site and editors who shape its content. Examples below use the current production styles; recommendations identify the pattern to use for new work.</p>
+      <p class="sg-meta">Last reviewed <time datetime="2026-08-18">August 18, 2026</time></p>
+    </div>
+  </header>
+
+  <nav class="sg-nav" aria-label="Styleguide sections">
+    <div class="lp-container">
+      <a href="#foundations">Foundations</a>
+      <a href="#type">Typography</a>
+      <a href="#components">Components</a>
+      <a href="#content">Editorial</a>
+      <a href="#inconsistencies">Inconsistencies</a>
+    </div>
+  </nav>
+
+  <div class="sg-main lp-container">
+    <section class="sg-section" id="foundations" aria-labelledby="foundations-heading">
+      <div class="sg-section-heading">
+        <p class="sg-kicker">01 / Foundations</p>
+        <h2 id="foundations-heading">Color and spacing</h2>
+        <p>Use named tokens instead of raw color values. Maroon carries the brand; cream and white provide the primary surfaces.</p>
+      </div>
+
+      <div class="sg-swatches">
+        {% set colors = [
+          { name: 'CLIR black', token: '--color-clir-black', value: '#060606', dark: true },
+          { name: 'CLIR maroon', token: '--color-clir-maroon', value: '#9d2235', dark: true },
+          { name: 'Dark maroon', token: '--color-clir-maroon-dark', value: '#901b2d', dark: true },
+          { name: 'Steel blue', token: '--color-clir-steel-blue', value: '#7c9eb2', dark: false },
+          { name: 'Link blue', token: '--color-link-blue', value: '#296ba4', dark: true },
+          { name: 'Cream', token: '--color-clir-cream', value: '#fbf8f5', dark: false },
+          { name: 'Deep cream', token: '--color-clir-cream-deep', value: '#f3ede7', dark: false },
+          { name: 'Border', token: '--color-clir-border', value: '#efeae5', dark: false }
+        ] %}
+        {% for color in colors %}
+          <article class="sg-swatch{% if color.dark %} sg-swatch-dark{% endif %}" style="--sg-swatch: {{ color.value }}">
+            <div class="sg-swatch-color"></div>
+            <div class="sg-swatch-label"><strong>{{ color.name }}</strong><code>{{ color.token }}</code><span>{{ color.value }}</span></div>
+          </article>
+        {% endfor %}
+      </div>
+
+      <div class="sg-guidance">
+        <div><strong>Use maroon for</strong><span>Primary actions, brand emphasis, active states, and short decorative rules.</span></div>
+        <div><strong>Use link blue for</strong><span>Links in long-form reading contexts where links need to remain distinct from brand accents.</span></div>
+        <div><strong>Avoid</strong><span>Introducing a new gray or near-black when an existing semantic token can serve the same role.</span></div>
+      </div>
+    </section>
+
+    <section class="sg-section" id="type" aria-labelledby="type-heading">
+      <div class="sg-section-heading">
+        <p class="sg-kicker">02 / Typography</p>
+        <h2 id="type-heading">A clear editorial hierarchy</h2>
+        <p>ABC Otto gives display text an editorial voice. Instrument Sans supports navigation, controls, metadata, and body copy.</p>
+      </div>
+
+      <div class="sg-type-specimens">
+        <article class="sg-specimen sg-specimen-display">
+          <p class="sg-specimen-label">Display / ABC Otto Regular</p>
+          <p>Knowledge made easier to find.</p>
+          <code>font-family: var(--font-serif)</code>
+        </article>
+        <article class="sg-specimen">
+          <p class="sg-specimen-label">Body / Instrument Sans Regular</p>
+          <p>CLIR publications support libraries, archives, cultural institutions, and communities of higher learning.</p>
+          <code>font-family: var(--font-sans)</code>
+        </article>
+      </div>
+
+      <div class="sg-heading-stack" aria-label="Heading examples">
+        <div><span>H1</span><h1>Page title with a clear purpose</h1></div>
+        <div><span>H2</span><h2>Major section heading</h2></div>
+        <div><span>H3</span><h3>Component or subsection heading</h3></div>
+        <div><span>Body</span><p>Keep paragraphs focused on one idea and use descriptive link text that makes sense out of context.</p></div>
+      </div>
+
+      <aside class="sg-callout sg-callout-recommendation">
+        <p class="sg-callout-label">Canonical pattern</p>
+        <h3>Use sentence case throughout</h3>
+        <p>Use one H1 per page, follow heading levels in order, and reserve all-caps styling for short eyebrow labels. Don’t type labels in all caps; let CSS apply the transformation.</p>
+      </aside>
+    </section>
+
+    <section class="sg-section" id="components" aria-labelledby="components-heading">
+      <div class="sg-section-heading">
+        <p class="sg-kicker">03 / Components</p>
+        <h2 id="components-heading">Reusable interface patterns</h2>
+        <p>Prefer the shared patterns shown here before creating a page-specific variation.</p>
+      </div>
+
+      <div class="sg-component">
+        <div class="sg-component-copy">
+          <p class="sg-kicker">Buttons and links</p>
+          <h3>Match emphasis to intent</h3>
+          <p>Use one primary action in a group. Use an outline button for a lower-priority alternative and a text link for navigation within prose.</p>
+        </div>
+        <div class="sg-preview sg-action-preview">
+          <a class="lp-btn" href="#components">Primary action</a>
+          <a class="lp-btn lp-btn-outline" href="#components">Secondary action</a>
+          <a class="about-text-link" href="#components">Text link <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+
+      <div class="sg-component">
+        <div class="sg-component-copy">
+          <p class="sg-kicker">Eyebrows</p>
+          <h3>Use one label treatment</h3>
+          <p>The styleguide’s <code>.sg-kicker</code> demonstrates the recommended form: short, maroon, bold, tracked, and visually uppercase.</p>
+        </div>
+        <div class="sg-preview">
+          <p class="sg-kicker">Featured collection</p>
+          <h2 class="sg-preview-title">Annual reports</h2>
+          <p>Pair an eyebrow with a heading only when it adds useful context.</p>
+        </div>
+      </div>
+
+      <div class="sg-component">
+        <div class="sg-component-copy">
+          <p class="sg-kicker">Form controls</p>
+          <h3>Make labels visible and specific</h3>
+          <p>Inputs should be at least 46 pixels high. Keep labels outside placeholders and provide a visible focus state.</p>
+        </div>
+        <div class="sg-preview">
+          <div class="sg-form-grid">
+            <label><span>Search publications</span><input type="search" placeholder="Title, author, or keyword"></label>
+            <label><span>Sort by</span><select><option>Newest first</option><option>Oldest first</option></select></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-component">
+        <div class="sg-component-copy">
+          <p class="sg-kicker">Cards</p>
+          <h3>Lead with the content title</h3>
+          <p>Keep metadata secondary, summaries brief, and the entire visual order consistent across a collection.</p>
+        </div>
+        <div class="sg-preview">
+          <article class="sg-card">
+            <p class="sg-card-meta">Report · 2026</p>
+            <h3><a href="#components">A descriptive publication title</a></h3>
+            <p>A short summary helps readers understand the subject before they follow the link.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sg-section" id="content" aria-labelledby="content-heading">
+      <div class="sg-section-heading">
+        <p class="sg-kicker">04 / Editorial guidance</p>
+        <h2 id="content-heading">Write for discovery and scanning</h2>
+        <p>Interface copy should help readers predict what happens next. Publication metadata should remain faithful to the source record.</p>
+      </div>
+
+      <div class="sg-do-dont">
+        <article class="sg-callout sg-do">
+          <p class="sg-callout-label">Do</p>
+          <h3>Use specific, descriptive language</h3>
+          <ul>
+            <li>Write headings that summarize the section.</li>
+            <li>Start button labels with a clear verb: “Browse reports.”</li>
+            <li>Use descriptive links: “Read the annual report.”</li>
+            <li>Format dates consistently and preserve names as published.</li>
+          </ul>
+        </article>
+        <article class="sg-callout sg-dont">
+          <p class="sg-callout-label">Avoid</p>
+          <h3>Don’t make readers infer meaning</h3>
+          <ul>
+            <li>Vague links such as “Click here” or “Learn more.”</li>
+            <li>Multiple primary actions competing in one group.</li>
+            <li>Long eyebrow labels or headings ending in punctuation.</li>
+            <li>Using visual styling alone to communicate status.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="sg-section" id="inconsistencies" aria-labelledby="inconsistencies-heading">
+      <div class="sg-section-heading">
+        <p class="sg-kicker">05 / System health</p>
+        <h2 id="inconsistencies-heading">Known inconsistencies and recommendations</h2>
+        <p>These are documentation findings, not silent changes to production components. Address them incrementally when affected areas are next edited.</p>
+      </div>
+
+      <div class="sg-audit">
+        <article><p class="sg-audit-status">High priority</p><h3>Promote neutral colors to tokens</h3><p>The stylesheet repeats values such as <code>#4b4745</code>, <code>#5e6169</code>, and <code>#d6d5da</code>. Define semantic text, muted-text, and control-border tokens, then replace raw values.</p></article>
+        <article><p class="sg-audit-status">Medium priority</p><h3>Consolidate eyebrow classes</h3><p><code>.rp-eyebrow</code>, <code>.lp-hero-eyebrow</code>, and <code>.lp-section-eyebrow</code> represent the same concept. Adopt one shared <code>.eyebrow</code> component with contextual modifiers only when needed.</p></article>
+        <article><p class="sg-audit-status">Medium priority</p><h3>Unify controls</h3><p>Report controls, media controls, search controls, and styleguide controls use parallel rules. Create shared label, input, select, focus, disabled, and error states.</p></article>
+        <article><p class="sg-audit-status">Medium priority</p><h3>Name buttons by intent</h3><p><code>.lp-btn</code>, <code>.lp-btn-outline</code>, and page-specific button overrides should become a base button plus primary, secondary, and compact modifiers.</p></article>
+        <article><p class="sg-audit-status">Low priority</p><h3>Formalize spacing and radii</h3><p>Spacing and corner radii currently use many one-off values. Introduce a small documented scale after auditing layouts so the change preserves existing rhythm.</p></article>
+        <article><p class="sg-audit-status">Low priority</p><h3>Remove stale commented declarations</h3><p>Commented-out alternatives obscure the current source of truth. Rely on version history and keep production CSS focused on active decisions.</p></article>
+      </div>
+    </section>
+  </div>
+</div>
