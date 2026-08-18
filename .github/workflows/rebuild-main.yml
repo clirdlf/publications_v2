@@ -8,6 +8,12 @@ on:
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   test-and-build:
@@ -32,8 +38,28 @@ jobs:
       - name: Run tests
         run: pnpm run test
 
-      - name: Compile Tailwind
-        run: pnpm run css:build
+      - name: Build and verify site
+        env:
+          SITE_URL: https://clirdlf.github.io/publications_v2/
+          PATH_PREFIX: /
+          GOOGLE_ANALYTICS_ID: ${{ vars.GOOGLE_ANALYTICS_ID }}
+        run: pnpm run build:offline
 
-      - name: Build Eleventy site (no fetch/index)
-        run: pnpm run build:11ty
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: test-and-build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
