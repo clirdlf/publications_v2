@@ -40,8 +40,8 @@ jobs:
 
       - name: Build and verify site
         env:
-          SITE_URL: https://clirdlf.github.io/publications_v2/
-          PATH_PREFIX: /
+          SITE_URL: https://clirdlf.github.io
+          PATH_PREFIX: /publications_v2/
           GOOGLE_ANALYTICS_ID: ${{ vars.GOOGLE_ANALYTICS_ID }}
         run: pnpm run build:offline
 

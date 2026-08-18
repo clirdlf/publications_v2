@@ -50,7 +50,7 @@ pnpm run build
 Production URL settings are environment-driven:
 
 ```bash
-SITE_URL=https://clirdlf.github.io/publications_v2/ PATH_PREFIX=/ pnpm run build
+SITE_URL=https://clirdlf.github.io PATH_PREFIX=/publications_v2/ pnpm run build
 ```
 
 `GOOGLE_ANALYTICS_ID` is optional. Analytics markup is omitted unless that

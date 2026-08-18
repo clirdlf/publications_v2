@@ -40,8 +40,8 @@ jobs:
           ZENODO_COMMUNITY: ${{ vars.ZENODO_COMMUNITY || 'clir' }}
           ZENODO_PAGE_SIZE: ${{ vars.ZENODO_PAGE_SIZE || '25' }}
           ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
-          SITE_URL: https://clirdlf.github.io/publications_v2/
-          PATH_PREFIX: /
+          SITE_URL: https://clirdlf.github.io
+          PATH_PREFIX: /publications_v2/
           GOOGLE_ANALYTICS_ID: ${{ vars.GOOGLE_ANALYTICS_ID }}
         run: pnpm run build:production
 

@@ -35,6 +35,9 @@ async function main() {
   if (!renderedHome.includes('rel="canonical" href="https://clirdlf.github.io/publications_v2/"')) {
     throw new Error("Smoke failed: homepage production canonical is missing or incorrect");
   }
+  if (!renderedHome.includes('href="/publications_v2/assets/styles.css"')) {
+    throw new Error("Smoke failed: homepage assets do not use the production path prefix");
+  }
   if (/UA-XXXXXXXXX-X|googletagmanager\.com/.test(renderedHome)) {
     throw new Error("Smoke failed: placeholder or unconfigured analytics rendered");
   }
