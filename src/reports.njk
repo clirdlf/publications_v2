@@ -5,7 +5,7 @@ description: Browse CLIR reports by title, author, category, and publication dat
 navPage: reports
 reportsBrowser: true
 ---
-{% set reports = zenodo or [] %}
+{% set reportItems = reports or [] %}
 
 <section class="rp-hero">
   <div class="lp-container">
@@ -72,7 +72,7 @@ reportsBrowser: true
     <div class="rp-active-filters" data-reports-active-filters aria-label="Active filters"></div>
 
     <ul class="rp-results" data-reports-list>
-      {% for r in reports %}
+      {% for r in reportItems %}
         {% set authors = "" %}
         {% if r.creators and r.creators.length %}
           {% set authors = r.creators | join(", ") %}

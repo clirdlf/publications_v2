@@ -35,38 +35,15 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Production order from OPERATIONS.md
-      - name: Fetch Zenodo records (includes normalization)
+      - name: Build and verify production site
         env:
           ZENODO_COMMUNITY: ${{ vars.ZENODO_COMMUNITY || 'clir' }}
           ZENODO_PAGE_SIZE: ${{ vars.ZENODO_PAGE_SIZE || '25' }}
           ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
-        run: pnpm run fetch:zenodo
-
-      - name: Fetch podcast metadata
-        run: pnpm run fetch:podcast
-
-      - name: Fetch YouTube metadata
-        run: pnpm run fetch:youtube
-
-      - name: Build search index
-        run: pnpm run index
-
-      - name: Generate Apache redirect map
-        run: pnpm run redirects:map
-
-      - name: Compile Tailwind
-        run: pnpm run css:build
-
-      - name: Build Eleventy site
-        env:
           SITE_URL: https://publications.clir.org
           PATH_PREFIX: /
           GOOGLE_ANALYTICS_ID: ${{ vars.GOOGLE_ANALYTICS_ID }}
-        run: pnpm run build:11ty
-
-      - name: Smoke tests
-        run: pnpm run smoke
+        run: pnpm run build:production
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

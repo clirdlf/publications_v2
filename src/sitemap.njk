@@ -7,7 +7,7 @@ eleventyExcludeFromCollections: true
 {%- for pathname in ['/', '/reports/', '/annual-reports/', '/podcasts/', '/videos/', '/about/'] %}
   <url><loc>{{ pathname | absoluteUrl(site.url) }}</loc></url>
 {%- endfor %}
-{%- for item in zenodo %}
+{%- for item in reports %}
   <url><loc>{{ ('/reports/zenodo-' + item.zenodo_id + '/') | absoluteUrl(site.url) }}</loc></url>
 {%- endfor %}
 {%- for item in podcast %}

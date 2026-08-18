@@ -3,9 +3,8 @@ const { isAnnualReport } = require("./lib/report-utils.cjs");
 module.exports = {
   eleventyComputed: {
     latestReports: (data) => {
-      const zenodo = Array.isArray(data.zenodo) ? data.zenodo : [];
-      return zenodo
-        .filter((item) => item?.kind === "zenodo" && item?.type === "report")
+      const reports = Array.isArray(data.reports) ? data.reports : [];
+      return reports
         .slice(0, 3)
         .map((item) => ({
           ...item,
@@ -14,12 +13,12 @@ module.exports = {
         }));
     },
     annualReportCount: (data) => {
-      const zenodo = Array.isArray(data.zenodo) ? data.zenodo : [];
-      return zenodo.filter((item) => isAnnualReport(item)).length;
+      const reports = Array.isArray(data.reports) ? data.reports : [];
+      return reports.filter((item) => isAnnualReport(item)).length;
     },
     latestAnnualReports: (data) => {
-      const zenodo = Array.isArray(data.zenodo) ? data.zenodo : [];
-      return zenodo
+      const reports = Array.isArray(data.reports) ? data.reports : [];
+      return reports
         .filter((item) => isAnnualReport(item))
         .sort((a, b) => (b?.published || "").localeCompare(a?.published || ""))
         .slice(0, 3)

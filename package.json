@@ -4,10 +4,10 @@
   "description": "Front end skin for CLIR Publications",
   "private": true,
   "engines": {
-    "node": ">=23"
+    "node": ">=24 <25"
   },
   "scripts": {
-    "clean": "rm -rf dist src/_data/zenodo.json src/_data/podcast.json src/_data/youtube.json dist/assets/search-index.json dist/assets/redirects.map",
+    "clean": "node scripts/clean-dist.mjs",
     "fetch": "pnpm run fetch:zenodo && pnpm run fetch:podcast && pnpm run fetch:youtube",
     "index": "node scripts/build-search-index.mjs",
     "redirects:map": "node scripts/build-apache-redirect-map.mjs",
@@ -16,7 +16,9 @@
     "css:watch": "postcss src/assets/styles.css -o dist/assets/styles.css -w",
     "build:11ty": "eleventy",
     "dev:11ty": "FAST_DEV_IMAGES=1 eleventy --serve --watch --incremental",
-    "build": "pnpm css:build && pnpm index && pnpm build:11ty",
+    "build": "pnpm run build:production",
+    "build:production": "pnpm clean && pnpm fetch && pnpm redirects:map && pnpm css:build && pnpm index && pnpm build:11ty && pnpm smoke",
+    "build:offline": "pnpm clean && pnpm redirects:map && pnpm css:build && pnpm index && pnpm build:11ty && pnpm smoke",
     "dev": "pnpm index && pnpm css:watch & pnpm dev:11ty",
     "fetch:zenodo": "node scripts/fetch-zenodo.mjs",
     "fetch:podcast": "node scripts/fetch-podcast.mjs",
@@ -29,7 +31,6 @@
   "license": "ISC",
   "packageManager": "pnpm@10.32.1",
   "dependencies": {
-    "minisearch": "^7.2.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {

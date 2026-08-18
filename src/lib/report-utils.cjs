@@ -11,6 +11,13 @@ function isAnnualReport(record) {
   return title.includes("annual report");
 }
 
+function getReports(records) {
+  return (Array.isArray(records) ? records : [])
+    .filter((record) => record?.kind === "zenodo" && record?.type === "report")
+    .sort((a, b) => String(b?.published || "").localeCompare(String(a?.published || "")));
+}
+
 module.exports = {
+  getReports,
   isAnnualReport,
 };

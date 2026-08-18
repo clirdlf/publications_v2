@@ -1,6 +1,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import MiniSearch from "minisearch";
+import reportUtils from "../src/lib/report-utils.cjs";
+
+const { getReports } = reportUtils;
 
 const DATA_DIR = path.join(process.cwd(), "src", "_data");
 const OUT_DIR = path.join(process.cwd(), "dist", "assets");
@@ -30,7 +32,7 @@ async function main() {
     })
   );
 
-  const reportDocs = items.map((r) => ({
+  const reportDocs = getReports(items).map((r) => ({
     id: `zenodo-${r.zenodo_id}`,
     title: r.title || "",
     description: stripHtml(r.description || ""),
@@ -75,16 +77,8 @@ async function main() {
 
   const docs = [...reportDocs, ...mediaDocs];
 
-  const miniSearch = new MiniSearch({
-    fields: ["title", "description", "creators", "keywords"],
-    storeFields: ["title", "published", "type", "url"]
-  });
-
-  miniSearch.addAll(docs);
-
   const payload = {
     generatedAt: new Date().toISOString(),
-    index: miniSearch.toJSON(),
     docs: docs.map(({ id, title, published, type, url, creators, keywords, searchable }) => ({
       id,
       title,

@@ -1,6 +1,6 @@
 ---
 pagination:
-  data: zenodo
+  data: reports
   size: 1
   alias: item
 permalink: "/reports/zenodo-{{ item.zenodo_id }}/index.html"
@@ -34,12 +34,12 @@ eleventyComputed:
     <div class="item-cover">
       {% if primaryThumbnail %}
         {% if item.files and item.files.length %}
-          <a class="item-cover-link" href="{{ item.files[0].url }}" aria-label="Open {{ item.files[0].key }}">
-            {% image primaryThumbnail, "Cover image for " + item.title, "(max-width: 760px) 90vw, 300px", [300, 600, 900], "item-cover-image" %}
+          <a class="item-cover-link" href="{{ item.files[0].url }}" aria-label="Open {{ item.files[0].key | fileType }}: {{ item.title }}">
+            {% image primaryThumbnail, "Cover image for " + item.title, "(max-width: 760px) 90vw, 300px", [300, 600], "item-cover-image" %}
             <span class="item-cover-action">Open {{ item.files[0].key | fileType }}</span>
           </a>
         {% else %}
-          {% image primaryThumbnail, "Cover image for " + item.title, "(max-width: 760px) 90vw, 300px", [300, 600, 900], "item-cover-image" %}
+          {% image primaryThumbnail, "Cover image for " + item.title, "(max-width: 760px) 90vw, 300px", [300, 600], "item-cover-image" %}
         {% endif %}
       {% else %}
         <div class="item-cover-fallback" aria-hidden="true">CLIR</div>

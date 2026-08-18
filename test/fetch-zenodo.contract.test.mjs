@@ -51,9 +51,27 @@ describe("fetch-zenodo normalization contract", () => {
     expect(Array.isArray(normalized.related_identifiers)).toBe(true);
   });
 
-  it("falls back to type report when no type keyword is present", () => {
+  it("treats untagged community records as reports for legacy compatibility", () => {
     const type = inferTypeFromKeywords(["series:annual-report", "topic:preservation"]);
     expect(type).toBe("report");
+  });
+
+  it("rejects editorially incomplete records", () => {
+    const normalized = normalize(buildHit({ metadata: { title: "", creators: [] } }));
+    const parsed = ZenodoDatasetSchema.safeParse([normalized]);
+
+    expect(parsed.success).toBe(false);
+    expect(parsed.error.issues.map((issue) => issue.path.join("."))).toEqual(
+      expect.arrayContaining(["0.title", "0.creators", "0.creator_details"]),
+    );
+  });
+
+  it("rejects duplicate Zenodo IDs", () => {
+    const normalized = normalize(buildHit());
+    const parsed = ZenodoDatasetSchema.safeParse([normalized, normalized]);
+
+    expect(parsed.success).toBe(false);
+    expect(parsed.error.issues[0].message).toContain("Duplicate Zenodo record ID");
   });
 
   it("parses type keyword when present", () => {

@@ -9,13 +9,18 @@ const { sanitizeHttpUrl } = contentUtils;
 const OUT_PATH = path.join(process.cwd(), "src", "_data", "zenodo.json");
 const BASE = "https://zenodo.org/api/records";
 
+const NonEmptyString = z.string().trim().min(1);
+const HttpUrl = z.url().refine((value) => /^https?:\/\//i.test(value), "Expected an HTTP(S) URL");
+const PublicationDate = z.string().regex(/^\d{4}(?:-\d{2}(?:-\d{2})?)?$/, "Expected YYYY, YYYY-MM, or YYYY-MM-DD");
+const Doi = z.string().regex(/^10\.\d{4,9}\/\S+$/i, "Expected a DOI");
+
 const ZenodoFileSchema = z.object({
-  key: z.string(),
-  url: z.string(),
+  key: NonEmptyString,
+  url: HttpUrl,
 });
 
 const ZenodoCreatorSchema = z.object({
-  name: z.string(),
+  name: NonEmptyString,
   orcid: z.string(),
   gnd: z.string(),
   affiliation: z.array(z.string()),
@@ -42,16 +47,16 @@ const ZenodoFunderSchema = z.object({
 
 const ZenodoRecordSchema = z.object({
   kind: z.literal("zenodo"),
-  zenodo_id: z.number().int().nonnegative(),
-  title: z.string(),
-  published: z.string(),
+  zenodo_id: z.number().int().positive(),
+  title: NonEmptyString,
+  published: PublicationDate,
   description: z.string(),
-  creators: z.array(z.string()),
-  creator_details: z.array(ZenodoCreatorSchema),
-  doi: z.string(),
-  keywords: z.array(z.string()),
-  type: z.string(),
-  zenodo_html: z.string(),
+  creators: z.array(NonEmptyString).min(1),
+  creator_details: z.array(ZenodoCreatorSchema).min(1),
+  doi: Doi,
+  keywords: z.array(NonEmptyString),
+  type: NonEmptyString,
+  zenodo_html: z.union([z.literal(""), HttpUrl]),
   related_identifiers: z.array(ZenodoRelatedIdentifierSchema),
   license: ZenodoLicenseSchema,
   funders: z.array(ZenodoFunderSchema),
@@ -59,10 +64,22 @@ const ZenodoRecordSchema = z.object({
   links: z.object({
     thumbnails: z.record(z.string(), z.string()),
   }),
-  files: z.array(ZenodoFileSchema),
+  files: z.array(ZenodoFileSchema).min(1),
 });
 
-const ZenodoDatasetSchema = z.array(ZenodoRecordSchema);
+const ZenodoDatasetSchema = z.array(ZenodoRecordSchema).superRefine((records, context) => {
+  const seen = new Set();
+  records.forEach((record, index) => {
+    if (seen.has(record.zenodo_id)) {
+      context.addIssue({
+        code: "custom",
+        message: `Duplicate Zenodo record ID ${record.zenodo_id}`,
+        path: [index, "zenodo_id"],
+      });
+    }
+    seen.add(record.zenodo_id);
+  });
+});
 
 // Load local .env for developer convenience, but don't require it in CI.
 async function loadDotEnvIfPresent() {
@@ -248,8 +265,10 @@ async function main() {
     const hits = data?.hits?.hits || [];
     if (hits.length === 0) break;
 
-    for (const h of hits) {
-      if (!isValidHit(h)) continue; // skip malformed items
+    for (const [index, h] of hits.entries()) {
+      if (!isValidHit(h)) {
+        throw new Error(`Zenodo returned a malformed record on page ${page} at offset ${index}`);
+      }
       all.push(normalize(h));
     }
 

@@ -47,7 +47,7 @@ module.exports = function (eleventyConfig) {
     try {
       const metadata = await Image(src, {
         widths: normalizedWidths.length ? normalizedWidths : [320, 640, 960],
-        formats: ["avif", "webp", "jpeg"],
+        formats: ["avif", "webp"],
         urlPath: `${PATH_PREFIX}assets/images/generated/`,
         outputDir: path.join(__dirname, "dist/assets/images/generated"),
         filenameFormat: (id, source, width, format) => {
@@ -81,12 +81,20 @@ module.exports = function (eleventyConfig) {
   }
 
   // Copy assets straight through
-  eleventyConfig.addPassthroughCopy({ "src/assets/img": "assets/img" });
-  eleventyConfig.addPassthroughCopy({ "src/assets/images": "assets/images" });
+  eleventyConfig.addPassthroughCopy({
+    "src/assets/images/clir-logo.png": "assets/images/clir-logo.png",
+    "src/assets/images/CLIR-Pattern-1.jpg": "assets/images/CLIR-Pattern-1.jpg",
+  });
   eleventyConfig.addPassthroughCopy({ "src/assets/js": "assets/js" });
   eleventyConfig.addPassthroughCopy({ "src/assets/favicon": "assets/favicon" });
-  eleventyConfig.addPassthroughCopy({ "src/assets/fonts": "assets/fonts" });
-  eleventyConfig.addPassthroughCopy({ "src/assets/logos": "assets/logos" });
+  eleventyConfig.addPassthroughCopy({
+    "src/assets/fonts/Otto/ABCOtto-Regular.woff2": "assets/fonts/Otto/ABCOtto-Regular.woff2",
+    "src/assets/fonts/Otto/ABCOtto-RegularItalic.woff2": "assets/fonts/Otto/ABCOtto-RegularItalic.woff2",
+    "src/assets/fonts/Otto/ABCOtto-Bold.woff2": "assets/fonts/Otto/ABCOtto-Bold.woff2",
+  });
+  eleventyConfig.addPassthroughCopy({
+    "src/assets/logos/CLIR-logo-bounded-red-hairline.svg": "assets/logos/CLIR-logo-bounded-red-hairline.svg",
+  });
   eleventyConfig.addPassthroughCopy("src/CNAME");
 
   // Useful: watch data files so changes trigger rebuild
@@ -208,16 +216,12 @@ module.exports = function (eleventyConfig) {
 
   // Collections (example)
   eleventyConfig.addCollection("reports", (collectionApi) => {
-    // Build from data, not from files (we’ll render items via a template)
-    const zenodo = collectionApi.eleventy?.globalData?.zenodo ?? [];
-    return zenodo
-      .filter((r) => r?.kind === "zenodo" && r?.type === "report")
-      .sort((a, b) => (b.published || "").localeCompare(a.published || ""));
+    return collectionApi.eleventy?.globalData?.reports ?? [];
   });
 
   eleventyConfig.addCollection("annualReports", (collectionApi) => {
-    const zenodo = collectionApi.eleventy?.globalData?.zenodo ?? [];
-    return zenodo
+    const reports = collectionApi.eleventy?.globalData?.reports ?? [];
+    return reports
       .filter((r) => isAnnualReport(r))
       .sort((a, b) => (b.published || "").localeCompare(a.published || ""));
   });

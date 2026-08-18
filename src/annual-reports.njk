@@ -5,7 +5,7 @@ permalink: "/annual-reports/"
 description: Explore CLIR's annual reports collection.
 navPage: reports
 ---
-{% set reports = zenodo | annualReports %}
+{% set annualReportItems = reports | annualReports %}
 
 
 <section class="lp-hero">
@@ -30,7 +30,7 @@ navPage: reports
   <div class="lp-container">
     {# <p class="rp-status">{{ reports.length }} annual report{% if reports.length != 1 %}s{% endif %} found.</p> #}
     <div class="lp-grid lp-grid-reports">
-      {% for report in reports %}
+      {% for report in annualReportItems %}
         {% set authors = "" %}
         {% if report.creators and report.creators.length %}
           {% set authors = report.creators | join(", ") %}

@@ -60,6 +60,7 @@ describe("build-search-index contract", () => {
     expect(output.docs[0].title).toBe("Stable Systems Report");
     expect(output.docs[0].url).toBe("/reports/zenodo-987/");
     expect(output.docs[0].searchable).toContain("stable systems report");
+    expect(output.index).toBeUndefined();
   });
 
   it("indexes podcast and video records when their data files exist", async () => {

@@ -11,7 +11,7 @@ CLIR Publications Static Site
 * [Eleventy (11ty)](https://www.11ty.dev/)
 * [Tailwind](https://tailwindcss.com/) (via [PostCSS](https://postcss.org/))
 * [Zenodo community](https://zenodo.org/communities/clir/) as canonical metadata source (for reports)
-* Client-side search ([MiniSearch](https://lucaong.github.io/minisearch/))
+* Lightweight client-side search over a build-generated JSON document index
 * No runtime backend
 
 Everything is built at deploy time. Nothing fetches live APIs in production.
@@ -235,7 +235,6 @@ This site intentionally has very few dependencies:
 * tailwindcss
 * @tailwindcss/postcss
 * postcss
-* minisearch
 * zod
 
 Rules:

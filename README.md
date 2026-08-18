@@ -5,13 +5,13 @@ Static site for `publications.clir.org`.
 Built with:
 - Eleventy (11ty)
 - Tailwind CSS (via PostCSS)
-- MiniSearch
+- Lightweight client-side search over a build-generated JSON document index
 - Zenodo community metadata (`clir`) as system of record for reports
 
 ## Requirements
 
-- Node.js `>=23`
-- `pnpm` (project uses `pnpm@10.30.0`)
+- Node.js `24.x`
+- `pnpm` (project uses `pnpm@10.32.1`)
 
 ## Install
 
@@ -41,7 +41,7 @@ pnpm run fetch:zenodo
 
 ## Build Commands
 
-Core build:
+Production build (refreshes remote data and runs smoke tests):
 
 ```bash
 pnpm run build
@@ -55,6 +55,12 @@ SITE_URL=https://publications.clir.org PATH_PREFIX=/ pnpm run build
 
 `GOOGLE_ANALYTICS_ID` is optional. Analytics markup is omitted unless that
 variable is set to a valid production measurement ID.
+
+For a deterministic local build using the checked-in data snapshots:
+
+```bash
+pnpm run build:offline
+```
 
 Other build-related commands:
 
