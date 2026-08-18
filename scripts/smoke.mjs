@@ -32,7 +32,7 @@ async function main() {
   }
 
   const renderedHome = await fs.readFile(indexHtml, "utf8");
-  if (!renderedHome.includes('rel="canonical" href="https://publications.clir.org/"')) {
+  if (!renderedHome.includes('rel="canonical" href="https://clirdlf.github.io/publications_v2/"')) {
     throw new Error("Smoke failed: homepage production canonical is missing or incorrect");
   }
   if (/UA-XXXXXXXXX-X|googletagmanager\.com/.test(renderedHome)) {
@@ -45,7 +45,7 @@ async function main() {
   }
 
   const renderedSitemap = await fs.readFile(sitemapXml, "utf8");
-  if (!renderedSitemap.includes("https://publications.clir.org/reports/")) {
+  if (!renderedSitemap.includes("https://clirdlf.github.io/publications_v2/reports/")) {
     throw new Error("Smoke failed: sitemap does not use the production origin");
   }
 

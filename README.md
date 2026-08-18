@@ -1,6 +1,6 @@
 # CLIR Publications
 
-Static site for `publications.clir.org`.
+Static site for `https://clirdlf.github.io/publications_v2/`.
 
 Built with:
 - Eleventy (11ty)
@@ -50,7 +50,7 @@ pnpm run build
 Production URL settings are environment-driven:
 
 ```bash
-SITE_URL=https://publications.clir.org PATH_PREFIX=/ pnpm run build
+SITE_URL=https://clirdlf.github.io/publications_v2/ PATH_PREFIX=/ pnpm run build
 ```
 
 `GOOGLE_ANALYTICS_ID` is optional. Analytics markup is omitted unless that

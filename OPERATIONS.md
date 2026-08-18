@@ -6,7 +6,7 @@ CLIR Publications Static Site
 
 ## 1. What This Site Is
 
-`publications.clir.org` is a static site built with:
+`https://clirdlf.github.io/publications_v2/` is a static site built with:
 
 * [Eleventy (11ty)](https://www.11ty.dev/)
 * [Tailwind](https://tailwindcss.com/) (via [PostCSS](https://postcss.org/))
