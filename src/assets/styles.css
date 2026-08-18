@@ -1629,16 +1629,16 @@
   .lp-footer-panel h3 {
     margin: 0;
     font-family: var(--font-serif);
+    font-size: 1.375rem;
+    font-weight: 400;
     color: #141414;
   }
 
   .lp-footer-panel h2 {
-    font-size: clamp(1.6rem, 1.55vw, 2.2rem);
     line-height: 1.1;
   }
 
   .lp-footer-panel h3 {
-    font-size: 2rem;
     line-height: 1.1;
   }
 
@@ -1666,7 +1666,8 @@
     gap: 1.9rem;
   }
 
-  .lp-footer-branding h2 {
+  .lp-footer-branding .lp-footer-brand h2 {
+    font-family: var(--font-serif);
     font-size: clamp(1.95rem, 1.95vw, 2.85rem);
     line-height: 1.04;
   }
@@ -1703,6 +1704,7 @@
   .lp-footer-about p {
     margin: 0;
     max-width: 33rem;
+    line-height: 2.1375rem;
   }
 
   .lp-footer-connect {
@@ -2911,8 +2913,8 @@
   .lp-footer-panel h2,
   .lp-footer-panel h3 {
     font-family: var(--font-sans);
-    font-size: 1.38rem;
-    font-weight: 600;
+    font-size: 1.375rem;
+    font-weight: 400;
   }
   .lp-footer-about h2::after,
   .lp-footer-connect h2::after {
