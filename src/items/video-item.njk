@@ -20,7 +20,7 @@ twitterCard: summary_large_image
     <div class="item-summary">
       <p class="item-kicker">Video</p><h1>{{ item.title }}</h1>
       {% if item.published %}<p class="lp-podcast-meta"><time datetime="{{ item.published | isoDate }}">{{ item.published | prettyDate }}</time></p>{% endif %}
-      <p><a class="lp-btn" href="{{ item.link }}" target="_blank" rel="noopener noreferrer">Watch on YouTube <span class="sr-only">(opens in a new tab)</span></a></p>
+      <p><a class="button button-primary" href="{{ item.link }}" target="_blank" rel="noopener noreferrer">Watch on YouTube <span class="sr-only">(opens in a new tab)</span></a></p>
     </div>
   </section>
   {% if item.description %}<section class="item-panel"><h2>Video description</h2><p>{{ item.description }}</p></section>{% endif %}

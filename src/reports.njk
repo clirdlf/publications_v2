@@ -5,15 +5,15 @@ description: Browse CLIR reports by title, author, category, and publication dat
 navPage: reports
 reportsBrowser: true
 ---
-<section class="rp-hero">
-  <div class="lp-container">
-    <p class="lp-hero-eyebrow mb-3">Reports Library</p>
+<section class="lp-hero">
+  <div class="lp-container lp-hero-inner">
+    <p class="eyebrow mb-3">Reports library</p>
     <h1>Browse CLIR Reports</h1>
     <p>
       Explore research on digital libraries and archives, research practices and data, memory
       organizations, and preserving information as a public good.
     </p>
-    <p><a class="lp-btn" href="{{ '/annual-reports/' | url }}">Featured Collection: Annual Reports</a></p>
+    <p><a class="button button-primary" href="{{ '/annual-reports/' | url }}">Featured collection: Annual reports</a></p>
   </div>
 </section>
 
@@ -22,11 +22,12 @@ reportsBrowser: true
     <details class="rp-filter-panel" data-reports-filter-panel open>
       <summary>Search and sort</summary>
       <div class="rp-controls">
-      <label class="rp-control rp-control-search">
+      <label class="form-field rp-control rp-control-search">
         <span>Search</span>
         <input
           type="search"
           placeholder="Search title, author, or summary"
+          class="form-control"
           data-reports-search
         />
       </label>
@@ -43,9 +44,9 @@ reportsBrowser: true
         <datalist id="reports-categories" data-reports-category-list></datalist>
       </label> #}
 
-      <label class="rp-control">
+      <label class="form-field rp-control">
         <span>Sort</span>
-        <select data-reports-sort>
+        <select class="form-control" data-reports-sort>
           <option value="newest">Newest first</option>
           <option value="oldest">Oldest first</option>
           <option value="title-asc">Title A-Z</option>
@@ -53,9 +54,9 @@ reportsBrowser: true
         </select>
       </label>
 
-      <label class="rp-control">
+      <label class="form-field rp-control">
         <span>Per page</span>
-        <select data-reports-page-size>
+        <select class="form-control" data-reports-page-size>
           <option value="12">12</option>
           <option value="24">24</option>
           <option value="48">48</option>

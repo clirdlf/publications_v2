@@ -67,10 +67,10 @@ eleventyComputed:
 
       <div class="item-actions">
         {% if item.files and item.files.length %}
-          <a class="lp-btn" href="{{ item.files[0].url }}">Download {{ item.files[0].key | fileType }}</a>
+          <a class="button button-primary" href="{{ item.files[0].url }}">Download {{ item.files[0].key | fileType }}</a>
         {% endif %}
         {% if item.zenodo_html %}
-          <a class="lp-btn lp-btn-outline item-btn-alt" href="{{ item.zenodo_html }}">View on Zenodo</a>
+          <a class="button button-secondary item-btn-alt" href="{{ item.zenodo_html }}">View on Zenodo</a>
         {% endif %}
       </div>
     </div>

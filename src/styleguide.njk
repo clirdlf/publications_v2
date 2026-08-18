@@ -10,9 +10,9 @@ eleventyExcludeFromCollections: true
 <div class="sg-page">
   <header class="sg-hero">
     <div class="lp-container sg-hero-inner">
-      <p class="sg-kicker">Internal reference</p>
+      <p class="eyebrow">Internal reference</p>
       <h1>CLIR Publications visual styleguide</h1>
-      <p class="sg-intro">A shared reference for maintainers who build the site and editors who shape its content. Examples below use the current production styles; recommendations identify the pattern to use for new work.</p>
+      <p class="sg-intro">The current production reference for maintainers who build the site and editors who shape its content. Use these tokens, components, and editorial patterns for new work.</p>
       <p class="sg-meta">Last reviewed <time datetime="2026-08-18">August 18, 2026</time></p>
     </div>
   </header>
@@ -23,18 +23,19 @@ eleventyExcludeFromCollections: true
       <a href="#type">Typography</a>
       <a href="#components">Components</a>
       <a href="#content">Editorial</a>
-      <a href="#inconsistencies">Inconsistencies</a>
+      <a href="#inconsistencies">System health</a>
     </div>
   </nav>
 
   <div class="sg-main lp-container">
     <section class="sg-section" id="foundations" aria-labelledby="foundations-heading">
       <div class="sg-section-heading">
-        <p class="sg-kicker">01 / Foundations</p>
-        <h2 id="foundations-heading">Color and spacing</h2>
-        <p>Use named tokens instead of raw color values. Maroon carries the brand; cream and white provide the primary surfaces.</p>
+        <p class="eyebrow">01 / Foundations</p>
+        <h2 id="foundations-heading">Tokens create consistency</h2>
+        <p>Use named color, spacing, and radius tokens instead of raw values. Brand tokens express identity; semantic tokens describe a value’s job.</p>
       </div>
 
+      <h3 class="sg-subheading">Brand and surface colors</h3>
       <div class="sg-swatches">
         {% set colors = [
           { name: 'CLIR black', token: '--color-clir-black', value: '#060606', dark: true },
@@ -54,6 +55,53 @@ eleventyExcludeFromCollections: true
         {% endfor %}
       </div>
 
+      <h3 class="sg-subheading">Semantic colors</h3>
+      <div class="sg-swatches sg-swatches-semantic">
+        {% set semanticColors = [
+          { name: 'Primary text', token: '--color-text', value: '#242323', dark: true },
+          { name: 'Secondary text', token: '--color-text-secondary', value: '#4b4745', dark: true },
+          { name: 'Muted text', token: '--color-text-muted', value: '#5e6169', dark: true },
+          { name: 'Surface', token: '--color-surface', value: '#ffffff', dark: false },
+          { name: 'Control border', token: '--color-control-border', value: '#cfc5bf', dark: false },
+          { name: 'Control hover', token: '--color-control-border-hover', value: '#a99b94', dark: false }
+        ] %}
+        {% for color in semanticColors %}
+          <article class="sg-swatch{% if color.dark %} sg-swatch-dark{% endif %}" style="--sg-swatch: {{ color.value }}">
+            <div class="sg-swatch-color"></div>
+            <div class="sg-swatch-label"><strong>{{ color.name }}</strong><code>{{ color.token }}</code><span>{{ color.value }}</span></div>
+          </article>
+        {% endfor %}
+      </div>
+
+      <div class="sg-token-pair">
+        <div>
+          <h3 class="sg-subheading">Spacing scale</h3>
+          <div class="sg-spacing-scale">
+            {% for space in [
+              { token: '--spacing-1', value: '4px' }, { token: '--spacing-2', value: '8px' },
+              { token: '--spacing-3', value: '12px' }, { token: '--spacing-4', value: '16px' },
+              { token: '--spacing-5', value: '24px' }, { token: '--spacing-6', value: '32px' },
+              { token: '--spacing-7', value: '48px' }, { token: '--spacing-8', value: '72px' }
+            ] %}
+              <div><code>{{ space.token }}</code><span class="sg-space-bar" style="--sg-space: {{ space.value }}"></span><span>{{ space.value }}</span></div>
+            {% endfor %}
+          </div>
+        </div>
+        <div>
+          <h3 class="sg-subheading">Radius scale</h3>
+          <div class="sg-radius-scale">
+            {% for radius in [
+              { name: 'Control', token: '--radius-control', value: '4px' },
+              { name: 'Media', token: '--radius-media', value: '8px' },
+              { name: 'Card', token: '--radius-card', value: '12px' },
+              { name: 'Pill', token: '--radius-pill', value: '999px' }
+            ] %}
+              <div><span class="sg-radius-shape" style="--sg-radius: {{ radius.value }}"></span><strong>{{ radius.name }}</strong><code>{{ radius.token }}</code></div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
       <div class="sg-guidance">
         <div><strong>Use maroon for</strong><span>Primary actions, brand emphasis, active states, and short decorative rules.</span></div>
         <div><strong>Use link blue for</strong><span>Links in long-form reading contexts where links need to remain distinct from brand accents.</span></div>
@@ -63,7 +111,7 @@ eleventyExcludeFromCollections: true
 
     <section class="sg-section" id="type" aria-labelledby="type-heading">
       <div class="sg-section-heading">
-        <p class="sg-kicker">02 / Typography</p>
+        <p class="eyebrow">02 / Typography</p>
         <h2 id="type-heading">A clear editorial hierarchy</h2>
         <p>ABC Otto gives display text an editorial voice. Instrument Sans supports navigation, controls, metadata, and body copy.</p>
       </div>
@@ -97,32 +145,34 @@ eleventyExcludeFromCollections: true
 
     <section class="sg-section" id="components" aria-labelledby="components-heading">
       <div class="sg-section-heading">
-        <p class="sg-kicker">03 / Components</p>
+        <p class="eyebrow">03 / Components</p>
         <h2 id="components-heading">Reusable interface patterns</h2>
         <p>Prefer the shared patterns shown here before creating a page-specific variation.</p>
       </div>
 
       <div class="sg-component">
         <div class="sg-component-copy">
-          <p class="sg-kicker">Buttons and links</p>
+          <p class="eyebrow">Buttons and links</p>
           <h3>Match emphasis to intent</h3>
           <p>Use one primary action in a group. Use an outline button for a lower-priority alternative and a text link for navigation within prose.</p>
         </div>
         <div class="sg-preview sg-action-preview">
-          <a class="lp-btn" href="#components">Primary action</a>
-          <a class="lp-btn lp-btn-outline" href="#components">Secondary action</a>
+          <a class="button button-primary" href="#components">Primary action</a>
+          <a class="button button-secondary" href="#components">Secondary action</a>
+          <a class="button button-secondary button-compact" href="#components">Compact action</a>
           <a class="about-text-link" href="#components">Text link <span aria-hidden="true">→</span></a>
+          <code class="sg-code-block">class="button button-primary"</code>
         </div>
       </div>
 
       <div class="sg-component">
         <div class="sg-component-copy">
-          <p class="sg-kicker">Eyebrows</p>
+          <p class="eyebrow">Eyebrows</p>
           <h3>Use one label treatment</h3>
-          <p>The styleguide’s <code>.sg-kicker</code> demonstrates the recommended form: short, maroon, bold, tracked, and visually uppercase.</p>
+          <p>The shared <code>.eyebrow</code> class provides the canonical form: short, maroon, bold, tracked, and visually uppercase.</p>
         </div>
         <div class="sg-preview">
-          <p class="sg-kicker">Featured collection</p>
+          <p class="eyebrow">Featured collection</p>
           <h2 class="sg-preview-title">Annual reports</h2>
           <p>Pair an eyebrow with a heading only when it adds useful context.</p>
         </div>
@@ -130,21 +180,23 @@ eleventyExcludeFromCollections: true
 
       <div class="sg-component">
         <div class="sg-component-copy">
-          <p class="sg-kicker">Form controls</p>
+          <p class="eyebrow">Form controls</p>
           <h3>Make labels visible and specific</h3>
-          <p>Inputs should be at least 46 pixels high. Keep labels outside placeholders and provide a visible focus state.</p>
+          <p>Controls are at least 48 pixels high. Keep labels outside placeholders, use placeholders only as hints, and preserve the shared hover, focus, and disabled states.</p>
         </div>
         <div class="sg-preview">
           <div class="sg-form-grid">
-            <label><span>Search publications</span><input type="search" placeholder="Title, author, or keyword"></label>
-            <label><span>Sort by</span><select><option>Newest first</option><option>Oldest first</option></select></label>
+            <label class="form-field"><span>Search publications</span><input class="form-control" type="search" placeholder="Title, author, or keyword"></label>
+            <label class="form-field"><span>Sort by</span><select class="form-control"><option>Newest first</option><option>Oldest first</option></select></label>
+            <label class="form-field"><span>Unavailable example</span><input class="form-control" type="text" value="Disabled" disabled></label>
+            <code class="sg-code-block">class="form-field" + class="form-control"</code>
           </div>
         </div>
       </div>
 
       <div class="sg-component">
         <div class="sg-component-copy">
-          <p class="sg-kicker">Cards</p>
+          <p class="eyebrow">Cards</p>
           <h3>Lead with the content title</h3>
           <p>Keep metadata secondary, summaries brief, and the entire visual order consistent across a collection.</p>
         </div>
@@ -160,7 +212,7 @@ eleventyExcludeFromCollections: true
 
     <section class="sg-section" id="content" aria-labelledby="content-heading">
       <div class="sg-section-heading">
-        <p class="sg-kicker">04 / Editorial guidance</p>
+        <p class="eyebrow">04 / Editorial guidance</p>
         <h2 id="content-heading">Write for discovery and scanning</h2>
         <p>Interface copy should help readers predict what happens next. Publication metadata should remain faithful to the source record.</p>
       </div>
@@ -191,18 +243,18 @@ eleventyExcludeFromCollections: true
 
     <section class="sg-section" id="inconsistencies" aria-labelledby="inconsistencies-heading">
       <div class="sg-section-heading">
-        <p class="sg-kicker">05 / System health</p>
-        <h2 id="inconsistencies-heading">Known inconsistencies and recommendations</h2>
-        <p>These are documentation findings, not silent changes to production components. Address them incrementally when affected areas are next edited.</p>
+        <p class="eyebrow">05 / System health</p>
+        <h2 id="inconsistencies-heading">System improvements and next steps</h2>
+        <p>The initial styleguide audit informed a production-system cleanup. These entries record what changed and identify the remaining maintenance direction.</p>
       </div>
 
       <div class="sg-audit">
-        <article><p class="sg-audit-status">High priority</p><h3>Promote neutral colors to tokens</h3><p>The stylesheet repeats values such as <code>#4b4745</code>, <code>#5e6169</code>, and <code>#d6d5da</code>. Define semantic text, muted-text, and control-border tokens, then replace raw values.</p></article>
-        <article><p class="sg-audit-status">Medium priority</p><h3>Consolidate eyebrow classes</h3><p><code>.rp-eyebrow</code>, <code>.lp-hero-eyebrow</code>, and <code>.lp-section-eyebrow</code> represent the same concept. Adopt one shared <code>.eyebrow</code> component with contextual modifiers only when needed.</p></article>
-        <article><p class="sg-audit-status">Medium priority</p><h3>Unify controls</h3><p>Report controls, media controls, search controls, and styleguide controls use parallel rules. Create shared label, input, select, focus, disabled, and error states.</p></article>
-        <article><p class="sg-audit-status">Medium priority</p><h3>Name buttons by intent</h3><p><code>.lp-btn</code>, <code>.lp-btn-outline</code>, and page-specific button overrides should become a base button plus primary, secondary, and compact modifiers.</p></article>
-        <article><p class="sg-audit-status">Low priority</p><h3>Formalize spacing and radii</h3><p>Spacing and corner radii currently use many one-off values. Introduce a small documented scale after auditing layouts so the change preserves existing rhythm.</p></article>
-        <article><p class="sg-audit-status">Low priority</p><h3>Remove stale commented declarations</h3><p>Commented-out alternatives obscure the current source of truth. Rely on version history and keep production CSS focused on active decisions.</p></article>
+        <article><p class="sg-audit-status">Implemented</p><h3>Semantic design tokens</h3><p>Text, muted text, surfaces, control borders, radii, and a compact spacing scale now have named tokens. Use these tokens before adding a raw value.</p></article>
+        <article><p class="sg-audit-status">Implemented</p><h3>One eyebrow component</h3><p>Heroes, section headings, collection browsers, and this guide now use the shared <code>.eyebrow</code> class.</p></article>
+        <article><p class="sg-audit-status">Implemented</p><h3>Shared form controls</h3><p><code>.form-field</code> and <code>.form-control</code> define labels, dimensions, borders, placeholders, hover, focus, and disabled states across report and media browsers.</p></article>
+        <article><p class="sg-audit-status">Implemented</p><h3>Intent-based buttons</h3><p>Use <code>.button</code> with <code>.button-primary</code>, <code>.button-secondary</code>, or <code>.button-compact</code>. Contextual card and call-to-action treatments build on that base.</p></article>
+        <article><p class="sg-audit-status">Implemented</p><h3>Spacing and radius scales</h3><p>Shared control, card, media, and pill radii are available alongside an eight-step spacing scale. Migrate isolated values when their components are next touched.</p></article>
+        <article><p class="sg-audit-status">Ongoing</p><h3>Reduce legacy cascade</h3><p>The canonical layer now controls active templates. Remove superseded legacy blocks only alongside focused regression testing of the affected page family.</p></article>
       </div>
     </section>
   </div>

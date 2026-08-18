@@ -10,7 +10,7 @@ navPage: reports
 
 <section class="lp-hero">
   <div class="lp-container lp-hero-inner">
-    <p class="lp-hero-eyebrow">Featured Collection</p>
+    <p class="eyebrow">Featured collection</p>
     <h1>Annual Reports</h1>
     <p>
       CLIR traces its roots to 1956, when the Council on Library Resources (CLR) was founded to
@@ -22,7 +22,7 @@ navPage: reports
       This collection highlights annual reports from across that history, including records tagged
       <code>series:annual-report</code> and legacy items with "Annual Report" in the title.
     </p> #}
-    <p><a class="lp-btn" href="{{ '/reports/' | url }}">View all reports</a></p>
+    <p><a class="button button-primary" href="{{ '/reports/' | url }}">View all reports</a></p>
   </div>
 </section>
 
@@ -57,9 +57,7 @@ navPage: reports
             </p>
             <p>{{ report.published | isoDate }}</p>
 
-            <a class="lp-btn" href="{{ report.files[0].url }}">Read</a>
-{#             
-            <a class="lp-btn" href="/reports/zenodo-{{ report.zenodo_id }}/">Read</a> #}
+            <a class="button button-secondary" href="{{ report.files[0].url }}">Read</a>
           </div>
         </article>
       {% else %}

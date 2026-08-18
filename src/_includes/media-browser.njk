@@ -1,12 +1,12 @@
 {% macro mediaBrowserHeader(heading, searchLabel, archiveNote = "") %}
   <div class="media-collection-heading">
     <div>
-      <p class="lp-section-eyebrow pb-3">Browse the collection</p>
+      <p class="eyebrow pb-3">Browse the collection</p>
       <h2>{{ heading }}</h2>
     </div>
     <div class="media-controls">
-      <label>{{ searchLabel }} <input type="search" placeholder="Title or description" data-media-search></label>
-      <label>Sort <select data-media-sort><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title</option></select></label>
+      <label class="form-field">{{ searchLabel }} <input class="form-control" type="search" placeholder="Title or description" data-media-search></label>
+      <label class="form-field">Sort <select class="form-control" data-media-sort><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title</option></select></label>
     </div>
   </div>
   {% if archiveNote %}<p class="mb-3 media-archive-note">{{ archiveNote }}</p>{% endif %}

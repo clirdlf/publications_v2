@@ -9,10 +9,10 @@ navPage: videos
 
 <section class="lp-hero">
   <div class="lp-container lp-hero-inner">
-    <p class="lp-hero-eyebrow">Featured Collection</p>
+    <p class="eyebrow">Featured collection</p>
     <h1>Videos</h1>
     <p>Explore talks, webinars, and updates from CLIR and DLF.</p>
-    <p><a class="lp-btn" href="https://www.youtube.com/@DLFCLIR" target="_blank" rel="noopener noreferrer">Visit the YouTube channel</a></p>
+    <p><a class="button button-primary" href="https://www.youtube.com/@DLFCLIR" target="_blank" rel="noopener noreferrer">Visit the YouTube channel</a></p>
   </div>
 </section>
 
@@ -33,7 +33,7 @@ navPage: videos
             <h3><a href="{{ video.detailPath | url }}">{{ video.title }}</a></h3>
             {% if video.date %}<p class="lp-podcast-meta"><time datetime="{{ video.date }}">{{ video.publishedLabel }}</time></p>{% endif %}
             {% if video.summary %}<p>{{ video.summary }}</p>{% endif %}
-            <a class="lp-btn lp-btn-small" href="{{ video.detailPath | url }}">Video details</a>
+            <a class="button button-secondary button-compact" href="{{ video.detailPath | url }}">Video details</a>
           </div>
         </article>
       {% else %}

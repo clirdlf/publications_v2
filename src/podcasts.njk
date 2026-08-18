@@ -9,14 +9,15 @@ navPage: podcasts
 
 <section class="lp-hero">
   <div class="lp-container lp-hero-inner">
-    <p class="lp-hero-eyebrow">Featured Collection</p>
+    <p class="eyebrow">Featured collection</p>
     <h1>Material Memory Podcast</h1>
     <p>
       Listen to Material Memory, featuring stories from archives, libraries, and cultural memory
       communities.
     </p>
-    <p><a class="lp-btn" href="https://pod.link/1488667989" target="_blank" rel="noopener noreferrer">Follow the podcast</a></p>
+    <p><a class="button button-primary" href="https://pod.link/1488667989" target="_blank" rel="noopener noreferrer">Follow the podcast</a></p>
   </div>
+
 </section>
 
 <section class="lp-section lp-section-alt lp-section-audio">
@@ -42,7 +43,7 @@ navPage: podcasts
                 Your browser does not support the audio player.
               </audio>
             {% endif %}
-            <a class="lp-btn lp-btn-small" href="{{ episode.detailPath | url }}">Episode details{% if episode.transcriptUrl %} and transcript{% endif %}</a>
+            <a class="button button-secondary button-compact" href="{{ episode.detailPath | url }}">Episode details{% if episode.transcriptUrl %} and transcript{% endif %}</a>
           </div>
         </article>
       {% else %}
