@@ -31,6 +31,26 @@ describe("media feed normalization contracts", () => {
     expect(video.link).toContain("abc123");
   });
 
+  it("rejects active URL schemes supplied by media feeds", () => {
+    const [episode] = extractItems(`<rss><channel><item>
+      <guid>unsafe-episode</guid><title>Unsafe episode</title><pubDate>2026-01-01</pubDate>
+      <link>javascript:alert(1)</link>
+      <enclosure url="javascript:alert(2)" type="audio/mpeg" />
+      <itunes:image href="data:text/html,unsafe" />
+    </item></channel></rss>`);
+    const [video] = extractEntries(`<feed><entry>
+      <id>unsafe-video</id><yt:videoId>abc123</yt:videoId><title>Unsafe video</title>
+      <link rel="alternate" href="javascript:alert(3)" />
+      <media:thumbnail url="data:text/html,unsafe" />
+    </entry></feed>`);
+
+    expect(episode.canonicalUrl).toBe("");
+    expect(episode.enclosureUrl).toBe("");
+    expect(episode.image).toBe("");
+    expect(video.link).toBe("");
+    expect(video.thumbnail).toBe("");
+  });
+
   it("produces deterministic slugs and plain text", () => {
     expect(slugifyMedia("Café: Memory!")).toBe("cafe-memory");
     expect(plainText("<p>A&nbsp; B</p>")).toBe("A B");

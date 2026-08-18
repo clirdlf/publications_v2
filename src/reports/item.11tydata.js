@@ -1,7 +1,4 @@
-function stripHtml(value) {
-  if (!value) return "";
-  return String(value).replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
-}
+const { richTextToPlainText } = require("../lib/content-utils.cjs");
 
 function compact(value) {
   if (Array.isArray(value)) {
@@ -118,7 +115,7 @@ module.exports = {
         "@id": item?.zenodo_html || doiUrl || "",
         name: item?.title || "",
         headline: item?.title || "",
-        description: stripHtml(item?.description || ""),
+        description: richTextToPlainText(item?.description || ""),
         datePublished: item?.published || "",
         url: item?.zenodo_html || doiUrl || "",
         sameAs: doiUrl || "",

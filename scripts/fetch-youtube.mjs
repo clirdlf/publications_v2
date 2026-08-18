@@ -2,6 +2,9 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { plainText, slugifyMedia } from "./fetch-podcast.mjs";
+import contentUtils from "../src/lib/content-utils.cjs";
+
+const { sanitizeHttpUrl } = contentUtils;
 
 const FEED_URL = "https://www.youtube.com/feeds/videos.xml?channel_id=UCTlqPVhBqGnyKsebb3mjA0Q";
 const OUT_PATH = path.join(process.cwd(), "src", "_data", "youtube.json");
@@ -64,13 +67,13 @@ export function extractEntries(xml) {
       slug: slugifyMedia(`${title}-${videoId}`),
       channelId: extractTag(rawEntry, "yt:channelId"),
       title,
-      link: extractSelfClosingTagAttr(rawEntry, "link", "href"),
+      link: sanitizeHttpUrl(extractSelfClosingTagAttr(rawEntry, "link", "href")),
       published: extractTag(rawEntry, "published"),
       updated: extractTag(rawEntry, "updated"),
       authorName: extractTag(authorXml, "name"),
-      authorUri: extractTag(authorXml, "uri"),
+      authorUri: sanitizeHttpUrl(extractTag(authorXml, "uri")),
       description: plainText(extractTag(rawEntry, "media:description")),
-      thumbnail: extractSelfClosingTagAttr(rawEntry, "media:thumbnail", "url")
+      thumbnail: sanitizeHttpUrl(extractSelfClosingTagAttr(rawEntry, "media:thumbnail", "url"))
     });
   }
 

@@ -2,7 +2,7 @@ import { createRequire } from "node:module";
 import { describe, expect, it } from "vitest";
 
 const require = createRequire(import.meta.url);
-const { getReports, isAnnualReport } = require("../src/lib/report-utils.cjs");
+const { getReports, isAnnualReport, isLegacyDeposit } = require("../src/lib/report-utils.cjs");
 
 describe("getReports", () => {
   it("returns only reports in newest-first order without mutating the input", () => {
@@ -49,5 +49,13 @@ describe("isAnnualReport", () => {
     });
 
     expect(value).toBe(false);
+  });
+});
+
+describe("isLegacyDeposit", () => {
+  it("identifies recent records that use the legacy Zenodo ID range", () => {
+    expect(isLegacyDeposit({ zenodo_id: 9_999_999, published: "2023-01-01" })).toBe(true);
+    expect(isLegacyDeposit({ zenodo_id: 10_000_000, published: "2023-01-01" })).toBe(false);
+    expect(isLegacyDeposit({ zenodo_id: 9_999_999, published: "2022-12-31" })).toBe(false);
   });
 });

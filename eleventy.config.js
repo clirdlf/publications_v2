@@ -1,8 +1,24 @@
 // eleventy.config.js (CommonJS is simplest with 11ty)
 const path = require("path");
 const Image = require("@11ty/eleventy-img");
-const { isAnnualReport } = require("./src/lib/report-utils.cjs");
-const { richTextToPlainText, scriptSafeJson } = require("./src/lib/content-utils.cjs");
+const { isAnnualReport, isLegacyDeposit } = require("./src/lib/report-utils.cjs");
+const {
+  hasSubstantiveDescription,
+  richTextToPlainText,
+  scriptSafeJson,
+} = require("./src/lib/content-utils.cjs");
+const {
+  absoluteUrl,
+  fileType,
+  hasSparseHero,
+  isoDate,
+  naturalCreators,
+  normalizeWhitespace,
+  prettyDate,
+  snippet,
+  year,
+  yearOffset,
+} = require("./src/lib/template-utils.cjs");
 const configuredPathPrefix = process.env.PATH_PREFIX || "/";
 const PATH_PREFIX = configuredPathPrefix === "/"
   ? "/"
@@ -13,6 +29,8 @@ const FAST_DEV_IMAGES =
   process.env.ELEVENTY_RUN_MODE === "serve";
 
 module.exports = function (eleventyConfig) {
+  eleventyConfig.setNunjucksEnvironmentOptions({ autoescape: true });
+
   function escapeAttribute(value) {
     return String(value)
       .replace(/&/g, "&amp;")
@@ -40,7 +58,7 @@ module.exports = function (eleventyConfig) {
 
     const hasSvgSource = /\.svg(\?|$)/i.test(String(src));
     if (hasSvgSource || FAST_DEV_IMAGES) {
-      const classAttr = className ? ` class="${className}"` : "";
+      const classAttr = className ? ` class="${escapeAttribute(className)}"` : "";
       return `<img src="${escapeAttribute(src)}" alt="${escapeAttribute(alt)}" loading="${escapeAttribute(loading)}" decoding="async"${classAttr}>`;
     }
 
@@ -60,7 +78,7 @@ module.exports = function (eleventyConfig) {
       });
 
       if (!metadata) {
-        const classAttr = className ? ` class="${className}"` : "";
+        const classAttr = className ? ` class="${escapeAttribute(className)}"` : "";
         return `<img src="${escapeAttribute(src)}" alt="${escapeAttribute(alt)}" loading="${escapeAttribute(loading)}" decoding="async"${classAttr}>`;
       }
 
@@ -75,7 +93,7 @@ module.exports = function (eleventyConfig) {
 
       return Image.generateHTML(metadata, imageAttributes);
     } catch (error) {
-      const classAttr = className ? ` class="${className}"` : "";
+      const classAttr = className ? ` class="${escapeAttribute(className)}"` : "";
       return `<img src="${escapeAttribute(src)}" alt="${escapeAttribute(alt)}" loading="${escapeAttribute(loading)}" decoding="async"${classAttr}>`;
     }
   }
@@ -102,76 +120,15 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget("./scripts/");
 
   // Filters
-  eleventyConfig.addFilter("isoDate", (value) => {
-    if (!value) return "";
-    const d = new Date(value);
-    if (Number.isNaN(d.getTime())) return "";
-    return d.toISOString().slice(0, 10);
-  });
-
-  eleventyConfig.addFilter("year", (value) => {
-    if (!value) return "";
-    const d = new Date(value);
-    if (Number.isNaN(d.getTime())) return "";
-    return String(d.getUTCFullYear());
-  });
-
-  eleventyConfig.addFilter("prettyDate", (value) => {
-    if (!value) return "";
-    const d = new Date(value);
-    if (Number.isNaN(d.getTime())) return "";
-    return new Intl.DateTimeFormat("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-      timeZone: "UTC",
-    }).format(d);
-  });
-
-  eleventyConfig.addFilter("naturalCreators", (creators) => {
-    if (!Array.isArray(creators)) return "";
-    const names = creators.filter(Boolean).map((name) => {
-      const parts = String(name).split(",").map((part) => part.trim());
-      return parts.length === 2 ? `${parts[1]} ${parts[0]}` : String(name);
-    });
-    if (names.length < 2) return names[0] || "";
-    if (names.length === 2) return names.join(" and ");
-    return `${names.slice(0, -1).join(", ")}, and ${names.at(-1)}`;
-  });
-
-  eleventyConfig.addFilter("fileType", (filename) => {
-    const cleanName = String(filename || "").split(/[?#]/, 1)[0];
-    const match = cleanName.match(/\.([a-z0-9]{1,8})$/i);
-    return match ? match[1].toUpperCase() : "FILE";
-  });
-
-  eleventyConfig.addFilter("hasSubstantiveDescription", (value) => {
-    const text = String(value || "")
-      .replace(/<[^>]*>/g, " ")
-      .replace(/&[a-z0-9#]+;/gi, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-    return text.length >= 120;
-  });
-
-  eleventyConfig.addFilter("hasSparseHero", (item) => {
-    const title = String(item?.title || "").trim();
-    return title.length > 0 && title.length <= 60;
-  });
-
-  eleventyConfig.addFilter("isLegacyDeposit", (item) => {
-    if (!item || Number(item.zenodo_id) >= 10_000_000) return false;
-    const year = Number(String(item.published || "").slice(0, 4));
-    return year >= 2023;
-  });
-
-  eleventyConfig.addFilter("yearOffset", (value, offset = 0) => {
-    if (!value) return "";
-    const d = new Date(value);
-    if (Number.isNaN(d.getTime())) return "";
-    const parsedOffset = Number(offset) || 0;
-    return String(d.getUTCFullYear() + parsedOffset);
-  });
+  eleventyConfig.addFilter("isoDate", isoDate);
+  eleventyConfig.addFilter("year", year);
+  eleventyConfig.addFilter("prettyDate", prettyDate);
+  eleventyConfig.addFilter("naturalCreators", naturalCreators);
+  eleventyConfig.addFilter("fileType", fileType);
+  eleventyConfig.addFilter("hasSubstantiveDescription", hasSubstantiveDescription);
+  eleventyConfig.addFilter("hasSparseHero", hasSparseHero);
+  eleventyConfig.addFilter("isLegacyDeposit", isLegacyDeposit);
+  eleventyConfig.addFilter("yearOffset", yearOffset);
 
   eleventyConfig.addFilter("firstFileUrl", (files) => {
     if (!Array.isArray(files) || files.length === 0) return "";
@@ -182,30 +139,14 @@ module.exports = function (eleventyConfig) {
     return richTextToPlainText(value);
   });
 
-  eleventyConfig.addFilter("normalizeWhitespace", (value) => {
-    if (!value) return "";
-    return String(value).replace(/\s+/g, " ").trim();
-  });
-
-  eleventyConfig.addFilter("snippet", (value, length = 180) => {
-    if (!value) return "";
-    const max = Number(length) > 0 ? Number(length) : 180;
-    const text = String(value).trim();
-    if (text.length <= max) return text;
-    return `${text.slice(0, max - 1).trimEnd()}…`;
-  });
+  eleventyConfig.addFilter("normalizeWhitespace", normalizeWhitespace);
+  eleventyConfig.addFilter("snippet", snippet);
 
   eleventyConfig.addFilter("json", (value) => {
     return scriptSafeJson(value);
   });
 
-  eleventyConfig.addFilter("absoluteUrl", (value, baseUrl) => {
-    if (!value || !baseUrl) return "";
-    const root = String(baseUrl).replace(/\/+$/, "");
-    const pathname = String(value).startsWith("/") ? String(value) : `/${value}`;
-    const prefix = PATH_PREFIX === "/" ? "" : PATH_PREFIX.replace(/\/$/, "");
-    return `${root}${prefix}${pathname}`;
-  });
+  eleventyConfig.addFilter("absoluteUrl", (value, baseUrl) => absoluteUrl(value, baseUrl, PATH_PREFIX));
 
   eleventyConfig.addFilter("annualReports", (records) => {
     const items = Array.isArray(records) ? records : [];

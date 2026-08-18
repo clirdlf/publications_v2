@@ -35,6 +35,10 @@ function richTextToPlainText(value) {
   ).replace(/\s+/g, " ").trim();
 }
 
+function hasSubstantiveDescription(value, minimumLength = 120) {
+  return richTextToPlainText(value).length >= minimumLength;
+}
+
 function scriptSafeJson(value) {
   return JSON.stringify(value)
     .replace(/</g, "\\u003c")
@@ -54,4 +58,10 @@ function sanitizeHttpUrl(value) {
   }
 }
 
-module.exports = { decodeHtmlEntities, richTextToPlainText, sanitizeHttpUrl, scriptSafeJson };
+module.exports = {
+  decodeHtmlEntities,
+  hasSubstantiveDescription,
+  richTextToPlainText,
+  sanitizeHttpUrl,
+  scriptSafeJson,
+};

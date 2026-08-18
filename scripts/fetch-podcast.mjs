@@ -1,6 +1,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import contentUtils from "../src/lib/content-utils.cjs";
+
+const { sanitizeHttpUrl } = contentUtils;
 
 const FEED_URL = "https://feeds.libsyn.com/229370/rss";
 const OUT_PATH = path.join(process.cwd(), "src", "_data", "podcast.json");
@@ -87,13 +90,13 @@ export function extractItems(xml) {
       title,
       pubDate,
       description: plainText(extractTag(rawItem, "description")),
-      canonicalUrl,
-      enclosureUrl: extractSelfClosingTagAttr(rawItem, "enclosure", "url"),
+      canonicalUrl: sanitizeHttpUrl(canonicalUrl),
+      enclosureUrl: sanitizeHttpUrl(extractSelfClosingTagAttr(rawItem, "enclosure", "url")),
       enclosureType: extractSelfClosingTagAttr(rawItem, "enclosure", "type") || "audio/mpeg",
       duration: extractTag(rawItem, "itunes:duration"),
       season,
       episode,
-      image
+      image: sanitizeHttpUrl(image)
     });
   }
 

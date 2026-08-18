@@ -17,7 +17,14 @@ function getReports(records) {
     .sort((a, b) => String(b?.published || "").localeCompare(String(a?.published || "")));
 }
 
+function isLegacyDeposit(item) {
+  if (!item || Number(item.zenodo_id) >= 10_000_000) return false;
+  const publicationYear = Number(String(item.published || "").slice(0, 4));
+  return publicationYear >= 2023;
+}
+
 module.exports = {
   getReports,
   isAnnualReport,
+  isLegacyDeposit,
 };

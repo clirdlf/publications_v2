@@ -1,7 +1,13 @@
 import { describe, expect, it } from "vitest";
 import contentUtils from "../src/lib/content-utils.cjs";
 
-const { decodeHtmlEntities, richTextToPlainText, sanitizeHttpUrl, scriptSafeJson } = contentUtils;
+const {
+  decodeHtmlEntities,
+  hasSubstantiveDescription,
+  richTextToPlainText,
+  sanitizeHttpUrl,
+  scriptSafeJson,
+} = contentUtils;
 
 describe("richTextToPlainText", () => {
   it("preserves text and decodes common and numeric entities", () => {
@@ -36,5 +42,12 @@ describe("sanitizeHttpUrl", () => {
     expect(sanitizeHttpUrl("https://zenodo.org/records/123")).toBe("https://zenodo.org/records/123");
     expect(sanitizeHttpUrl("javascript:alert(1)")).toBe("");
     expect(sanitizeHttpUrl("not a URL")).toBe("");
+  });
+});
+
+describe("hasSubstantiveDescription", () => {
+  it("measures readable text rather than tags or executable content", () => {
+    expect(hasSubstantiveDescription(`<script>${"x".repeat(200)}</script><p>Short</p>`)).toBe(false);
+    expect(hasSubstantiveDescription(`<p>${"Readable ".repeat(20)}</p>`)).toBe(true);
   });
 });
