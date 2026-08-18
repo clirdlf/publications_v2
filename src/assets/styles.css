@@ -78,7 +78,7 @@
 .about-section-copy { max-width: 790px; }
 .about-section h2, .about-contact h2 { margin: 0 0 28px; color: var(--clir-black); font-family: var(--font-serif); font-size: clamp(2.25rem, 5vw, 4.25rem); font-weight: 400; letter-spacing: -.045em; line-height: 1.02; }
 .about-section-copy p { max-width: 720px; color: #4b4745; font-size: 1.05rem; line-height: 1.7; }
-.about-section-copy .about-lede { margin-top: 0; color: var(--clir-black); font-size: clamp(1.25rem, 2.2vw, 1.65rem); line-height: 1.5; }
+.about-section-copy .about-lead { margin-top: 0; color: var(--clir-black); font-size: clamp(1.25rem, 2.2vw, 1.65rem); line-height: 1.5; }
 .about-section-heading { max-width: 720px; }
 .about-section-heading .about-section-label { margin-bottom: 14px; }
 .about-values { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px); margin-top: clamp(44px, 6vw, 72px); }
