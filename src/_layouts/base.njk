@@ -29,6 +29,12 @@
         </main>
 
         {%- include "footer.njk" %}
+        {% if navPage == "reports" or navPage == "podcasts" or navPage == "videos" %}
+        <a class="back-to-top" href="#top" data-back-to-top hidden>
+            <span aria-hidden="true">&#8593;</span>
+            <span>Back to top</span>
+        </a>
+        {% endif %}
         {%- include "scripts.njk" %}
 
     </body>

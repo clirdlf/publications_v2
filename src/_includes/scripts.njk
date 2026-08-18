@@ -1,6 +1,9 @@
 <script src="{{ '/assets/js/site-search.js' | url }}"></script>
 <script src="{{ '/assets/js/media-browser.js' | url }}"></script>
 <script src="{{ '/assets/js/site-header.js' | url }}"></script>
+{% if navPage == "reports" or navPage == "podcasts" or navPage == "videos" %}
+<script src="{{ '/assets/js/back-to-top.js' | url }}"></script>
+{% endif %}
 {% if reportsBrowser %}
 <script src="{{ '/assets/js/reports-browser.js' | url }}"></script>
 {% endif %}
