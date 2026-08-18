@@ -19,13 +19,13 @@ navPage: videos
 <section class="lp-section lp-section-alt">
   <div class="lp-container" data-media-browser>
     <div class="media-collection-heading">
-      <div><p class="lp-section-eyebrow">Browse the collection</p><h2>{{ videos | length }} recent videos</h2></div>
+      <div><p class="lp-section-eyebrow">Browse the collection</p><h2>Watch recent videos</h2></div>
       <div class="media-controls">
         <label>Search videos <input type="search" placeholder="Title or description" data-media-search></label>
         <label>Sort <select data-media-sort><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title</option></select></label>
       </div>
     </div>
-    <p class="media-archive-note">This page contains the videos available from YouTube’s recent-upload feed. Visit the channel for the complete archive.</p>
+    <p class="media-archive-note">Watch recent talks, webinars, and conversations from CLIR and the Digital Library Federation. Visit YouTube for the complete archive.</p>
     <p class="media-results-status" data-media-status aria-live="polite"></p>
     <div class="lp-grid lp-grid-reports">
       {% for video in videos %}

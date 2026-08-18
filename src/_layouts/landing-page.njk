@@ -5,7 +5,7 @@ layout: base.njk
     <div class="lp-container lp-hero-inner">
         <p class="lp-hero-eyebrow">Council on Library &amp; Information Resources</p>
         <h1>Explore Our Publications</h1>
-        <p>Research, Resources, and Media from the Council on Library and Information Resources.</p>
+        <p>Reports and media for people who collect, curate, preserve, and use information.</p>
 
         <form
             class="lp-searchbar"
@@ -57,7 +57,7 @@ layout: base.njk
                         <span class="lp-year-badge">{{ report.published | year }}</span>
                     </div>
                     <div class="lp-card-body">
-                        <h3>{{ report.title }}</h3>
+                        <h3><a href="{{ ('/reports/zenodo-' + report.zenodo_id + '/') | url }}">{{ report.title }}</a></h3>
                         <p>{{ report.creators | join(", ") }}</p>
                         <p>{{ report.published | isoDate }}</p>
                         <a class="lp-btn" href="{{ ('/reports/zenodo-' + report.zenodo_id + '/') | url }}">Read More</a>
@@ -140,7 +140,7 @@ layout: base.njk
                             </div>
                         </a>
                         <div class="lp-card-body">
-                            <h3>{{ video.title }}</h3>
+                        <h3><a href="{{ video.link }}" target="_blank" rel="noopener noreferrer">{{ video.title }}</a></h3>
                             {% if video.published %}
                                 <p class="lp-podcast-meta">{{ video.published | prettyDate }}</p>
                             {% endif %}

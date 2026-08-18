@@ -223,7 +223,17 @@
 .lp-brand {
   display: inline-flex;
   align-items: center;
+  gap: 14px;
   text-decoration: none;
+}
+
+.lp-brand-section {
+  padding-left: 14px;
+  border-left: 1px solid var(--clir-border);
+  color: var(--clir-black);
+  font-size: .92rem;
+  font-weight: 600;
+  letter-spacing: .04em;
 }
 
 .lp-brand-logo {
@@ -278,6 +288,11 @@
 .lp-main-nav a:hover,
 .lp-main-nav a[aria-current="page"] {
   color: var(--color-clir-maroon);
+}
+
+.lp-main-nav .lp-main-site-link {
+  color: var(--clir-red-dark);
+  font-size: .9rem;
 }
 
 .lp-mobile-search-link {
@@ -427,6 +442,24 @@
   font-size: clamp(2.2rem, 3vw, 3.3rem);
   border-bottom: 1px solid #d4d4d7;
   padding-bottom: 0.8rem;
+}
+
+.lp-section .lp-section-eyebrow + h2,
+.media-collection-heading .lp-section-eyebrow + h2 {
+  position: relative;
+  padding-left: 20px;
+}
+
+.lp-section .lp-section-eyebrow + h2::before,
+.media-collection-heading .lp-section-eyebrow + h2::before {
+  content: "";
+  position: absolute;
+  top: -.5rem;
+  bottom: -.25rem;
+  left: 0;
+  width: 4px;
+  border-radius: 2px;
+  background: var(--clir-red);
 }
 
 .lp-grid {
@@ -1760,6 +1793,14 @@ body,
 
 .lp-card-body p { color: #4b4745; line-height: 1.55; }
 
+.lp-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.lp-card-body .lp-btn { align-self: flex-start; margin-top: auto; }
+
 .lp-year-badge {
   top: 12px;
   left: 12px;
@@ -1796,6 +1837,23 @@ body,
   background: var(--clir-red);
   color: #fff;
   border-color: var(--clir-red);
+}
+
+.lp-media-card .lp-btn {
+  border-color: var(--clir-red);
+  background: transparent;
+  color: var(--clir-red);
+}
+
+.lp-media-card .lp-btn:hover,
+.lp-media-card .lp-btn:focus-visible {
+  border-color: var(--clir-red);
+  background: var(--clir-red);
+  color: #fff;
+}
+
+.lp-section-audio {
+  background: #e7eff3;
 }
 
 .lp-grid-podcasts { grid-template-columns: minmax(300px, .9fr) minmax(0, 1.1fr); gap: 24px; }
@@ -2047,7 +2105,8 @@ body,
   padding: 28px;
 }
 
-.rp-card-with-cover {
+.rp-card-with-cover,
+.rp-card {
   display: grid;
   grid-template-columns: 132px minmax(0, 1fr);
   align-items: start;
@@ -2067,6 +2126,34 @@ body,
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.rp-card-cover-fallback,
+.lp-report-card .lp-media:not(:has(img)) {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  color: #fff;
+  background:
+    linear-gradient(145deg, rgb(157 34 53 / 96%), rgb(89 22 38 / 96%)),
+    url("./images/CLIR-Pattern-1.jpg") center / cover;
+}
+
+.cover-fallback-mark {
+  align-self: flex-start;
+  padding: 4px 7px;
+  border: 1px solid rgb(255 255 255 / 72%);
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.cover-fallback-type {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
 }
 
 .rp-card-content { min-width: 0; }

@@ -12,7 +12,8 @@ reportsBrowser: true
     <p class="rp-eyebrow">Reports Library</p>
     <h1>Browse CLIR Reports</h1>
     <p>
-      Search across reports, choose how they are sorted, and open any report in the item view.
+      Explore research on digital libraries and archives, research practices and data, memory
+      organizations, and preserving information as a public good.
     </p>
     <p><a class="lp-btn" href="{{ '/annual-reports/' | url }}">Featured Collection: Annual Reports</a></p>
   </div>
@@ -86,15 +87,15 @@ reportsBrowser: true
         {% set thumbnail250 = r.links and r.links.thumbnails and (r.links.thumbnails["250"] or r.links.thumbnails["100"]) %}
         {% set thumbnail750 = r.links and r.links.thumbnails and (r.links.thumbnails["750"] or thumbnail250) %}
         <li
-          class="rp-card{% if thumbnail250 %} rp-card-with-cover{% endif %}"
+          class="rp-card rp-card-with-cover"
           data-report-card
           data-title="{{ r.title }}"
           data-published="{{ r.published }}"
           data-categories="{{ categories }}"
           data-searchable="{{ r.title }} {{ authors }} {{ summaryText }}"
         >
+          <div class="rp-card-cover{% if not thumbnail250 %} rp-card-cover-fallback{% endif %}" aria-hidden="true">
           {% if thumbnail250 %}
-            <div class="rp-card-cover" aria-hidden="true">
               <img
                 src="{{ thumbnail250 }}"
                 srcset="{{ thumbnail250 }} 250w, {{ thumbnail750 }} 750w"
@@ -106,8 +107,11 @@ reportsBrowser: true
                 {% if loop.index <= 2 %}fetchpriority="high"{% endif %}
                 decoding="async"
               />
-            </div>
+          {% else %}
+              <span class="cover-fallback-mark">CLIR</span>
+              <span class="cover-fallback-type">Report</span>
           {% endif %}
+          </div>
           <div class="rp-card-content">
             <h2>
               <a href="{{ ('/reports/zenodo-' + r.zenodo_id + '/') | url }}">{{ r.title }}</a>

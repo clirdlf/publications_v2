@@ -11,7 +11,7 @@
 
   <div class="lp-topbar">
     <div class="lp-container lp-topbar-inner">
-      <a class="lp-brand" href="https://www.clir.org/" aria-label="Visit clir.org">
+      <a class="lp-brand" href="{{ '/' | url }}" aria-label="CLIR Publications home">
         <img
           class="lp-brand-logo"
           src="{{ '/assets/logos/CLIR-logo-bounded-red-hairline.svg' | url }}"
@@ -19,6 +19,7 @@
           width="126"
           height="64.76"
         />
+        <span class="lp-brand-section">Publications</span>
       </a>
 
       <button
@@ -39,6 +40,7 @@
           <a href="{{ '/podcasts/' | url }}"{% if navPage == "podcasts" %} aria-current="page"{% endif %}>Podcasts</a>
           <a href="{{ '/videos/' | url }}"{% if navPage == "videos" %} aria-current="page"{% endif %}>Videos</a>
           <a href="{{ '/about/' | url }}"{% if navPage == "about" %} aria-current="page"{% endif %}>About</a>
+          <a class="lp-main-site-link" href="https://dev.clir.org/clir/">Main CLIR site <span aria-hidden="true">↗</span></a>
           <a class="lp-mobile-search-link" href="{{ '/#lp-search' | url }}">Search</a>
         </nav>
       </div>

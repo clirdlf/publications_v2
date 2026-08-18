@@ -40,6 +40,9 @@ navPage: reports
           <div class="lp-media lp-media-report{{ (loop.index0 % 4) + 1 }}">
             {% if thumbnail %}
               {% image thumbnail, "Cover image for " + report.title, "(max-width: 760px) 100vw, 220px", [220, 440, 660], "lp-media-image lp-media-image-contain" %}
+            {% else %}
+              <span class="cover-fallback-mark">CLIR</span>
+              <span class="cover-fallback-type">Annual report</span>
             {% endif %}
             <span class="lp-year-badge">{{ report.published | yearOffset(-1) }}</span>
           </div>
