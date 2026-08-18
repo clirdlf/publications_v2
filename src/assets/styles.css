@@ -8,8 +8,10 @@
   --color-clir-cream: #fbf8f5;
   --color-clir-cream-deep: #f3ede7;
   --color-clir-maroon: #9d2235;
-  --color-clir-maroon-dark: #901b2d;
+  /* --color-clir-maroon-dark: #901b2d; */
+  --color-clir-maroon-dark: #901B2D;
   --color-clir-steel-blue: #7C9EB2;
+  --color-link-blue: #296BA4;
 
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "ABC Otto", ui-serif, Georgia, serif;
