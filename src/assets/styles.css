@@ -4,6 +4,8 @@
    Usually not needed in v4 because content detection is automatic. */
 /* @source "../src"; */
 
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
 /* ABC Otto font family */
 @font-face {
   font-family: "ABC Otto";
@@ -11,6 +13,31 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
+}
+
+@font-face {
+  font-family: "ABC Otto";
+  src: url("./fonts/Otto/ABCOtto-RegularItalic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ABC Otto";
+  src: url("./fonts/Otto/ABCOtto-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+.instrument-sans-400 {
+  font-family: "Instrument Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 }
 
 /* About page */
@@ -79,32 +106,7 @@
   .about-email-button { width: 100%; }
 }
 
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-@font-face {
-  font-family: "ABC Otto";
-  src: url("./fonts/Otto/ABCOtto-RegularItalic.woff2") format("woff2");
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "ABC Otto";
-  src: url("./fonts/Otto/ABCOtto-Bold.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-}
-
-.instrument-sans-<uniquifier> {
-  font-family: "Instrument Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
-}
 
 
 /* CLIR tokens (Tailwind v4 CSS-first config) */
@@ -230,9 +232,11 @@
 .lp-brand-section {
   padding-left: 14px;
   border-left: 1px solid var(--clir-border);
+  font-family: var(--font-serif);
   color: var(--clir-black);
-  font-size: .92rem;
-  font-weight: 600;
+  /* font-size: .92rem; */
+  font-size: 2.0rem;
+  font-weight: 400;
   letter-spacing: .04em;
 }
 
