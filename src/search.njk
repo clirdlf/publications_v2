@@ -1,0 +1,40 @@
+---
+layout: base.njk
+title: Search - CLIR Publications
+description: Search CLIR reports, podcasts, and videos.
+noindex: true
+permalink: search/index.html
+---
+<section class="search-page-hero">
+  <div class="lp-container search-page-heading">
+    <p class="eyebrow">CLIR Publications</p>
+    <h1>Search results</h1>
+    <form class="lp-searchbar search-page-form" role="search" aria-label="Search publications" method="get" action="{{ '/search/' | url }}" data-site-search>
+      <label class="sr-only" for="search-page-input">Search publications</label>
+      <input id="search-page-input" name="q" type="search" placeholder="Search publications..." autocomplete="off" data-search-input />
+      <button type="submit">Search</button>
+    </form>
+  </div>
+</section>
+
+<section class="search-page-results" data-search-results aria-live="polite" aria-busy="false">
+  <div class="lp-container search-page-inner">
+    <div class="search-page-summary">
+      <p class="search-page-status" data-search-status role="status">Enter a title, author, or keyword to search the collection.</p>
+      <label class="search-page-filter" hidden data-search-filter-wrap>
+        <span>Filter by type</span>
+        <select data-search-filter>
+          <option value="all">All types</option>
+          <option value="publication">Reports</option>
+          <option value="podcast">Podcasts</option>
+          <option value="video">Videos</option>
+        </select>
+      </label>
+    </div>
+    <ul class="search-page-list" data-search-list></ul>
+    <div class="search-page-empty" data-search-empty hidden>
+      <h2>No matching publications</h2>
+      <p>Check the spelling, try fewer words, or use a broader search term.</p>
+    </div>
+  </div>
+</section>

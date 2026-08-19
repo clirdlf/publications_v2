@@ -8,15 +8,16 @@
 
   const status = root.querySelector("[data-search-status]");
   const list = root.querySelector("[data-search-list]");
+  const empty = root.querySelector("[data-search-empty]");
+  const filter = root.querySelector("[data-search-filter]");
+  const filterWrap = root.querySelector("[data-search-filter-wrap]");
   let docsPromise;
+  let currentResults = [];
+  let currentQuery = "";
 
   function withPathPrefix(pathname) {
-    if (!pathname || typeof pathname !== "string") return pathname;
-    if (!pathname.startsWith("/")) return pathname;
-
-    const normalizedPrefix = rawPathPrefix.endsWith("/")
-      ? rawPathPrefix.slice(0, -1)
-      : rawPathPrefix;
+    if (!pathname || typeof pathname !== "string" || !pathname.startsWith("/")) return pathname;
+    const normalizedPrefix = rawPathPrefix.endsWith("/") ? rawPathPrefix.slice(0, -1) : rawPathPrefix;
     if (!normalizedPrefix || normalizedPrefix === "/") return pathname;
     return `${normalizedPrefix}${pathname}`;
   }
@@ -34,7 +35,18 @@
     if (!value) return "";
     const date = new Date(value);
     if (Number.isNaN(date.getTime())) return "";
-    return date.toISOString().slice(0, 10);
+    return new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      timeZone: "UTC",
+    }).format(date);
+  }
+
+  function documentType(doc) {
+    if (doc.type === "podcast") return { key: "podcast", label: "Podcast" };
+    if (doc.type === "video") return { key: "video", label: "Video" };
+    return { key: "publication", label: "Report" };
   }
 
   function scoreDocument(doc, terms) {
@@ -51,7 +63,6 @@
       if (creators.includes(term)) score += 5;
       score += 1;
     }
-
     return score;
   }
 
@@ -59,101 +70,87 @@
     if (!docsPromise) {
       docsPromise = fetch(withPathPrefix("/assets/search-index.json"))
         .then((response) => {
-          if (!response.ok) {
-            throw new Error(`Search index request failed (${response.status})`);
-          }
+          if (!response.ok) throw new Error(`Search index request failed (${response.status})`);
           return response.json();
         })
         .then((payload) => payload.docs || []);
     }
-
     return docsPromise;
   }
 
-  function renderStatus(message) {
-    status.textContent = message;
-  }
+  function renderResults() {
+    const selectedType = filter?.value || "all";
+    const visible = currentResults.filter(({ doc }) => {
+      return selectedType === "all" || documentType(doc).key === selectedType;
+    });
+    const typeLabel = filter?.selectedOptions[0]?.textContent.toLowerCase() || "results";
 
-  function renderResults(query, docs) {
-    const terms = query
-      .toLowerCase()
-      .split(/\s+/)
-      .map((term) => term.trim())
-      .filter(Boolean);
-
-    if (terms.length === 0) {
-      root.hidden = true;
-      renderStatus("");
-      list.innerHTML = "";
-      return;
-    }
-
-    const ranked = docs
-      .map((doc) => ({ doc, score: scoreDocument(doc, terms) }))
-      .filter((entry) => entry.score > 0)
-      .sort((a, b) => b.score - a.score || (b.doc.published || "").localeCompare(a.doc.published || ""))
-      .slice(0, 24);
-
-    root.hidden = false;
-    renderStatus(`Found ${ranked.length} result${ranked.length === 1 ? "" : "s"} for "${query}".`);
-
-    if (ranked.length === 0) {
-      list.innerHTML = "";
-      return;
-    }
-
-    list.innerHTML = ranked
-      .map(({ doc }) => {
-        const published = formatDate(doc.published);
-        const type = doc.type === "podcast" ? "Podcast" : doc.type === "video" ? "Video" : "Publication";
-        return `<li class="lp-search-item">
-          <a href="${escapeHtml(withPathPrefix(doc.url || "/"))}">${escapeHtml(doc.title || "Untitled publication")}</a>
-          <p>${escapeHtml(type)}${doc.creators ? ` · ${escapeHtml(doc.creators)}` : ""}${published ? ` · ${escapeHtml(published)}` : ""}</p>
-        </li>`;
-      })
-      .join("");
+    status.textContent = selectedType === "all"
+      ? `${visible.length} result${visible.length === 1 ? "" : "s"} for “${currentQuery}”`
+      : `${visible.length} ${typeLabel} for “${currentQuery}”`;
+    empty.hidden = visible.length !== 0;
+    list.innerHTML = visible.map(({ doc }) => {
+      const published = formatDate(doc.published);
+      const type = documentType(doc);
+      return `<li class="search-page-item">
+        <h2><a href="${escapeHtml(withPathPrefix(doc.url || "/"))}">${escapeHtml(doc.title || "Untitled publication")}</a></h2>
+        <p class="search-page-meta"><span>${type.label}</span>${doc.creators ? ` · ${escapeHtml(doc.creators)}` : ""}${published ? ` · <time datetime="${escapeHtml(doc.published)}">${escapeHtml(published)}</time>` : ""}</p>
+      </li>`;
+    }).join("");
   }
 
   async function run(query) {
-    const normalized = query.trim();
-    if (!normalized) {
-      root.hidden = true;
-      renderStatus("");
+    currentQuery = query.trim();
+    if (!currentQuery) {
+      currentResults = [];
+      status.textContent = "Enter a title, author, or keyword to search the collection.";
       list.innerHTML = "";
+      empty.hidden = true;
+      filterWrap.hidden = true;
       return;
     }
 
+    root.setAttribute("aria-busy", "true");
+    status.textContent = "Searching…";
+    list.innerHTML = "";
+    empty.hidden = true;
+    filterWrap.hidden = true;
+
     try {
-      renderStatus("Searching...");
-      root.hidden = false;
+      const terms = currentQuery.toLowerCase().split(/\s+/).filter(Boolean);
       const docs = await getDocs();
-      renderResults(normalized, docs);
+      currentResults = docs
+        .map((doc) => ({ doc, score: scoreDocument(doc, terms) }))
+        .filter((entry) => entry.score > 0)
+        .sort((a, b) => b.score - a.score || (b.doc.published || "").localeCompare(a.doc.published || ""));
+      filterWrap.hidden = currentResults.length === 0;
+      renderResults();
     } catch (error) {
-      renderStatus("Search is temporarily unavailable.");
-      list.innerHTML = "";
-      // eslint-disable-next-line no-console
+      status.textContent = "Search is temporarily unavailable. Try again in a moment.";
       console.error(error);
+    } finally {
+      root.setAttribute("aria-busy", "false");
     }
   }
 
-  function syncUrl(query) {
-    const params = new URLSearchParams(window.location.search);
-    if (query) params.set("q", query);
-    else params.delete("q");
-    const next = params.toString() ? `?${params.toString()}` : window.location.pathname;
-    window.history.replaceState({}, "", next);
-  }
-
-  form.addEventListener("submit", async (event) => {
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
     const query = input.value.trim();
-    syncUrl(query);
-    await run(query);
+    const url = new URL(window.location.href);
+    if (query) url.searchParams.set("q", query);
+    else url.searchParams.delete("q");
+    window.history.pushState({}, "", url);
+    run(query);
+  });
+
+  filter?.addEventListener("change", renderResults);
+  window.addEventListener("popstate", () => {
+    const query = new URLSearchParams(window.location.search).get("q") || "";
+    input.value = query;
+    run(query);
   });
 
   const initialQuery = new URLSearchParams(window.location.search).get("q") || "";
-  if (initialQuery) {
-    input.value = initialQuery;
-    run(initialQuery);
-  }
+  input.value = initialQuery;
+  run(initialQuery);
 })();

@@ -12,8 +12,7 @@ layout: base.njk
             role="search"
             aria-label="Search publications"
             method="get"
-            action="{{ '/' | url }}"
-            data-site-search
+            action="{{ '/search/' | url }}"
         >
             <label class="sr-only" for="lp-search">Search publications</label>
             <input
@@ -25,11 +24,6 @@ layout: base.njk
             />
             <button type="submit">Search</button>
         </form>
-
-        <section class="lp-search-results" data-search-results hidden aria-live="polite">
-            <p class="lp-search-status" data-search-status></p>
-            <ul class="lp-search-list" data-search-list></ul>
-        </section>
 
         <p class="lp-reports-link">
             <a class="button button-primary" href="{{ '/reports/' | url }}">Browse all reports</a>

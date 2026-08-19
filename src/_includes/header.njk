@@ -41,12 +41,12 @@
           <a href="{{ '/videos/' | url }}"{% if navPage == "videos" %} aria-current="page"{% endif %}>Videos</a>
           <a href="{{ '/about/' | url }}"{% if navPage == "about" %} aria-current="page"{% endif %}>About</a>
           <a class="lp-main-site-link" href="https://dev.clir.org/clir/">Main CLIR site <span aria-hidden="true">↗</span></a>
-          <a class="lp-mobile-search-link" href="{{ '/#lp-search' | url }}">Search</a>
+          <a class="lp-mobile-search-link" href="{{ '/search/' | url }}">Search</a>
         </nav>
       </div>
 
       <div class="lp-header-actions">
-        <form class="lp-header-search-form" role="search" method="get" action="{{ '/' | url }}">
+        <form class="lp-header-search-form" role="search" method="get" action="{{ '/search/' | url }}">
           <div class="lp-header-search-box">
             <button
               class="lp-header-search"

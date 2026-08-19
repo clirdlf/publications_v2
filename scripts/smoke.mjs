@@ -14,6 +14,7 @@ async function main() {
   const dist = path.join(process.cwd(), "dist");
   const indexHtml = path.join(dist, "index.html");
   const searchIndex = path.join(dist, "assets", "search-index.json");
+  const searchHtml = path.join(dist, "search", "index.html");
   const notFoundHtml = path.join(dist, "404.html");
   const robotsTxt = path.join(dist, "robots.txt");
   const sitemapXml = path.join(dist, "sitemap.xml");
@@ -25,13 +26,14 @@ async function main() {
   if (!(await exists(searchIndex))) {
     throw new Error("Smoke failed: dist/assets/search-index.json missing (index step likely failed)");
   }
-  for (const requiredPath of [notFoundHtml, robotsTxt, sitemapXml, cname]) {
+  for (const requiredPath of [searchHtml, notFoundHtml, robotsTxt, sitemapXml, cname]) {
     if (!(await exists(requiredPath))) {
       throw new Error(`Smoke failed: required launch artifact missing (${requiredPath})`);
     }
   }
 
   const renderedHome = await fs.readFile(indexHtml, "utf8");
+  const renderedSearch = await fs.readFile(searchHtml, "utf8");
   if (!renderedHome.includes('rel="canonical" href="https://clirdlf.github.io/publications_v2/"')) {
     throw new Error("Smoke failed: homepage production canonical is missing or incorrect");
   }
@@ -40,6 +42,12 @@ async function main() {
   }
   if (/UA-XXXXXXXXX-X|googletagmanager\.com/.test(renderedHome)) {
     throw new Error("Smoke failed: placeholder or unconfigured analytics rendered");
+  }
+  if (!renderedHome.includes('action="/publications_v2/search/"')) {
+    throw new Error("Smoke failed: homepage search does not target the dedicated search page");
+  }
+  if (!renderedSearch.includes("data-search-results")) {
+    throw new Error("Smoke failed: dedicated search page is missing its results region");
   }
 
   const renderedNotFound = await fs.readFile(notFoundHtml, "utf8");
