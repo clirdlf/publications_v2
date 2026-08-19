@@ -27,7 +27,7 @@ Deutsche Forschungsgemeinschaft
 _Hartmut Weber  
 Landesarchivdirektion Baden-Württemberg, Stuttgart_
 
-_Marianne Dr_
+_Marianne Dörr_
 
 _Bayerische Staatsbibliothek, München_
 
