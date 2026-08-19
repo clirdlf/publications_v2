@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "title": "Preservation in the Digital World",
+  "output": "report.md",
+  "contentSelector": ".elementor-widget-theme-post-content .elementor-widget-container",
+  "imageOutput": "src/images/legacy/conway2",
+  "imagePublicPath": "/images/legacy/conway2/",
+  "pages": [
+    "pages/index.html",
+    "pages/index/index.html"
+  ],
+  "notes": "Review page order and remove landing or duplicate pages before conversion."
+}

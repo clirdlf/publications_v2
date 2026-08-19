@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-19T17:10:17.117Z",
+  "rootUrl": "https://www.clir.org/pubs/reports/pub5/",
+  "scope": {
+    "origin": "https://www.clir.org",
+    "pathPrefix": "/pubs/reports/pub5/",
+    "maxPages": 100
+  },
+  "pages": [
+    {
+      "url": "https://www.clir.org/pubs/reports/pub5/",
+      "outputPath": "pages/index.html",
+      "title": "Image Formats for Preservation and Access. A Report of the Technology Assessment Advisory Committee • CLIR"
+    },
+    {
+      "url": "https://www.clir.org/pubs/reports/pub5/ogden/",
+      "outputPath": "pages/ogden/index.html",
+      "title": "On the Preservation of Books and Documents in Original Form • CLIR"
+    },
+    {
+      "url": "https://www.clir.org/pubs/reports/pub5/select/",
+      "outputPath": "pages/select/index.html",
+      "title": "Selection for Preservation of Research Library Materials • CLIR"
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://www.clir.org/wp-content/uploads/sites/6/2020/07/Pub-5-Lesk.pdf",
+      "outputPath": "assets/www.clir.org/wp-content/uploads/sites/6/2020/07/Pub-5-Lesk.pdf",
+      "contentType": "application/pdf",
+      "bytes": 300766
+    },
+    {
+      "url": "https://www.clir.org/wp-content/uploads/sites/6/2016/09/clir.png",
+      "outputPath": "assets/www.clir.org/wp-content/uploads/sites/6/2016/09/clir.png",
+      "contentType": "image/png",
+      "bytes": 31732
+    },
+    {
+      "url": "https://www.clir.org/wp-content/uploads/sites/6/2022/10/Screen-Shot-2022-09-28-at-3.05.42-PM-150x150.png",
+      "outputPath": "assets/www.clir.org/wp-content/uploads/sites/6/2022/10/Screen-Shot-2022-09-28-at-3.05.42-PM-150x150.png",
+      "contentType": "image/png",
+      "bytes": 4913
+    },
+    {
+      "url": "https://www.clir.org/wp-content/uploads/sites/6/2021/01/Back-to-Top.svg",
+      "outputPath": "assets/www.clir.org/wp-content/uploads/sites/6/2021/01/Back-to-Top.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 1114
+    },
+    {
+      "url": "https://www.clir.org/wp-content/uploads/sites/6/2016/09/clir-150x150.png",
+      "outputPath": "assets/www.clir.org/wp-content/uploads/sites/6/2016/09/clir-150x150.png",
+      "contentType": "image/png",
+      "bytes": 8318
+    },
+    {
+      "url": "https://www.clir.org/wp-content/uploads/sites/6/2016/09/clir-300x300.png",
+      "outputPath": "assets/www.clir.org/wp-content/uploads/sites/6/2016/09/clir-300x300.png",
+      "contentType": "image/png",
+      "bytes": 23094
+    }
+  ],
+  "failures": []
+}

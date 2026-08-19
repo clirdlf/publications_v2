@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "title": "Digitization as a Method of Preservation?",
+  "output": "report.md",
+  "contentSelector": ".elementor-widget-theme-post-content .elementor-widget-container",
+  "imageOutput": "src/images/legacy/digpres",
+  "imagePublicPath": "/images/legacy/digpres/",
+  "pages": [
+    "pages/index.html",
+    "pages/contents/index.html",
+    "pages/digpres1/index.html",
+    "pages/digpres2/index.html",
+    "pages/digpres3/index.html",
+    "pages/digpres4/index.html",
+    "pages/digpres5/index.html",
+    "pages/digpres6/index.html",
+    "pages/digpres7/index.html"
+  ],
+  "notes": "Review page order and remove landing or duplicate pages before conversion."
+}

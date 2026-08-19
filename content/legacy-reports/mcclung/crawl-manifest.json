@@ -1,0 +1,551 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-19T17:12:30.034Z",
+  "rootUrl": "https://dev.clir.org/clir/pubs/reports/mcclung/",
+  "scope": {
+    "origin": "https://dev.clir.org",
+    "pathPrefix": "/clir/pubs/reports/mcclung/",
+    "maxPages": 100
+  },
+  "pages": [
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/",
+      "outputPath": "pages/index.html",
+      "title": "Digital Collections Inventory Report • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/index/",
+      "outputPath": "pages/index/index.html",
+      "title": "Digital Collections Inventory Report • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/mccllong/",
+      "outputPath": "pages/mccllong/index.html",
+      "title": "Digital Collections Inventory Report--Linear Version • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/fm/foreward/",
+      "outputPath": "pages/fm/foreward/index.html",
+      "title": "Foreword--Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/fm/preface/",
+      "outputPath": "pages/fm/preface/index.html",
+      "title": "Preface--Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/fm/context/",
+      "outputPath": "pages/fm/context/index.html",
+      "title": "Context--Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/fm/intro2/",
+      "outputPath": "pages/fm/intro2/index.html",
+      "title": "CPA/CLR Inventory--Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/fm/intro3/",
+      "outputPath": "pages/fm/intro3/index.html",
+      "title": "The Data--Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/fm/intro4/",
+      "outputPath": "pages/fm/intro4/index.html",
+      "title": "Finding out about Digitized Collections--Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/007-2/",
+      "outputPath": "pages/inv/007-2/index.html",
+      "title": "National Digital Library-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/008-2/",
+      "outputPath": "pages/inv/008-2/index.html",
+      "title": "Bibliotheque Nationale de France Mass Digitization-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/009-2/",
+      "outputPath": "pages/inv/009-2/index.html",
+      "title": "ARTFL-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/010-2/",
+      "outputPath": "pages/inv/010-2/index.html",
+      "title": "Australian Cooperative Digitisation Project-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/011-2/",
+      "outputPath": "pages/inv/011-2/index.html",
+      "title": "Making of America-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/012-2/",
+      "outputPath": "pages/inv/012-2/index.html",
+      "title": "Archivo General de Indias-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/013-2/",
+      "outputPath": "pages/inv/013-2/index.html",
+      "title": "International Relations Project-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/014-2/",
+      "outputPath": "pages/inv/014-2/index.html",
+      "title": "Project Janus-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/015-2/",
+      "outputPath": "pages/inv/015-2/index.html",
+      "title": "Project DIANA-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/016-2/",
+      "outputPath": "pages/inv/016-2/index.html",
+      "title": "U.S. Patent Office-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/017-2/",
+      "outputPath": "pages/inv/017-2/index.html",
+      "title": "Patent Express Jukebox-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/018-2/",
+      "outputPath": "pages/inv/018-2/index.html",
+      "title": "Studies in Scarlet-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/019-2/",
+      "outputPath": "pages/inv/019-2/index.html",
+      "title": "LAMP-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/020-2/",
+      "outputPath": "pages/inv/020-2/index.html",
+      "title": "Caribbean Newspapers-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/021-2/",
+      "outputPath": "pages/inv/021-2/index.html",
+      "title": "Ancient Near East and Classics Material-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/022-2/",
+      "outputPath": "pages/inv/022-2/index.html",
+      "title": "Papyrus Archives-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/023-2/",
+      "outputPath": "pages/inv/023-2/index.html",
+      "title": "Maine Folklife Center-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/024-2/",
+      "outputPath": "pages/inv/024-2/index.html",
+      "title": "Melchior Center for Recent History-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/025-2/",
+      "outputPath": "pages/inv/025-2/index.html",
+      "title": "Project Open Book-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/026-2/",
+      "outputPath": "pages/inv/026-2/index.html",
+      "title": "Burney Collection-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/026-3/",
+      "outputPath": "pages/inv/026-3/index.html",
+      "title": "American Memory-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/028-2/",
+      "outputPath": "pages/inv/028-2/index.html",
+      "title": "SWOC Collection-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/029-2/",
+      "outputPath": "pages/inv/029-2/index.html",
+      "title": "Carnegie Library of Pittsburgh Photographic Database-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/030-2/",
+      "outputPath": "pages/inv/030-2/index.html",
+      "title": "HELIOS-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/031-2/",
+      "outputPath": "pages/inv/031-2/index.html",
+      "title": "Paul Laurence Dunbar-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/032-2/",
+      "outputPath": "pages/inv/032-2/index.html",
+      "title": "Electronic Beowulf-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/033-2/",
+      "outputPath": "pages/inv/033-2/index.html",
+      "title": "Bureau of American Ethnology Reports-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/034-2/",
+      "outputPath": "pages/inv/034-2/index.html",
+      "title": "Sakharov Papers-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/035-2/",
+      "outputPath": "pages/inv/035-2/index.html",
+      "title": "CLASS Project-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/036-2/",
+      "outputPath": "pages/inv/036-2/index.html",
+      "title": "Networked Computer Science Tech Reports: Cornell University-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/037-2/",
+      "outputPath": "pages/inv/037-2/index.html",
+      "title": "U.S. Naval Research Laboratory Tech Reports-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/038-2/",
+      "outputPath": "pages/inv/038-2/index.html",
+      "title": "DAISY-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/039-2/",
+      "outputPath": "pages/inv/039-2/index.html",
+      "title": "Oppenheimer Papers-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/040-2/",
+      "outputPath": "pages/inv/040-2/index.html",
+      "title": "Pauling Collection-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/041-2/",
+      "outputPath": "pages/inv/041-2/index.html",
+      "title": "Louis Agassiz Fuertes Papers-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/042-2/",
+      "outputPath": "pages/inv/042-2/index.html",
+      "title": "National Agricultural Library Projects-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/043-2/",
+      "outputPath": "pages/inv/043-2/index.html",
+      "title": "National Agricultural Library-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/043a/",
+      "outputPath": "pages/inv/043a/index.html",
+      "title": "Pennsylvania Agricultural County Agent Reports-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/044-2/",
+      "outputPath": "pages/inv/044-2/index.html",
+      "title": "Core Literature of Agricultural Sciences-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/045-2/",
+      "outputPath": "pages/inv/045-2/index.html",
+      "title": "Performing Arts Collection-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/046-2/",
+      "outputPath": "pages/inv/046-2/index.html",
+      "title": "Pacific Collection-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/047-2/",
+      "outputPath": "pages/inv/047-2/index.html",
+      "title": "Israeli Posters-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/048-2/",
+      "outputPath": "pages/inv/048-2/index.html",
+      "title": "Digital Image Access Project-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/048a/",
+      "outputPath": "pages/inv/048a/index.html",
+      "title": "University of Georgia Rare Books and Manuscripts-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/049-2/",
+      "outputPath": "pages/inv/049-2/index.html",
+      "title": "Huntington Library-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/050-2/",
+      "outputPath": "pages/inv/050-2/index.html",
+      "title": "Wright Brothers Photographs-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/051-2/",
+      "outputPath": "pages/inv/051-2/index.html",
+      "title": "Basel Mission Archive-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/052-2/",
+      "outputPath": "pages/inv/052-2/index.html",
+      "title": "Project Delphi-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/053-2/",
+      "outputPath": "pages/inv/053-2/index.html",
+      "title": "California Heritage Digital Access Project-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/054-2/",
+      "outputPath": "pages/inv/054-2/index.html",
+      "title": "Project Utopia-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/055-2/",
+      "outputPath": "pages/inv/055-2/index.html",
+      "title": "Task Force on Digital Archiving-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/056-2/",
+      "outputPath": "pages/inv/056-2/index.html",
+      "title": "Online Books Evaluation-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/057-2/",
+      "outputPath": "pages/inv/057-2/index.html",
+      "title": "Integrated Library Multimedia System-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/058-2/",
+      "outputPath": "pages/inv/058-2/index.html",
+      "title": "Museum Educational Site Licensing Project-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/059-2/",
+      "outputPath": "pages/inv/059-2/index.html",
+      "title": "Encoded Archival Description Project-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/060-2/",
+      "outputPath": "pages/inv/060-2/index.html",
+      "title": "National Digital Library Federation-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/061-2/",
+      "outputPath": "pages/inv/061-2/index.html",
+      "title": "NSF-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/062-2/",
+      "outputPath": "pages/inv/062-2/index.html",
+      "title": "CHIO-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/063-2/",
+      "outputPath": "pages/inv/063-2/index.html",
+      "title": "JSTOR-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/064-2/",
+      "outputPath": "pages/inv/064-2/index.html",
+      "title": "Internet Library of Early Journals-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/065-2/",
+      "outputPath": "pages/inv/065-2/index.html",
+      "title": "TULIP-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/066-2/",
+      "outputPath": "pages/inv/066-2/index.html",
+      "title": "IBM and ISI-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/067-2/",
+      "outputPath": "pages/inv/067-2/index.html",
+      "title": "Clearinghouse of Image Databases-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/068-2/",
+      "outputPath": "pages/inv/068-2/index.html",
+      "title": "EJournal SiteGuide-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/069-2/",
+      "outputPath": "pages/inv/069-2/index.html",
+      "title": "Latin American Studies-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/070-2/",
+      "outputPath": "pages/app1/070-2/index.html",
+      "title": "Medieval Studies-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/070a/",
+      "outputPath": "pages/inv/070a/index.html",
+      "title": "Art-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/071-2/",
+      "outputPath": "pages/inv/071-2/index.html",
+      "title": "Literature and Literary Studies-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/072-2/",
+      "outputPath": "pages/inv/072-2/index.html",
+      "title": "ALEX-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/073-2/",
+      "outputPath": "pages/inv/073-2/index.html",
+      "title": "Electronic Text Center-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/074-2/",
+      "outputPath": "pages/inv/074-2/index.html",
+      "title": "CETH-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/inv/075-2/",
+      "outputPath": "pages/inv/075-2/index.html",
+      "title": "CMU Online Books:-Digital Collections Inventory • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/app1intr/",
+      "outputPath": "pages/app1/app1intr/index.html",
+      "title": "Digital Collections Inventory--Appendix II • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/076-2/",
+      "outputPath": "pages/app1/076-2/index.html",
+      "title": "Archivo General de Indias-Digital Collections Inventory--Appendix II • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/077-2/",
+      "outputPath": "pages/app1/077-2/index.html",
+      "title": "Arizona Sun-Digital Collections Inventory--Appendix II • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/078-2/",
+      "outputPath": "pages/app1/078-2/index.html",
+      "title": "AT&T-Digital Collections Inventory--Appendix II • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/079-2/",
+      "outputPath": "pages/app1/079-2/index.html",
+      "title": "Basel Mission Archive-Digital Collections Inventory--Appendix II • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/080-2/",
+      "outputPath": "pages/app1/080-2/index.html",
+      "title": "Bodleian Library-Digital Collections Inventory--Appendix II • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/081-2/",
+      "outputPath": "pages/app1/081-2/index.html",
+      "title": "Birmingham Public Library-Digital Collections Inventory--Appendix II • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/082-2/",
+      "outputPath": "pages/app1/082-2/index.html",
+      "title": "Boulder Public Library-Digital Collections Inventory--Appendix II • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/083-2/",
+      "outputPath": "pages/app1/083-2/index.html",
+      "title": "BYU-Digital Collections Inventory--Appendix II • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/084-2/",
+      "outputPath": "pages/app1/084-2/index.html",
+      "title": "Phoenix Project-Digital Collections Inventory--Appendix II • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/085-2/",
+      "outputPath": "pages/app1/085-2/index.html",
+      "title": "California State Long Beach-Digital Collections Inventory--Appendix II • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/086-2/",
+      "outputPath": "pages/app1/086-2/index.html",
+      "title": "CMU-Digital Collections Inventory--Appendix II • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/087-2/",
+      "outputPath": "pages/app1/087-2/index.html",
+      "title": "Cleveland Public Library-Digital Collections Inventory--Appendix II • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/088-2/",
+      "outputPath": "pages/app1/088-2/index.html",
+      "title": "Georgetown University-Digital Collections Inventory--Appendix II • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/089-2/",
+      "outputPath": "pages/app1/089-2/index.html",
+      "title": "Columbia University-Digital Collections Inventory--Appendix II • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/090-2/",
+      "outputPath": "pages/app1/090-2/index.html",
+      "title": "JANUS Project-Digital Collections Inventory--Appendix II • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/091-2/",
+      "outputPath": "pages/app1/091-2/index.html",
+      "title": "Cornell University--NEH Project-Digital Collections Inventory--Appendix II • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/093-2/",
+      "outputPath": "pages/app1/093-2/index.html",
+      "title": "KLIC Project-Digital Collections Inventory--Appendix II • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/mcclung/app1/094-2/",
+      "outputPath": "pages/app1/094-2/index.html",
+      "title": "CORE Project-Digital Collections Inventory--Appendix II • CLIR"
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2020/10/CLIR-logo.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2020/10/CLIR-logo.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 2811
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Search-Icon.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Search-Icon.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 797
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/mcclung.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/mcclung.gif",
+      "contentType": "image/gif",
+      "bytes": 682
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/CLIR-logo-banner-red.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/CLIR-logo-banner-red.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 24093
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Back-to-Top.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Back-to-Top.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 1114
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/cpa.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/cpa.gif",
+      "contentType": "image/gif",
+      "bytes": 4053
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-19T17:12:55.994Z",
+  "rootUrl": "https://dev.clir.org/clir/pubs/reports/digpres/",
+  "scope": {
+    "origin": "https://dev.clir.org",
+    "pathPrefix": "/clir/pubs/reports/digpres/",
+    "maxPages": 100
+  },
+  "pages": [
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/digpres/",
+      "outputPath": "pages/index.html",
+      "title": "Digitization as a Method of Preservation? • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/digpres/contents/",
+      "outputPath": "pages/contents/index.html",
+      "title": "Contents • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/digpres/digpres1/",
+      "outputPath": "pages/digpres1/index.html",
+      "title": "Section 1 • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/digpres/digpres2/",
+      "outputPath": "pages/digpres2/index.html",
+      "title": "Section 2 • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/digpres/digpres3/",
+      "outputPath": "pages/digpres3/index.html",
+      "title": "Section 3 • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/digpres/digpres4/",
+      "outputPath": "pages/digpres4/index.html",
+      "title": "Section 4 • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/digpres/digpres5/",
+      "outputPath": "pages/digpres5/index.html",
+      "title": "Section 5 • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/digpres/digpres6/",
+      "outputPath": "pages/digpres6/index.html",
+      "title": "Section 6 • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/digpres/digpres7/",
+      "outputPath": "pages/digpres7/index.html",
+      "title": "Section 7 • CLIR"
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2020/10/CLIR-logo.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2020/10/CLIR-logo.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 2811
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Search-Icon.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Search-Icon.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 797
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/CLIR-logo-banner-red.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/CLIR-logo-banner-red.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 24093
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Back-to-Top.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Back-to-Top.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 1114
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/1997/10/fig1.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/1997/10/fig1.gif",
+      "contentType": "image/gif",
+      "bytes": 18690
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig2.jpg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig2.jpg",
+      "contentType": "image/jpeg",
+      "bytes": 42368
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig2-175x300.jpg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig2-175x300.jpg",
+      "contentType": "image/jpeg",
+      "bytes": 13301
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "title": "Selecting Research Collections for Digitization-Full Report",
+  "output": "report.md",
+  "contentSelector": ".elementor-widget-theme-post-content .elementor-widget-container",
+  "imageOutput": "src/images/legacy/pub74",
+  "imagePublicPath": "/images/legacy/pub74/",
+  "pages": [
+    "pages/index.html"
+  ],
+  "notes": "Review page order and remove landing or duplicate pages before conversion."
+}

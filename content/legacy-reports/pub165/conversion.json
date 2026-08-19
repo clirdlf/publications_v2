@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "title": "Getting Found: SEO Cookbook",
+  "output": "report.md",
+  "contentSelector": ".elementor-widget-theme-post-content .elementor-widget-container",
+  "imageOutput": "src/images/legacy/pub165",
+  "imagePublicPath": "/images/legacy/pub165/",
+  "pages": [
+    "pages/index.html",
+    "pages/casestudy_msu/index.html",
+    "pages/stakeholder/index.html"
+  ],
+  "notes": "Review page order and remove landing or duplicate pages before conversion."
+}

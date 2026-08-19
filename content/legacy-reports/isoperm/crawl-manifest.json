@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-19T17:10:45.068Z",
+  "rootUrl": "https://dev.clir.org/clir/pubs/reports/isoperm/",
+  "scope": {
+    "origin": "https://dev.clir.org",
+    "pathPrefix": "/clir/pubs/reports/isoperm/",
+    "maxPages": 100
+  },
+  "pages": [
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/isoperm/",
+      "outputPath": "pages/index.html",
+      "title": "Isoperms - An Environmental Management Tool • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/isoperm/isoperm/",
+      "outputPath": "pages/isoperm/index.html",
+      "title": "Contents • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/isoperm/isop-pub/",
+      "outputPath": "pages/isop-pub/index.html",
+      "title": "Isoperms--Publication Info • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/isoperm/isop-int/",
+      "outputPath": "pages/isop-int/index.html",
+      "title": "Isoperms--Introduction • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/isoperm/isop-bas/",
+      "outputPath": "pages/isop-bas/index.html",
+      "title": "Isoperms--Scientific Basis • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/isoperm/isop-rh/",
+      "outputPath": "pages/isop-rh/index.html",
+      "title": "Isoperms--Relative Humidity • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/isoperm/isoperms-temperature/",
+      "outputPath": "pages/isoperms-temperature/index.html",
+      "title": "Isoperms--Temperature • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/isoperm/isop-com/",
+      "outputPath": "pages/isop-com/index.html",
+      "title": "Isoperms--Applications • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/isoperm/isop-app/",
+      "outputPath": "pages/isop-app/index.html",
+      "title": "Isoperms--Applications of Diagrams • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/isoperm/isop-num/",
+      "outputPath": "pages/isop-num/index.html",
+      "title": "Isoperms--Numerical Values • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/isoperm/isop-sum/",
+      "outputPath": "pages/isop-sum/index.html",
+      "title": "Isoperms--Summary • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/isoperm/isop-ref/",
+      "outputPath": "pages/isop-ref/index.html",
+      "title": "Isoperms--Readings & References • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/isoperm/fn1/",
+      "outputPath": "pages/fn1/index.html",
+      "title": "Isoperms--Note 1 • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/isoperm/fn2/",
+      "outputPath": "pages/fn2/index.html",
+      "title": "Isoperms--Note 2 • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/isoperm/fn3/",
+      "outputPath": "pages/fn3/index.html",
+      "title": "Isoperms--Note 3 • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/isoperm/fn4/",
+      "outputPath": "pages/fn4/index.html",
+      "title": "Isoperms--Note 4 • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/isoperm/fn5/",
+      "outputPath": "pages/fn5/index.html",
+      "title": "Isoperms--Note 5 • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/isoperm/fn6/",
+      "outputPath": "pages/fn6/index.html",
+      "title": "Isoperms--Note 6 • CLIR"
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2020/10/CLIR-logo.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2020/10/CLIR-logo.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 2811
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Search-Icon.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Search-Icon.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 797
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/CLIR-logo-banner-red.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/CLIR-logo-banner-red.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 24093
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Back-to-Top.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Back-to-Top.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 1114
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/cpa.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/cpa.gif",
+      "contentType": "image/gif",
+      "bytes": 4053
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/equat3.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/equat3.gif",
+      "contentType": "image/gif",
+      "bytes": 4264
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/deltah.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/deltah.gif",
+      "contentType": "image/gif",
+      "bytes": 201
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/equat4.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/equat4.gif",
+      "contentType": "image/gif",
+      "bytes": 5117
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/equat5.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/equat5.gif",
+      "contentType": "image/gif",
+      "bytes": 5328
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig1-1.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig1-1.gif",
+      "contentType": "image/gif",
+      "bytes": 18905
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig2.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig2.gif",
+      "contentType": "image/gif",
+      "bytes": 36546
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig3.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig3.gif",
+      "contentType": "image/gif",
+      "bytes": 29665
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig4.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig4.gif",
+      "contentType": "image/gif",
+      "bytes": 39031
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig5.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig5.gif",
+      "contentType": "image/gif",
+      "bytes": 40276
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig6.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig6.gif",
+      "contentType": "image/gif",
+      "bytes": 31363
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig7.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig7.gif",
+      "contentType": "image/gif",
+      "bytes": 39138
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/equat2a.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/equat2a.gif",
+      "contentType": "image/gif",
+      "bytes": 4470
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/equatx1.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/equatx1.gif",
+      "contentType": "image/gif",
+      "bytes": 3105
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/equatx2.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/equatx2.gif",
+      "contentType": "image/gif",
+      "bytes": 3190
+    }
+  ],
+  "failures": []
+}

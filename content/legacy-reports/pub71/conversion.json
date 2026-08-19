@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "title": "Digitizing Historical Pictorial Collections for the Internet",
+  "output": "report.md",
+  "contentSelector": ".elementor-widget-theme-post-content .elementor-widget-container",
+  "imageOutput": "src/images/legacy/pub71",
+  "imagePublicPath": "/images/legacy/pub71/",
+  "pages": [
+    "pages/index.html"
+  ],
+  "notes": "Review page order and remove landing or duplicate pages before conversion."
+}

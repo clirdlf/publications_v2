@@ -16,4 +16,6 @@ yarn-error.log*
 .DS_Store
 .pnpm-store
 
-content/
+content/legacy-reports/*/pages/
+content/legacy-reports/*/assets/
+content/**/.DS_Store

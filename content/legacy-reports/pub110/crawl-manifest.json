@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-19T17:13:16.747Z",
+  "rootUrl": "https://dev.clir.org/clir/pubs/reports/pub110/",
+  "scope": {
+    "origin": "https://dev.clir.org",
+    "pathPrefix": "/clir/pubs/reports/pub110/",
+    "maxPages": 100
+  },
+  "pages": [
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/pub110/",
+      "outputPath": "pages/index.html",
+      "title": "Dimensions and Use of the Scholarly Information Environment: Introduction to a Data Set Assembled by the Digital Library Federation and Outsell, Inc. • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/pub110/introduction/",
+      "outputPath": "pages/introduction/index.html",
+      "title": "Introduction • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/pub110/tableslist/",
+      "outputPath": "pages/tableslist/index.html",
+      "title": "List of Tables • CLIR"
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2020/10/CLIR-logo.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2020/10/CLIR-logo.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 2811
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Search-Icon.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Search-Icon.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 797
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/CLIR-logo-banner-red.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/CLIR-logo-banner-red.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 24093
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Back-to-Top.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Back-to-Top.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 1114
+    }
+  ],
+  "failures": []
+}

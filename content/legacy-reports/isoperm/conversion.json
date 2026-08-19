@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "title": "Isoperms - An Environmental Management Tool",
+  "output": "report.md",
+  "contentSelector": ".elementor-widget-theme-post-content .elementor-widget-container",
+  "imageOutput": "src/images/legacy/isoperm",
+  "imagePublicPath": "/images/legacy/isoperm/",
+  "pages": [
+    "pages/index.html",
+    "pages/isoperm/index.html",
+    "pages/isop-pub/index.html",
+    "pages/isop-int/index.html",
+    "pages/isop-bas/index.html",
+    "pages/isop-rh/index.html",
+    "pages/isoperms-temperature/index.html",
+    "pages/isop-com/index.html",
+    "pages/isop-app/index.html",
+    "pages/isop-num/index.html",
+    "pages/isop-sum/index.html",
+    "pages/isop-ref/index.html",
+    "pages/fn1/index.html",
+    "pages/fn2/index.html",
+    "pages/fn3/index.html",
+    "pages/fn4/index.html",
+    "pages/fn5/index.html",
+    "pages/fn6/index.html"
+  ],
+  "notes": "Review page order and remove landing or duplicate pages before conversion."
+}

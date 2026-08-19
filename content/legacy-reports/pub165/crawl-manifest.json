@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-19T17:13:24.433Z",
+  "rootUrl": "https://dev.clir.org/clir/pubs/reports/pub165/",
+  "scope": {
+    "origin": "https://dev.clir.org",
+    "pathPrefix": "/clir/pubs/reports/pub165/",
+    "maxPages": 100
+  },
+  "pages": [
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/pub165/",
+      "outputPath": "pages/index.html",
+      "title": "Getting Found: SEO Cookbook • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/pub165/casestudy_msu/",
+      "outputPath": "pages/casestudy_msu/index.html",
+      "title": "Case Study: Montana State University Library Strategic Planning • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/pub165/stakeholder/",
+      "outputPath": "pages/stakeholder/index.html",
+      "title": "Stakeholder Roles and Survey of Survey of Web Properties • CLIR"
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/GF03WebMetricsAnalyticsSurveyopt.pdf",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/GF03WebMetricsAnalyticsSurveyopt.pdf",
+      "contentType": "application/pdf",
+      "bytes": 213224
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/GF04-PreplanForm.pdf",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/GF04-PreplanForm.pdf",
+      "contentType": "application/pdf",
+      "bytes": 50497
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2020/10/CLIR-logo.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2020/10/CLIR-logo.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 2811
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Search-Icon.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Search-Icon.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 797
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2015/05/getting-found-logo.jpg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2015/05/getting-found-logo.jpg",
+      "contentType": "image/jpeg",
+      "bytes": 6651
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/seo-logo-combo.jpg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/seo-logo-combo.jpg",
+      "contentType": "image/jpeg",
+      "bytes": 37947
+    },
+    {
+      "url": "https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png",
+      "outputPath": "assets/licensebuttons.net/l/by-nc-sa/3.0/88x31.png",
+      "contentType": "image/png",
+      "bytes": 1628
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/CLIR-logo-banner-red.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/CLIR-logo-banner-red.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 24093
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Back-to-Top.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Back-to-Top.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 1114
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-19T17:12:43.492Z",
+  "rootUrl": "https://dev.clir.org/clir/pubs/reports/conway2/",
+  "scope": {
+    "origin": "https://dev.clir.org",
+    "pathPrefix": "/clir/pubs/reports/conway2/",
+    "maxPages": 100
+  },
+  "pages": [
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/conway2/",
+      "outputPath": "pages/index.html",
+      "title": "Preservation in the Digital World • CLIR"
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/conway2/index/",
+      "outputPath": "pages/index/index.html",
+      "title": "Preservation in the Digital World • CLIR"
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2020/10/CLIR-logo.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2020/10/CLIR-logo.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 2811
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Search-Icon.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Search-Icon.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 797
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/conway.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/conway.gif",
+      "contentType": "image/gif",
+      "bytes": 1745
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/CLIR-logo-banner-red.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/CLIR-logo-banner-red.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 24093
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Back-to-Top.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Back-to-Top.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 1114
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/coverpic.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/coverpic.gif",
+      "contentType": "image/gif",
+      "bytes": 70367
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/thedigit.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/thedigit.gif",
+      "contentType": "image/gif",
+      "bytes": 8122
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/figure1.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/figure1.gif",
+      "contentType": "image/gif",
+      "bytes": 7505
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/fig1_57d70f7fde8a7.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/fig1_57d70f7fde8a7.gif",
+      "contentType": "image/gif",
+      "bytes": 32406
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/fig2_57d70f7fde9db.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/fig2_57d70f7fde9db.gif",
+      "contentType": "image/gif",
+      "bytes": 26805
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/fig3_57d70f7fdeb3a.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/fig3_57d70f7fdeb3a.gif",
+      "contentType": "image/gif",
+      "bytes": 29842
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/fig4_57d70f7fdec96.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/fig4_57d70f7fdec96.gif",
+      "contentType": "image/gif",
+      "bytes": 29129
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/fig5_57d70f7fdedfb.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/fig5_57d70f7fdedfb.gif",
+      "contentType": "image/gif",
+      "bytes": 17943
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/preservi.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/preservi.gif",
+      "contentType": "image/gif",
+      "bytes": 27822
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/fig6_57d70f7fdefc1.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/fig6_57d70f7fdefc1.gif",
+      "contentType": "image/gif",
+      "bytes": 18704
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/fig7_57d70f7fdf123.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/fig7_57d70f7fdf123.gif",
+      "contentType": "image/gif",
+      "bytes": 5593
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/fig8_57d70f7fdf283.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/fig8_57d70f7fdf283.gif",
+      "contentType": "image/gif",
+      "bytes": 19723
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig9.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig9.gif",
+      "contentType": "image/gif",
+      "bytes": 8214
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig10.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/fig10.gif",
+      "contentType": "image/gif",
+      "bytes": 18472
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/headrule.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2016/09/headrule.gif",
+      "contentType": "image/gif",
+      "bytes": 2709
+    }
+  ],
+  "failures": []
+}

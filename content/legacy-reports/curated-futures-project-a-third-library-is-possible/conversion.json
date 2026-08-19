@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "title": "Curated Futures Project: A Third Library is Possible",
+  "output": "report.md",
+  "contentSelector": ".elementor-element-6d1d719 .elementor-widget-container",
+  "imageOutput": "src/images/legacy/curated-futures-project-a-third-library-is-possible",
+  "imagePublicPath": "/images/legacy/curated-futures-project-a-third-library-is-possible/",
+  "pages": [
+    "pages/index.html"
+  ],
+  "notes": "Uses a page-specific Elementor content selector; verify it if the source is recrawled."
+}

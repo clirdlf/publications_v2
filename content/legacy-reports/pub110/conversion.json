@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "title": "Dimensions and Use of the Scholarly Information Environment: Introduction to a Data Set Assembled by the Digital Library Federation and Outsell, Inc.",
+  "output": "report.md",
+  "contentSelector": ".elementor-widget-theme-post-content .elementor-widget-container",
+  "imageOutput": "src/images/legacy/pub110",
+  "imagePublicPath": "/images/legacy/pub110/",
+  "pages": [
+    "pages/index.html",
+    "pages/introduction/index.html",
+    "pages/tableslist/index.html"
+  ],
+  "notes": "Review page order and remove landing or duplicate pages before conversion."
+}

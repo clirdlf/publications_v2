@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-19T17:13:11.751Z",
+  "rootUrl": "https://dev.clir.org/clir/pubs/reports/hazen/pub74/",
+  "scope": {
+    "origin": "https://dev.clir.org",
+    "pathPrefix": "/clir/pubs/reports/hazen/pub74/",
+    "maxPages": 100
+  },
+  "pages": [
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/hazen/pub74/",
+      "outputPath": "pages/index.html",
+      "title": "Selecting Research Collections for Digitization-Full Report • CLIR"
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2020/10/CLIR-logo.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2020/10/CLIR-logo.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 2811
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Search-Icon.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Search-Icon.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 797
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/hazen.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/hazen.gif",
+      "contentType": "image/gif",
+      "bytes": 9016
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/1998/08/matrix.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/1998/08/matrix.gif",
+      "contentType": "image/gif",
+      "bytes": 49282
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/CLIR-logo-banner-red.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/CLIR-logo-banner-red.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 24093
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Back-to-Top.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Back-to-Top.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 1114
+    },
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/hazen/pub74/matrix/",
+      "outputPath": "assets/matrix.gif",
+      "contentType": "image/gif",
+      "bytes": 49282
+    }
+  ],
+  "failures": []
+}

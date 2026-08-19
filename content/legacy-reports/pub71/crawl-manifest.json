@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-19T17:13:06.633Z",
+  "rootUrl": "https://dev.clir.org/clir/pubs/reports/ostrow/pub71/",
+  "scope": {
+    "origin": "https://dev.clir.org",
+    "pathPrefix": "/clir/pubs/reports/ostrow/pub71/",
+    "maxPages": 100
+  },
+  "pages": [
+    {
+      "url": "https://dev.clir.org/clir/pubs/reports/ostrow/pub71/",
+      "outputPath": "pages/index.html",
+      "title": "Digitizing Historical Pictorial Collections for the Internet • CLIR"
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2020/10/CLIR-logo.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2020/10/CLIR-logo.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 2811
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Search-Icon.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Search-Icon.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 797
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/ostrow.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/ostrow.gif",
+      "contentType": "image/gif",
+      "bytes": 57319
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/fig1_57d70f8001633.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/fig1_57d70f8001633.gif",
+      "contentType": "image/gif",
+      "bytes": 45179
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/fig2_57d70f8001763.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/fig2_57d70f8001763.gif",
+      "contentType": "image/gif",
+      "bytes": 36476
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/fig4_57d70f80018ad.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/fig4_57d70f80018ad.gif",
+      "contentType": "image/gif",
+      "bytes": 51177
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/fig5_57d70f80019f9.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/fig5_57d70f80019f9.gif",
+      "contentType": "image/gif",
+      "bytes": 47663
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/fig6_57d70f8001b17.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/fig6_57d70f8001b17.gif",
+      "contentType": "image/gif",
+      "bytes": 65771
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/fig7_57d70f8001c63.gif",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/fig7_57d70f8001c63.gif",
+      "contentType": "image/gif",
+      "bytes": 82536
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/CLIR-logo-banner-red.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/CLIR-logo-banner-red.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 24093
+    },
+    {
+      "url": "https://dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Back-to-Top.svg",
+      "outputPath": "assets/dev.clir.org/clir/wp-content/uploads/sites/2/2021/01/Back-to-Top.svg",
+      "contentType": "image/svg+xml",
+      "bytes": 1114
+    }
+  ],
+  "failures": []
+}

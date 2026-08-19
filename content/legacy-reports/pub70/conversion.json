@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "title": "Preservation and Archives in Vietnam",
+  "output": "report.md",
+  "contentSelector": ".elementor-widget-theme-post-content .elementor-widget-container",
+  "imageOutput": "src/images/legacy/pub70",
+  "imagePublicPath": "/images/legacy/pub70/",
+  "pages": [
+    "pages/index.html"
+  ],
+  "notes": "Review page order and remove landing or duplicate pages before conversion."
+}
