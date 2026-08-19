@@ -2252,7 +2252,6 @@ State Reports Project
 ---
 
 <a id="legacy-page-fm-foreward"></a>
-
 # Digital Collections Inventory Report
 
 By Patricia A. McClung  
