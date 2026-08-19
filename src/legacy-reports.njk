@@ -1,0 +1,24 @@
+---
+layout: base.njk
+title: Legacy report previews - CLIR Publications
+description: Editorial previews of converted legacy reports.
+permalink: "/legacy-reports/"
+noindex: true
+eleventyExcludeFromCollections: true
+---
+
+<section class="legacy-preview-index lp-container">
+  <p class="item-kicker">Migration workspace</p>
+  <h1>Legacy report previews</h1>
+  <p>Only reports with a generated <code>report.md</code> appear here.</p>
+
+  {% if legacyPreviews.length %}
+    <ul>
+      {% for report in legacyPreviews %}
+        <li><a href="{{ ('/legacy-reports/' + report.slug + '/') | url }}">{{ report.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No converted reports are available. Run <code>pnpm convert:legacy --slug &lt;slug&gt;</code>.</p>
+  {% endif %}
+</section>

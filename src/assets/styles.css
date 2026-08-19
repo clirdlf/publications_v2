@@ -36,6 +36,72 @@
   --font-serif: "ABC Otto", ui-serif, Georgia, serif;
 }
 
+/* Editorial preview for consolidated legacy report Markdown. */
+.legacy-report,
+.legacy-preview-index {
+  padding-bottom: 5rem;
+}
+
+.legacy-report-header {
+  max-width: 52rem;
+  padding: 3rem 0 2rem;
+  border-bottom: 1px solid var(--color-clir-border);
+}
+
+.legacy-report-header h1,
+.legacy-preview-index h1 {
+  margin-bottom: 1rem;
+}
+
+.legacy-report-body {
+  max-width: 52rem;
+  padding-top: 2rem;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.legacy-report-body :is(h1, h2, h3, h4, h5, h6) {
+  margin-top: 2.25em;
+  margin-bottom: 0.75em;
+}
+
+.legacy-report-body :is(p, ul, ol, blockquote, table, figure) {
+  margin-bottom: 1.25rem;
+}
+
+.legacy-report-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+}
+
+.legacy-report-body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.legacy-report-body :is(th, td) {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-clir-border);
+  vertical-align: top;
+}
+
+.legacy-preview-index {
+  padding-top: 4rem;
+}
+
+.legacy-preview-index ul {
+  margin-top: 2rem;
+  padding-left: 1.25rem;
+}
+
+.legacy-preview-index li {
+  margin-bottom: 0.75rem;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

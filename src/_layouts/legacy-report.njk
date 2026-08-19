@@ -1,0 +1,21 @@
+---
+layout: base.njk
+---
+
+<article class="legacy-report lp-container">
+  <nav class="item-breadcrumb pt-4" aria-label="Breadcrumb">
+    <a href="{{ '/' | url }}">Home</a><span aria-hidden="true">/</span>
+    <a href="{{ '/legacy-reports/' | url }}">Legacy report previews</a><span aria-hidden="true">/</span>
+    <span aria-current="page">Current report</span>
+  </nav>
+
+  <header class="legacy-report-header">
+    <p class="item-kicker">Migration preview</p>
+    <h1>{{ title }}</h1>
+    <p>This page is generated from the consolidated Markdown source for editorial review.</p>
+  </header>
+
+  <div class="legacy-report-body">
+    {{ content | safe }}
+  </div>
+</article>

@@ -20,6 +20,8 @@
     "build:production": "pnpm clean && pnpm fetch && pnpm redirects:map && pnpm css:build && pnpm index && pnpm build:11ty && pnpm smoke",
     "build:offline": "pnpm clean && pnpm redirects:map && pnpm css:build && pnpm index && pnpm build:11ty && pnpm smoke",
     "dev": "pnpm index && pnpm css:watch & pnpm dev:11ty",
+    "crawl:legacy": "node scripts/crawl-legacy-report.mjs",
+    "convert:legacy": "node scripts/convert-legacy-report.mjs",
     "fetch:zenodo": "node scripts/fetch-zenodo.mjs",
     "fetch:podcast": "node scripts/fetch-podcast.mjs",
     "fetch:youtube": "node scripts/fetch-youtube.mjs",
@@ -38,9 +40,11 @@
     "@11ty/eleventy-img": "^6.0.4",
     "@tailwindcss/postcss": "^4.3.3",
     "autoprefixer": "^10.5.4",
+    "cheerio": "^1.2.0",
     "postcss": "^8.5.26",
     "postcss-cli": "^11.0.1",
     "tailwindcss": "^4.3.3",
+    "turndown": "^7.2.4",
     "vitest": "^2.1.9"
   }
 }

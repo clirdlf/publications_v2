@@ -1,5 +1,6 @@
 // eleventy.config.js (CommonJS is simplest with 11ty)
 const path = require("path");
+const fs = require("fs");
 const Image = require("@11ty/eleventy-img");
 const { isAnnualReport, isLegacyDeposit } = require("./src/lib/report-utils.cjs");
 const {
@@ -114,10 +115,40 @@ module.exports = function (eleventyConfig) {
     "src/assets/logos/CLIR-logo-bounded-red-hairline.svg": "assets/logos/CLIR-logo-bounded-red-hairline.svg",
   });
   eleventyConfig.addPassthroughCopy("src/CNAME");
+  eleventyConfig.addPassthroughCopy({ "src/images": "images" });
 
   // Useful: watch data files so changes trigger rebuild
   eleventyConfig.addWatchTarget("./src/_data/");
   eleventyConfig.addWatchTarget("./scripts/");
+  eleventyConfig.addWatchTarget("./content/legacy-reports/", { resetConfig: true });
+
+  const legacyContentRoot = path.join(__dirname, "content", "legacy-reports");
+  const legacyPreviews = [];
+  if (fs.existsSync(legacyContentRoot)) {
+    for (const entry of fs.readdirSync(legacyContentRoot, { withFileTypes: true })) {
+      if (!entry.isDirectory() || !/^[a-z0-9][a-z0-9-]*$/i.test(entry.name)) continue;
+      const markdownPath = path.join(legacyContentRoot, entry.name, "report.md");
+      const recipePath = path.join(legacyContentRoot, entry.name, "conversion.json");
+      if (!fs.existsSync(markdownPath) || !fs.existsSync(recipePath)) continue;
+      const recipe = JSON.parse(fs.readFileSync(recipePath, "utf8"));
+      const title = recipe.title || entry.name;
+      legacyPreviews.push({ slug: entry.name, title });
+      eleventyConfig.addTemplate(
+        `legacy-reports/${entry.name}.md`,
+        fs.readFileSync(markdownPath, "utf8"),
+        {
+          layout: "legacy-report.njk",
+          permalink: `/legacy-reports/${entry.name}/index.html`,
+          title,
+          legacySlug: entry.name,
+          noindex: true,
+          eleventyExcludeFromCollections: true,
+        }
+      );
+    }
+  }
+  legacyPreviews.sort((a, b) => a.title.localeCompare(b.title));
+  eleventyConfig.addGlobalData("legacyPreviews", legacyPreviews);
 
   // Filters
   eleventyConfig.addFilter("isoDate", isoDate);

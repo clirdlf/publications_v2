@@ -170,3 +170,75 @@ When you are ready to migrate actual reports:
 3. Merge that data with Zenodo records into one reports collection.
 4. Generate redirects from each package's `legacy_urls`.
 5. Keep PDFs optional but supported as downloadable files.
+
+## Capture a legacy report
+
+Use the scoped crawler to create a local source package before converting the
+report to Markdown. The crawler follows only HTML pages on the same origin and
+under the supplied publication path. It downloads images and linked files,
+rewrites local references, and records every captured URL in
+`crawl-manifest.json`.
+
+Preview the scope without writing files:
+
+```bash
+pnpm crawl:legacy --url https://www.clir.org/pubs/reports/isoperm/ --dry-run
+```
+
+Capture the publication:
+
+```bash
+pnpm crawl:legacy --url https://www.clir.org/pubs/reports/isoperm/
+```
+
+To crawl the maintained migration inventory, preview the entire batch first:
+
+```bash
+pnpm crawl:legacy --file docs/legacy-report-urls.txt --dry-run
+```
+
+Then capture every publication package:
+
+```bash
+pnpm crawl:legacy --file docs/legacy-report-urls.txt
+```
+
+The list accepts one publication root URL per line. Blank lines and lines that
+start with `#` are ignored. Keep this inventory in `docs/` because it is a
+human-maintained migration input rather than production site data.
+
+## Check and convert captured reports
+
+Edit each package's `conversion.json` to choose and order the captured pages.
+Validate one recipe without writing files:
+
+```bash
+pnpm convert:legacy --slug isoperm --check
+```
+
+Validate every recipe:
+
+```bash
+pnpm convert:legacy --all --check
+```
+
+Remove `--check` to write `report.md` into each package and copy referenced
+publication images into `src/images/legacy/<slug>/`. Generated Markdown uses
+public image paths such as `/images/legacy/isoperm/fig1.gif`.
+
+Preview generated reports with the local site:
+
+```bash
+pnpm dev
+```
+
+Open `http://localhost:8080/legacy-reports/`. Only packages with a generated
+`report.md` appear in this editorial preview index. Preview pages are excluded
+from collections and marked `noindex` until they are integrated into the main
+reports catalog.
+
+The default destination is
+`content/legacy-reports/<url-slug>/`. Use `--slug`, `--output`, `--max-pages`,
+and `--delay-ms` to override the defaults. Treat the resulting `pages/`
+directory as captured source. Create edited Markdown separately so the source
+snapshot and its provenance remain intact.
