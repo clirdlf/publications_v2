@@ -2,6 +2,7 @@
 title: "Preservation in the Digital World"
 legacy_source: "conway2"
 ---
+
 <a id="legacy-page-index"></a>
 
 pub62. **Preservation in the Digital World**  
@@ -19,7 +20,7 @@ _This publication is now out-of-stock and can not be ordered._
 
 <a id="legacy-page-index"></a>
 
-# Preservation in the Digital World
+## Preservation in the Digital World
 
 ![coverpic.gif](/images/legacy/conway2/coverpic.gif "coverpic.gif")
 
@@ -29,7 +30,7 @@ Yale University Library
 
 March 1996
 
-### Author’s Acknowledgement
+## Author’s Acknowledgement
 
 A sincere thank you to Janet Gertz, Anne Kenney, Jan Merrill-Oldham, Jim Reilly, and Don Waters for carefully reviewing a draft of this report. Constance McCormack was persistent in assembling the illustrations. I accept sole responsibility for any errors in fact. My conclusions and recommendations do not necessarily reflect the views of the Commission on Preservation and Access or its staff.
 
@@ -51,8 +52,6 @@ A sincere thank you to Janet Gertz, Anne Kenney, Jan Merrill-Oldham, Jim Reilly,
 [List of Figures](#list-of-figures)  
 [Bibliography](#bibliography)
 
-
-
 <a id="commission-preface"></a>
 
 ## Commission Preface
@@ -63,7 +62,7 @@ In its conceptualization and development, this paper has served as a basis for i
 
 <a id="authors-preface"></a>
 
-##  Author’s Preface
+## Author’s Preface
 
 Digital images are everywhere in libraries and archives. In many cases, the quality of digital image products from demonstration projects is spectacular, while others are less satisfactory. Nevertheless, there is widespread belief that the ability to produce high-quality images will improve as the technology matures. Even though a major investment is required for digital image conversion, libraries are rearranging budgets, raising funds, and anticipating income streams to make it happen. Can any institution–library, archives, historical society, or museum–afford to squander this investment in moving from pilot project to a fully operational system? The risk of loss extends beyond the financial, however, without a serious effort to ensure long-term access to digital image files. Understanding how to adapt preservation concepts to manage risk in the midst of rapid technological ferment is what preservation in the digital world is all about.
 
@@ -119,6 +118,7 @@ Significant financial barriers slow the design and implementation of effective p
 At this critical juncture in the evolution of preservation thinking, there is a large body of knowledge upon which to draw. The literature documents some fundamental concepts that have been described, tested, and codified (Swartzburg 1995). The following nine concepts, defined below in part by the words of some of the most articulate preservation advocates of past decades, form the framework for a comprehensive preservation perspective.
 
 <a id="context-for-action"></a>
+
 ### Context for Action
 
 Four concepts describe what might be called the context for preservation action.

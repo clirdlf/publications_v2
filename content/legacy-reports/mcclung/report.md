@@ -1072,11 +1072,9 @@ http://www.cs.cmu.edu/Web/books.html
 
 * * *
 
-## 
-
 <a id="app1"></a>
 
-Appendix I
+## Appendix I
 
 # ALA Survey of Imaging Projects
 

@@ -19,7 +19,7 @@ _This publication is now out-of-stock and can not be ordered._
 
 ![Commission on Preservation and Access](/images/legacy/isoperm/cpa.gif)
 
-# Isoperms  
+## Isoperms  
 An Environmental Management Tool
 
 by Donald K. Sebera  
@@ -32,21 +32,21 @@ June 1994
 
 ## Table of Contents
 
--   [Introduction](#legacy-page-isop-int)
--   [Scientific Basis](#legacy-page-isop-bas)
--   [Effect of Relative Humidity](#legacy-page-isop-rh)
--   [Effect of Temperature](#legacy-page-isoperms-temperature)
--   [Combined Effects of T and % RH](#legacy-page-isop-com)
--   [Applications of % RH vs. T Isoperm Diagrams](#legacy-page-isop-app)
--   [Numerical Values of Isoperms](#legacy-page-isop-num)
--   [Summary](#legacy-page-isop-sum)
--   [Readings and References](#legacy-page-isop-ref)
+- [Introduction](#legacy-page-isop-int)
+- [Scientific Basis](#legacy-page-isop-bas)
+- [Effect of Relative Humidity](#legacy-page-isop-rh)
+- [Effect of Temperature](#legacy-page-isoperms-temperature)
+- [Combined Effects of T and % RH](#legacy-page-isop-com)
+- [Applications of % RH vs. T Isoperm Diagrams](#legacy-page-isop-app)
+- [Numerical Values of Isoperms](#legacy-page-isop-num)
+- [Summary](#legacy-page-isop-sum)
+- [Readings and References](#legacy-page-isop-ref)
 
 ---
 
 <a id="legacy-page-isop-pub"></a>
 
-# Publication Information
+## Publication Information
 
 Published by The Commission on Preservation and Access  
 1400 16th Street, NW, Suite 740 Washington, DC 20036-2217  
@@ -104,7 +104,7 @@ Here, as in the earlier illustrations, a precise definition of permanence has no
 
 <a id="legacy-page-isop-rh"></a>
 
-# Effect of Relative Humidity
+## Effect of Relative Humidity
 
 Water is important as a reactant or catalyst in many chemical reactions. As already stated, the rate of deterioration of cellulose by hydrolysis is directly related to the moisture content of the paper which in turn is directly related to the percent relative humidity (% RH) of the atmosphere in which the paper is placed. We may summarize the effect of % RH as: the greater the % RH of the environment, the greater the moisture content of the paper, the higher the moisture content of the paper, the greater the hydrolysis deterioration rate of the paper, the faster the paper deterioration, the shorter the life expectancy (permanence) of the paper. These ideas can be summarized mathematically in the equation:
 
@@ -164,7 +164,7 @@ Equation 5
 
 Using the appropriate environmental values for the T’s and RH’s and an estimated or experimentally determined value for ![delta h](/images/legacy/isoperm/deltah.gif) these equations can be evaluated algebraically to obtain a quantitative evaluation of permanence changes.
 
-### Definition of Isoperm
+## Definition of Isoperm
 
 Algebraic computations using Equation 5 would be time consuming if not daunting to all except those with mathematical interests and skills. The equation would be more readily usable if cast in graphical form. The next paragraph, which describes this transformation, is the key to the isoperm method.
 
